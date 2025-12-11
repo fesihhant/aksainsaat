@@ -1,0 +1,255 @@
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white ; /*#356b39*/
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    overflow-y: auto;
+    display: none;
+}
+
+.user-info {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sidebar-logo {
+    width: 150px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.user-info h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.user-info p {
+    margin: 10px 0 0;
+    color: #666;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    content:'\f0c9';
+}
+
+.menu-item {
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.menu-item:hover {
+    background-color: #f5f5f5;
+    color: #1976d2;
+}
+
+#checkbox {
+    display:none;
+  
+	}
+
+ label #menu {
+    color:#1976d2; 
+    cursor: pointer;
+    position: fixed;
+    z-index:999;
+    left:200px;	
+    top:20px;       
+}
+
+label #menu:hover {
+ 	  font-size: 1.5rem;	
+ }
+#checkbox:checked ~ #slideMenu {
+    left:0;
+}
+
+
+/* menubar begin */
+
+.navbar {
+    display: contents; 
+    overflow: hidden;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.navbar a:hover {
+    background-color:#003da6;
+    color: white;
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 8px;
+}
+.navbarlogo{
+    padding-left: 26px;
+}
+
+.navbarlogo a{
+    cursor: pointer;
+}
+.navbarlogo img{
+    height: 52px;
+}
+.navbar .navbarlogo:hover{
+    background-color: white;
+}
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 14px;
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+.dropdown .dropbtn  i{
+    padding-left: 5px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    font-size: 13px;
+    max-height: calc(100vh - 100px); /* Yüksekliği hesapla */
+    overflow-y: auto;  
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    color: white; 
+    background-color:#003da6;
+    border: 1px solid;
+    border-radius: 8px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color:#003da6;
+    color: white;
+    border: 1px solid;
+    border-radius: 8px;
+}
+
+/* menu end */
+
+.banner-left {
+    display: flex;
+}
+
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    margin-right: 6px;
+    color: #003da6;
+}
+.close-menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    display: none;    
+    font-weight: bold;
+} 
+/* .close-menu:hover {
+  color: #c61d35;
+} */
+/* Mobil görünüm için düzenleme */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .menu-item {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .banner-left {
+        display: none;
+    }
+    .hamburger-menu {
+        display: block;
+    }    
+    .sidebar-logo {
+        width: 120px;
+    }
+    .sidebar-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100%;
+        background-color: #fff;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+        transition: right 0.3s ease;
+        z-index: 1000;
+    }
+
+    .sidebar-menu.open {
+        right: 0;
+        background-color: white;
+    } 
+    .close-menu {
+        display: block;
+    }
+    .dropdown .dropbtn {
+        color: black;
+    }
+    .dropdown-content{
+        background-color: white;
+    }
+    .navbar a{
+        /* color: white ; */
+        color: black;
+    }
+}

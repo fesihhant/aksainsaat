@@ -1,0 +1,12 @@
+backend/.env
+backend/node_modules
+backend/uploads/avatars
+backend/uploads/projects
+backend/uploads/references
+backend/uploads/introductionBooklet
+
+
+frontend/.env
+frontend/build
+frontend/node_modules
+TASKS.md
