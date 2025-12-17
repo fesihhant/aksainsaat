@@ -29,7 +29,13 @@ const IntroductionBookletEdit = () => {
         fileUrl: ''
     });
 
-    const { apiData, apiError, apiLoading } = useApiCall('/introductionBooklet', 'GET', null, true);
+    const { apiData, apiError, apiLoading } = useApiCall(
+        '/introductionBooklet',
+        'GET',
+        null,
+        true,
+        { dedupe: true, timeoutMs: 45000, retry: 1, retryDelayMs: 500 }
+    );
 
     useEffect(() => {
         if (apiData && apiData.introductionBooklet) {

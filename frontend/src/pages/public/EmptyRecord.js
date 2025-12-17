@@ -13,7 +13,7 @@ return (
     <div className="box-items">
     <div className="empty-box">
         <div>
-            <i class="fa-solid fa-circle-exclamation"></i>
+            <i className="fa-solid fa-circle-exclamation"></i>
             <span>{message ? message : 'Proje bulunamadı.'  }</span>
         </div>
             

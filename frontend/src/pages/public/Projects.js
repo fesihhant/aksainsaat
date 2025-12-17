@@ -14,7 +14,13 @@ const Projects = () => {
     const [statusType, setStatusType] = useState('');
     const [data, setData] = useState([]);
     
-    const { apiData, apiError, apiLoading } = useApiCall('/projects/projectList', 'GET', null, false);   
+    const { apiData, apiError, apiLoading } = useApiCall(
+        '/projects/projectList',
+        'GET',
+        null,
+        false,
+        { cache: true, staleTimeMs: 5 * 60 * 1000, cacheStorage: 'both', dedupe: true, timeoutMs: 45000, retry: 1, retryDelayMs: 500 }
+    );   
     useEffect(() => {
         if (apiData) { 
             if (apiData.success) {

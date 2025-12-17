@@ -20,7 +20,13 @@ const EditAbout = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     
-    const { apiData, apiError, apiLoading } = useApiCall('/abouts', 'GET', null, true);
+    const { apiData, apiError, apiLoading } = useApiCall(
+        '/abouts',
+        'GET',
+        null,
+        true,
+        { dedupe: true, timeoutMs: 45000, retry: 1, retryDelayMs: 500 }
+    );
 
     useEffect(() => {
         if (apiData && apiData.about) {

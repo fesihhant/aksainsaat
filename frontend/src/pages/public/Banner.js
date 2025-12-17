@@ -287,7 +287,7 @@ const Banner = ({ storedUser, setStoredUser }) => {
         >
            
             <div className="banner-content">
-                <div class="navbarlogo">
+                <div className="navbarlogo">
                     <a onClick={() => navigate('/')}  ><img loading="lazy" src={logo} alt="Aksa inşaat" /></a>
                 </div>                
                 <div className="hamburger-menu" onClick={toggleMenu}>
@@ -327,80 +327,80 @@ const Banner = ({ storedUser, setStoredUser }) => {
 
 
                 
-                 <div data-active-modal="login" class="modal" style={{display:'none'}} aria-label="Modal">
-                     <div class="modal-overlay"></div>
-                     <div class="modal-container md">
-                         <div class="modal-header">
-                             <h5 class="modal-title">Giriş Yap</h5>
-                             <button class="modal-close" aria-label="Close modal" onClick={() => changeActiveModal('login',false)} >×</button>
+                 <div data-active-modal="login" className="modal" style={{display:'none'}} aria-label="Modal">
+                     <div className="modal-overlay"></div>
+                     <div className="modal-container md">
+                         <div className="modal-header">
+                             <h5 className="modal-title">Giriş Yap</h5>
+                             <button className="modal-close" aria-label="Close modal" onClick={() => changeActiveModal('login',false)} >×</button>
                          </div>
-                         <div class="modal-content ">
-                             <form onSubmit={handleSubmitLogin} class="form-content">
-                                 <div class="form-field">
-                                     <div class="form-field-wrapper">
-                                     <label for="loginUsername">Kullanıcı Adı</label>
+                         <div className="modal-content ">
+                             <form onSubmit={handleSubmitLogin} className="form-content">
+                                 <div className="form-field">
+                                     <div className="form-field-wrapper">
+                                     <label htmlFor="loginUsername">Kullanıcı Adı</label>
                                      <input type="text" name="email" id="loginUsername"
                                          value={formData.email}
                                          onChange={handleInputChange}
                                          required/>
                                      </div>
                                  </div>
-                                 <div class="form-field">
-                                     <div class="form-field-wrapper">
-                                         <label for="loginPassword">Şifre</label>
+                                 <div className="form-field">
+                                     <div className="form-field-wrapper">
+                                         <label htmlFor="loginPassword">Şifre</label>
                                          <input type="password" name="password" id="loginPassword"
                                              value={formData.password}
                                              onChange={handleInputChange}
                                              required/>
                                      </div>
                                  </div>
-                                 <div class="form-field">
-                                     <button type="submit" class="primary">
+                                 <div className="form-field">
+                                     <button type="submit" className="primary">
                                      Giriş Yap
-                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="hidden-while-loading"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
-                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="spinning visible-while-loading"><path d="M256 64a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm0 480a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM64 256a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zM0 256a48 48 0 1 1 96 0A48 48 0 1 1 0 256zm464 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM120.2 391.8A16 16 0 1 0 97.6 414.4a16 16 0 1 0 22.6-22.6zM75 437a48 48 0 1 1 67.9-67.9A48 48 0 1 1 75 437zM97.6 120.2a16 16 0 1 0 22.6-22.6A16 16 0 1 0 97.6 120.2zM142.9 75A48 48 0 1 1 75 142.9 48 48 0 1 1 142.9 75zM414.4 414.4a16 16 0 1 0 -22.6-22.6 16 16 0 1 0 22.6 22.6zm-45.3-45.3A48 48 0 1 1 437 437a48 48 0 1 1 -67.9-67.9z"></path></svg>
+                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="hidden-while-loading"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="spinning visible-while-loading"><path d="M256 64a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm0 480a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM64 256a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zM0 256a48 48 0 1 1 96 0A48 48 0 1 1 0 256zm464 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM120.2 391.8A16 16 0 1 0 97.6 414.4a16 16 0 1 0 22.6-22.6zM75 437a48 48 0 1 1 67.9-67.9A48 48 0 1 1 75 437zM97.6 120.2a16 16 0 1 0 22.6-22.6A16 16 0 1 0 97.6 120.2zM142.9 75A48 48 0 1 1 75 142.9 48 48 0 1 1 142.9 75zM414.4 414.4a16 16 0 1 0 -22.6-22.6 16 16 0 1 0 22.6 22.6zm-45.3-45.3A48 48 0 1 1 437 437a48 48 0 1 1 -67.9-67.9z"></path></svg>
                                      </button>
                                  </div>
-                                 <hr class="or"/>
-                                 <div class="form-field horizontal">
+                                 <hr className="or"/>
+                                 <div className="form-field horizontal">
                                      <button type="button" data-modal="forgotPassword" onClick={() => changeActiveModal('forgotPassword',true)}>Şifremi Unuttum</button>
                                      <button type="button" data-modal="sendActivation" onClick={() => changeActiveModal('sendActivation',true)}>E-Mail Aktivasyon</button>
                                      <button type="button" data-modal="register" onClick={() => changeActiveModal('register',true)}>Kayıt Ol</button>
                                  </div>
                                  {error && 
-                                 <div class="form-field">
-                                     <p class="error-message">{error}</p>
+                                 <div className="form-field">
+                                     <p className="error-message">{error}</p>
                                  </div>}
                              </form>
                          </div>
                      </div>
                  </div>
-                 <div data-active-modal="register" class="modal" style={{display:'none'}} aria-label="Modal">
-                     <div class="modal-overlay"></div>
-                     <div class="modal-container md">
-                         <div class="modal-header">
-                             <h5 class="modal-title">Kayıt Ol</h5>
-                             <button class="modal-close" aria-label="Close modal"  onClick={() => changeActiveModal('register',false)}>×</button>
+                 <div data-active-modal="register" className="modal" style={{display:'none'}} aria-label="Modal">
+                     <div className="modal-overlay"></div>
+                     <div className="modal-container md">
+                         <div className="modal-header">
+                             <h5 className="modal-title">Kayıt Ol</h5>
+                             <button className="modal-close" aria-label="Close modal"  onClick={() => changeActiveModal('register',false)}>×</button>
                          </div>
-                         <div class="modal-content ">
-                             <form onSubmit={handleSubmitRegister} class="form-content">
-                                 <div class="form-field">
-                                     <div class="form-field-wrapper">
-                                         <label for="loginEmail">E-posta</label>
+                         <div className="modal-content ">
+                             <form onSubmit={handleSubmitRegister} className="form-content">
+                                 <div className="form-field">
+                                     <div className="form-field-wrapper">
+                                         <label htmlFor="loginEmail">E-posta</label>
                                          <input  
                                              id="loginEmail"
                                              type="email" 
                                              name="email"
                                              value={formData.email}
-                                             autocomplete="new-email"
+                                             autoComplete="new-email"
                                              required
                                              onChange={handleInputChange}    
                                          />
                                      </div>
                                  </div>
-                                 <div class="form-field">
-                                     <div class="form-field-wrapper">
-                                         <label for="fullName">Ad Soyad</label>
+                                 <div className="form-field">
+                                     <div className="form-field-wrapper">
+                                         <label htmlFor="fullName">Ad Soyad</label>
                                          <input 
                                              id="fullName"
                                              type="text" 
@@ -408,13 +408,13 @@ const Banner = ({ storedUser, setStoredUser }) => {
                                              value={formData.fullName} 
                                              required
                                              onChange={handleInputChange}
-                                             autocomplete="new-username"
+                                             autoComplete="new-username"
                                          />
                                      </div>
                                  </div>
-                                 <div class="form-field">
-                                     <div class="form-field-wrapper">
-                                         <label for="loginPassword">Şifre</label>
+                                 <div className="form-field">
+                                     <div className="form-field-wrapper">
+                                         <label htmlFor="loginPassword">Şifre</label>
                                          <input
                                              id="loginPassword"
                                              type={showPassword ? "text" : "password"} // Şifreyi göster/gizle
@@ -422,7 +422,7 @@ const Banner = ({ storedUser, setStoredUser }) => {
                                              value={formData.password} 
                                              required
                                              onChange={handleInputChange}
-                                             autocomplete="new-password"
+                                             autoComplete="new-password"
                                          />
                                          <i
                                              className={`fa ${showPassword ? "fa-eye-slash" : "fa-eye"} password-toggle-icon`}
@@ -431,9 +431,9 @@ const Banner = ({ storedUser, setStoredUser }) => {
                                          </i>
                                      </div>
                                  </div>
-                                 <div class="form-field">
-                                     <div class="form-field-wrapper">
-                                         <label for="loginPasswordAgain">Şifre (Tekrar)</label>
+                                 <div className="form-field">
+                                     <div className="form-field-wrapper">
+                                         <label htmlFor="loginPasswordAgain">Şifre (Tekrar)</label>
                                          <input
                                              id="loginPasswordAgain"
                                              type={showPasswordAgain ? "text" : "password"} // Şifreyi göster/gizle
@@ -441,7 +441,7 @@ const Banner = ({ storedUser, setStoredUser }) => {
                                              value={formData.confirmPassword} 
                                              required
                                              onChange={handleInputChange}
-                                             autocomplete="new-password-again" 
+                                             autoComplete="new-password-again" 
                                          />
                                          <i
                                              className={`fa ${showPasswordAgain ? "fa-eye-slash" : "fa-eye"} password-toggle-icon`}
@@ -450,56 +450,56 @@ const Banner = ({ storedUser, setStoredUser }) => {
                                          </i>
                                      </div>
                                  </div>
-                                 <div class="form-field">
-                                     <button type="submit" class="primary">
+                                 <div className="form-field">
+                                     <button type="submit" className="primary">
                                          Kayıt Ol
-                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="hidden-while-loading"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
-                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="spinning visible-while-loading"><path d="M256 64a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm0 480a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM64 256a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zM0 256a48 48 0 1 1 96 0A48 48 0 1 1 0 256zm464 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM120.2 391.8A16 16 0 1 0 97.6 414.4a16 16 0 1 0 22.6-22.6zM75 437a48 48 0 1 1 67.9-67.9A48 48 0 1 1 75 437zM97.6 120.2a16 16 0 1 0 22.6-22.6A16 16 0 1 0 97.6 120.2zM142.9 75A48 48 0 1 1 75 142.9 48 48 0 1 1 142.9 75zM414.4 414.4a16 16 0 1 0 -22.6-22.6 16 16 0 1 0 22.6 22.6zm-45.3-45.3A48 48 0 1 1 437 437a48 48 0 1 1 -67.9-67.9z"></path></svg>
+                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="hidden-while-loading"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="spinning visible-while-loading"><path d="M256 64a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm0 480a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM64 256a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zM0 256a48 48 0 1 1 96 0A48 48 0 1 1 0 256zm464 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM120.2 391.8A16 16 0 1 0 97.6 414.4a16 16 0 1 0 22.6-22.6zM75 437a48 48 0 1 1 67.9-67.9A48 48 0 1 1 75 437zM97.6 120.2a16 16 0 1 0 22.6-22.6A16 16 0 1 0 97.6 120.2zM142.9 75A48 48 0 1 1 75 142.9 48 48 0 1 1 142.9 75zM414.4 414.4a16 16 0 1 0 -22.6-22.6 16 16 0 1 0 22.6 22.6zm-45.3-45.3A48 48 0 1 1 437 437a48 48 0 1 1 -67.9-67.9z"></path></svg>
                                      </button>
                                  </div>
                                  {error && 
-                                 <div class="form-field">
-                                     <p class="error-message">{error}</p>
+                                 <div className="form-field">
+                                     <p className="error-message">{error}</p>
                                  </div>}
                              </form>
                          </div>
                      </div>
                  </div>
-                 <div data-active-modal="forgotPassword" class="modal"  style={{display:'none'}} aria-label="Modal">
+                 <div data-active-modal="forgotPassword" className="modal"  style={{display:'none'}} aria-label="Modal">
                      <div
-                         class="modal-overlay"
+                         className="modal-overlay"
                          style={loading ? { pointerEvents: 'none', opacity: 0.7 } : {}}>
                      </div>
-                     <div class="modal-container md">
-                         <div class="modal-header">
-                             <h5 class="modal-title">Şifremi Unuttum</h5>
+                     <div className="modal-container md">
+                         <div className="modal-header">
+                             <h5 className="modal-title">Şifremi Unuttum</h5>
                              <button
-                                 class="modal-close"
+                                 className="modal-close"
                                  aria-label="Close modal"
                                  onClick={() => changeActiveModal('forgotPassword', false)}
                                  disabled={loading} // loading sırasında kapatma devre dışı
                                  style={loading ? { pointerEvents: 'none', opacity: 0.5 } : {}}
                              >×</button>
                          </div>
-                         <div class="modal-content ">
-                             <form onSubmit={handleSubmitForgotPassword}  class="form-content">
-                                 <div class="form-field">
-                                     <div class="form-field-wrapper">
-                                         <label for="email">E-posta</label>
+                         <div className="modal-content ">
+                             <form onSubmit={handleSubmitForgotPassword}  className="form-content">
+                                 <div className="form-field">
+                                     <div className="form-field-wrapper">
+                                         <label htmlFor="email">E-posta</label>
                                          <input type="email" name="email" id="email" onChange={(e) => setFormData({ ...formData, email: e.target.value })} disabled={loading} required/>
                                      </div>
                                  </div>
-                                 <div class="form-field">
-                                     <button type="submit" class="primary"
+                                 <div className="form-field">
+                                     <button type="submit" className="primary"
                                          disabled={loading}
                                          style={loading ? { opacity: 0.7, pointerEvents: 'none' } : {}}>
                                      {loading ? "Bekleyiniz..." : "Şifremi Sıfırla"}
-                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="hidden-while-loading"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
-                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="spinning visible-while-loading"><path d="M256 64a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm0 480a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM64 256a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zM0 256a48 48 0 1 1 96 0A48 48 0 1 1 0 256zm464 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM120.2 391.8A16 16 0 1 0 97.6 414.4a16 16 0 1 0 22.6-22.6zM75 437a48 48 0 1 1 67.9-67.9A48 48 0 1 1 75 437zM97.6 120.2a16 16 0 1 0 22.6-22.6A16 16 0 1 0 97.6 120.2zM142.9 75A48 48 0 1 1 75 142.9 48 48 0 1 1 142.9 75zM414.4 414.4a16 16 0 1 0 -22.6-22.6 16 16 0 1 0 22.6 22.6zm-45.3-45.3A48 48 0 1 1 437 437a48 48 0 1 1 -67.9-67.9z"></path></svg>
+                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="hidden-while-loading"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="spinning visible-while-loading"><path d="M256 64a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm0 480a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM64 256a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zM0 256a48 48 0 1 1 96 0A48 48 0 1 1 0 256zm464 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM120.2 391.8A16 16 0 1 0 97.6 414.4a16 16 0 1 0 22.6-22.6zM75 437a48 48 0 1 1 67.9-67.9A48 48 0 1 1 75 437zM97.6 120.2a16 16 0 1 0 22.6-22.6A16 16 0 1 0 97.6 120.2zM142.9 75A48 48 0 1 1 75 142.9 48 48 0 1 1 142.9 75zM414.4 414.4a16 16 0 1 0 -22.6-22.6 16 16 0 1 0 22.6 22.6zm-45.3-45.3A48 48 0 1 1 437 437a48 48 0 1 1 -67.9-67.9z"></path></svg>
                                      </button>
                                  </div>
-                                 <hr class="or"/>
-                                 <div class="form-field horizontal">
+                                 <hr className="or"/>
+                                 <div className="form-field horizontal">
                                      <button type="button" data-modal="sendActivation" onClick={() => changeActiveModal('sendActivation',true)} disabled={loading}>E-Mail Aktivasyon</button>
                                      {
                                          !isloginPage &&    
@@ -507,49 +507,49 @@ const Banner = ({ storedUser, setStoredUser }) => {
                                      }
                                      <button type="button" data-modal="register" onClick={() => changeActiveModal('register',true)} disabled={loading}>Kayıt Ol</button>
                                  </div>
-                                 {success && <div class="form-field"> <p class="form-message success">{success}</p></div>}
-                                 {error && <div class="form-field"> <p class="error-message">{error}</p></div>}
+                                 {success && <div className="form-field"> <p className="form-message success">{success}</p></div>}
+                                 {error && <div className="form-field"> <p className="error-message">{error}</p></div>}
                              </form>
                      </div>
                      </div>
                  </div>
               
-                 <div data-active-modal="sendActivation" class="modal"  style={{display:'none'}} aria-label="Modal">
+                 <div data-active-modal="sendActivation" className="modal"  style={{display:'none'}} aria-label="Modal">
                      <div
-                         class="modal-overlay"
+                         className="modal-overlay"
                          style={loading ? { pointerEvents: 'none', opacity: 0.7 } : {}}>
                      </div>
-                     <div class="modal-container md">
-                     <div class="modal-header">
-                         <h5 class="modal-title">E-Mail Aktivasyonu</h5>
+                     <div className="modal-container md">
+                     <div className="modal-header">
+                         <h5 className="modal-title">E-Mail Aktivasyonu</h5>
                          <button
-                                 class="modal-close"
+                                 className="modal-close"
                                  aria-label="Close modal"
                                  onClick={() => changeActiveModal('sendActivation', false)}
                                  disabled={loading} // loading sırasında kapatma devre dışı
                                  style={loading ? { pointerEvents: 'none', opacity: 0.5 } : {}}
                              >×</button>
                      </div>
-                     <div class="modal-content ">
-                         <form onSubmit={handleSubmitSendActivation}  class="form-content">
-                             <div class="form-field">
-                                 <div class="form-field-wrapper">
-                                     <label for="email">E-posta</label>
+                     <div className="modal-content ">
+                         <form onSubmit={handleSubmitSendActivation}  className="form-content">
+                             <div className="form-field">
+                                 <div className="form-field-wrapper">
+                                     <label htmlFor="email">E-posta</label>
                                      <input type="email" name="email" onChange={(e) => setFormData({ ...formData, email: e.target.value })} disabled={loading} required/>
                                  </div>
                              </div>
-                             <div class="form-field">
-                                 <button type="submit" class="primary"
+                             <div className="form-field">
+                                 <button type="submit" className="primary"
                                      disabled={loading}
                                      style={loading ? { opacity: 0.7, pointerEvents: 'none' } : {}}>
                                      {loading ? "Bekleyiniz..." : "E-Mail Aktivasyonu Gönder"}
-                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="hidden-while-loading"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
-                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="spinning visible-while-loading"><path d="M256 64a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm0 480a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM64 256a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zM0 256a48 48 0 1 1 96 0A48 48 0 1 1 0 256zm464 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM120.2 391.8A16 16 0 1 0 97.6 414.4a16 16 0 1 0 22.6-22.6zM75 437a48 48 0 1 1 67.9-67.9A48 48 0 1 1 75 437zM97.6 120.2a16 16 0 1 0 22.6-22.6A16 16 0 1 0 97.6 120.2zM142.9 75A48 48 0 1 1 75 142.9 48 48 0 1 1 142.9 75zM414.4 414.4a16 16 0 1 0 -22.6-22.6 16 16 0 1 0 22.6 22.6zm-45.3-45.3A48 48 0 1 1 437 437a48 48 0 1 1 -67.9-67.9z"></path></svg>
+                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="hidden-while-loading"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="spinning visible-while-loading"><path d="M256 64a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm0 480a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM64 256a16 16 0 1 0 -32 0 16 16 0 1 0 32 0zM0 256a48 48 0 1 1 96 0A48 48 0 1 1 0 256zm464 16a16 16 0 1 0 0-32 16 16 0 1 0 0 32zm0-64a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM120.2 391.8A16 16 0 1 0 97.6 414.4a16 16 0 1 0 22.6-22.6zM75 437a48 48 0 1 1 67.9-67.9A48 48 0 1 1 75 437zM97.6 120.2a16 16 0 1 0 22.6-22.6A16 16 0 1 0 97.6 120.2zM142.9 75A48 48 0 1 1 75 142.9 48 48 0 1 1 142.9 75zM414.4 414.4a16 16 0 1 0 -22.6-22.6 16 16 0 1 0 22.6 22.6zm-45.3-45.3A48 48 0 1 1 437 437a48 48 0 1 1 -67.9-67.9z"></path></svg>
                                  </button>
                              </div>
                                  {error && 
-                                 <div class="form-field">
-                                     <p class="error-message">{error}</p>
+                                 <div className="form-field">
+                                     <p className="error-message">{error}</p>
                                  </div>}
                          </form>
                      </div>

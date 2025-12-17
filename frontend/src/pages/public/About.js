@@ -26,8 +26,20 @@ const About = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
         
-    const { apiData, apiError, apiLoading } = useApiCall('/abouts', 'GET', null, false);
-    const { apiData: bookletData, apiError: bookletError, apiLoading: bookletLoading } = useApiCall('/introductionBooklet', 'GET', null, false);
+    const { apiData, apiError, apiLoading } = useApiCall(
+        '/abouts',
+        'GET',
+        null,
+        false,
+        { cache: true, staleTimeMs: 30 * 60 * 1000, cacheStorage: 'both', dedupe: true, timeoutMs: 45000, retry: 1, retryDelayMs: 500 }
+    );
+    const { apiData: bookletData, apiError: bookletError, apiLoading: bookletLoading } = useApiCall(
+        '/introductionBooklet',
+        'GET',
+        null,
+        false,
+        { cache: true, staleTimeMs: 30 * 60 * 1000, cacheStorage: 'both', dedupe: true, timeoutMs: 45000, retry: 1, retryDelayMs: 500 }
+    );
 
     useEffect(() => {
         if (apiData && apiData.about) {

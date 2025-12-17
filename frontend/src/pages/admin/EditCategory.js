@@ -20,7 +20,13 @@ const EditCategory = () => {
     
     
     const [categoryTypes, setCategoryTypes]= useState([]);
-    const { apiData, apiError, apiLoading } = useApiCall('/categoryTypes', 'GET', null, false);
+    const { apiData, apiError, apiLoading } = useApiCall(
+        '/categoryTypes',
+        'GET',
+        null,
+        false,
+        { dedupe: true, timeoutMs: 45000, retry: 1, retryDelayMs: 500 }
+    );
     
     useEffect(() => {
         if (apiData && apiData.categoryTypes) {

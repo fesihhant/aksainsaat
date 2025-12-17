@@ -39,15 +39,15 @@ const Sidebar = () => {
     };
 
     return (
-        <div class="navbar">
+        <div className="navbar">
             {
                 token && storedUser && storedUser.role == 'admin' ?
                 (                    
-                    <div class="dropdown">
-                        <button class="dropbtn">Yönetici 
-                            <i class="fa fa-caret-down"></i>
+                    <div className="dropdown">
+                        <button className="dropbtn">Yönetici 
+                            <i className="fa fa-caret-down"></i>
                         </button>
-                        <div class="dropdown-content">
+                        <div className="dropdown-content">
                             <a onClick={() => handleMenuClick('/users')}>Kullanıcılar</a>
                             <a onClick={() => handleMenuClick('/projects')} >Projeler</a>
                             <a onClick={() => handleMenuClick('/categories')}>Kategoriler</a>
@@ -65,11 +65,11 @@ const Sidebar = () => {
             <a onClick={() => handleMenuClick('/')}>Anasayfa</a>
             {categories.length > 0 && 
             
-                <div class="dropdown">
-                    <button class="dropbtn">Faaliyetlerimiz
-                        <i class="fa fa-caret-down"></i>
+                <div className="dropdown">
+                    <button className="dropbtn">Faaliyetlerimiz
+                        <i className="fa fa-caret-down"></i>
                     </button>
-                    <div class="dropdown-content">
+                    <div className="dropdown-content">
                         {categories.map((category) => (
                             <a key={category._id} onClick={() => handleCategoryClick(category._id)}>
                                 {category.name}

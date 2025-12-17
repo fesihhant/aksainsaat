@@ -8,11 +8,16 @@ import OptimizedImage from '../../components/htmlComponent/OptimizedImage';
 
 const HomePage = () => {
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [error, setError] = useState('');
     
-    const { apiData, apiError, apiLoading } = useApiCall('/projects/projectList', 'GET', null, false);   
+    const { apiData, apiError, apiLoading, refetch } = useApiCall(
+        '/projects/projectList',
+        'GET',
+        null,
+        false,
+        { cache: true, staleTimeMs: 5 * 60 * 1000, cacheStorage: 'both', dedupe: true, timeoutMs: 45000, retry: 1, retryDelayMs: 500 }
+    );
     useEffect(() => {
         setError('');
         try {
@@ -29,32 +34,43 @@ const HomePage = () => {
         } catch (err) {
             setError('Projeler yüklenirken bir hata oluştu');
         }
-        
-        setLoading(apiLoading);
     }, [apiData, apiError, apiLoading]);
-    
-    if (loading) {
-        return <div>Yükleniyor...</div>;
-    }
-    
-    if (error) {
-        return <div className="error-message">{error}</div>;
-    }
     return (
         <>
             <CHelmet pageName="Projelerimiz" projectName="İnşaat projeleri, doğalgaz" categoryName="boru hattı" />
             <div className="home-container" >
                 <div className="main-content" style={{paddingTop:'0'}}>
-                    <ProjectSlider projects={data} navigate={navigate} />
+                    {/* Slider bloklamasın: veri gelene kadar skeleton */}
+                    {apiLoading && data.length === 0 ? (
+                        <div style={{ width: '100%', height: '60vw', maxHeight: 700, borderRadius: 0 }} className="skeleton" />
+                    ) : (
+                        <ProjectSlider projects={data} navigate={navigate} />
+                    )}
                     <br/>
                     <br/>
                     <div className='box-header'>
                         <h3 style={{fontSize:48}}>Projeler</h3>
                     </div>
+
+                    {error && (
+                        <div className="error-message" style={{ margin: '0 20px' }}>
+                            {error}
+                            <button className="submit-button" style={{ marginLeft: 12 }} onClick={refetch}>
+                                Yeniden Dene
+                            </button>
+                        </div>
+                    )}
+
                     <div className="box-grid">
-                        {data                
-                            .map(p => (
-                                <div key={p.id} className="box-card">
+                        {apiLoading && data.length === 0 ? (
+                            Array.from({ length: 6 }).map((_, idx) => (
+                                <div key={`sk-${idx}`} className="box-card">
+                                    <div className="box-card-image skeleton" />
+                                </div>
+                            ))
+                        ) : (
+                            data.map(p => (
+                                <div key={p._id || p.id} className="box-card">
                                     <div className="box-card-image">
                                         <OptimizedImage
                                             src={p.imageUrls && p.imageUrls.length > 0 
@@ -75,7 +91,7 @@ const HomePage = () => {
                                     </div>
                                 </div>
                             ))
-                        }
+                        )}
                     </div>
                 </div> 
             </div>

@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const connectDB = require('./config/db');
 require('dotenv').config();
 
 //#region models
@@ -32,9 +31,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
-
-// MongoDB bağlantısı
-connectDB();
 
 // Uploads klasörünü statik olarak serve et - Route'lardan ÖNCE olmalı
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {

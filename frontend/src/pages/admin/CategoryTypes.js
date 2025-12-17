@@ -13,7 +13,13 @@ const CategoryTypes = () => {
     const [error, setError] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
 
-    const { apiData, apiError, apiLoading } = useApiCall('/categoryTypes', 'GET', null, true);
+    const { apiData, apiError, apiLoading } = useApiCall(
+        '/categoryTypes',
+        'GET',
+        null,
+        true,
+        { dedupe: true, timeoutMs: 45000, retry: 1, retryDelayMs: 500 }
+    );
     const { apiError: deleteError, apiLoading: deleteLoading, deleteData } = useDeleteApiCall();
     
     useEffect(() => {

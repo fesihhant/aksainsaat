@@ -83,7 +83,7 @@ const Login = () => {
                                 )}
                                 <div class="form-field">
                                     <div class="form-field-wrapper">
-                                    <label for="loginUsername" style={{color:'rgb(161 161 170)'}}>Kullanıcı Adı</label>
+                                    <label htmlFor="loginUsername" style={{color:'rgb(161 161 170)'}}>Kullanıcı Adı</label>
                                     <input type="text" name="email" id="loginUsername"
                                         value={formData.email}
                                         onChange={handleInputChange}
@@ -92,7 +92,7 @@ const Login = () => {
                                 </div>
                                 <div class="form-field">
                                     <div class="form-field-wrapper">
-                                        <label for="loginPassword" style={{color:'rgb(161 161 170)'}} >Şifre</label>
+                                        <label htmlFor="loginPassword" style={{color:'rgb(161 161 170)'}} >Şifre</label>
                                         <input type="password" name="password" id="loginPassword"
                                             value={formData.password}
                                             onChange={handleInputChange}

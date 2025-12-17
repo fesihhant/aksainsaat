@@ -126,10 +126,12 @@ export const createStatusRender = (fieldName = 'isActivated') => {
 // Tarih formatlama için render
 export const createDateRender = (fieldName = 'createdAt', locale = 'tr-TR') => {
     return createSafeRenderCell((params) => {
-        if (!params.row) return null;
-        const date = params.row[fieldName];
-        if (!date) return null;
-        return new Date(date).toLocaleDateString(locale, {
+        if (!params?.row) return null;
+        const dateValue = params.row[fieldName];
+        if (!dateValue) return null;
+        const date = new Date(dateValue);
+        if (isNaN(date.getTime())) return null;
+        return date.toLocaleDateString(locale, {
             year: 'numeric',
             month: '2-digit',
             day: '2-digit'
@@ -173,9 +175,8 @@ export const createActionsRender = (actions) => {
     return createSafeRenderCell((params) => (
         <div style={{ display: 'flex', gap: '8px' }}>
             {actions.map((action, index) => (
-                <div style={{ display: 'flex', gap: '8px' }}>
+                <div key={index} style={{ display: 'flex', gap: '8px' }}>
                     <button
-                        key={index}
                         onClick={(e) => {
                             e.stopPropagation();
                             action.onClick(params.row);

@@ -123,7 +123,7 @@ const OurActivities = () => {
                     )}
                     {filteredprojects                 
                         .map(p => (
-                        <div key={p.id} className="box-card">
+                        <div key={p._id || p.id} className="box-card">
                             <div className="box-card-image">
                                 <OptimizedImage
                                     src={p.imageUrls && p.imageUrls.length > 0 

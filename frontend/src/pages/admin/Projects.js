@@ -14,7 +14,13 @@ const Projects = () => {
     const [error, setError] = useState('');
     const [searchTerm, setSearchTerm] = useState('');    
     
-    const { apiData, apiError, apiLoading } = useApiCall('/projects', 'GET', null, true);
+    const { apiData, apiError, apiLoading } = useApiCall(
+        '/projects',
+        'GET',
+        null,
+        true,
+        { dedupe: true, timeoutMs: 45000, retry: 1, retryDelayMs: 500 }
+    );
     const { apiSuccess, apiError: deleteError, apiLoading: deleteLoading, deleteData } = useDeleteApiCall();
 
     useEffect(() => {
@@ -101,7 +107,6 @@ const Projects = () => {
             field: 'startDate',
             headerName: 'Başlama Tarihi',
             width: 126,
-            type: 'datetime',
             renderCell: createDateRender('startDate', 'tr-TR')
         },
         {

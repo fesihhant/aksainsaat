@@ -46,32 +46,27 @@ const Contact = () => {
     return (
         <>
         <Helmet>
-            <script type="application/ld+json">
-                {`
-                {
-                    "@context": "https://schema.org",
-                    "@type": "LocalBusiness",
-                    "name": "Aksa İnşaat",
-                    "image": "https://www.aksainsaat.com.tr/aksa-insaat.png",
-                    "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "Bektaş Sk No:6/18",
-                    "addressLocality": "Kartal",
-                    "addressRegion": "İstanbul",
-                    "postalCode": "34880",
-                    "addressCountry": "TR"
-                    },
-                    "telephone": "+902164511313",
-                    "url": "https://www.aksainsaat.com.tr",
-                    "aggregateRating": {
-                    "@type": "AggregateRating",
-                    }
-                }
-                `}
-            </script>
-            
-            {/* "ratingValue": "4.9", google da işletmeye verilen puan 
-            "reviewCount": "141" google da işletmeye verilen puan veya yorum sayisi */}
+            <script 
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "LocalBusiness",
+                        "name": "Aksa İnşaat",
+                        "image": "https://www.aksainsaat.tr/aksa-insaat.png",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "Bektaş Sk No:6/18",
+                            "addressLocality": "Kartal",
+                            "addressRegion": "İstanbul",
+                            "postalCode": "34880",
+                            "addressCountry": "TR"
+                        },
+                        "telephone": "+902164511313",
+                        "url": "https://www.aksainsaat.tr"
+                    })
+                }}
+            />
         </Helmet>
 
             <div className="home-container">
@@ -131,11 +126,20 @@ const Contact = () => {
                                 </form>
                             </div>
                             <div className='col-4'>
-                                <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3015.048200284835!2d29.210003075509068!3d40.91468902518324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac4c112ee7bd5%3A0x384117202fbc4b85!2zT3J0YSwgQmVrdGHFnyBTay4gTm86NiBEOjE3LCAzNDg2MCBLYXJ0YWwvxLBzdGFuYnVs!5e0!3m2!1str!2str!4v1749721323356!5m2!1str!2str" 
-                                style={{borderRadius:'10px', border:'2px solid cadetblue'}}
-                                width="500" height="400" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                                aria-label="Orta Mahalle, Bektaş Sk. No:6/16, 06460 Kartal/İstanbul"></iframe>
+                                <iframe 
+                                    frameBorder="0" 
+                                    scrolling="no" 
+                                    marginHeight="0" 
+                                    marginWidth="0"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3015.048200284835!2d29.210003075509068!3d40.91468902518324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac4c112ee7bd5%3A0x384117202fbc4b85!2zT3J0YSwgQmVrdGHFnyBTay4gTm86NiBEOjE3LCAzNDg2MCBLYXJ0YWwvxLBzdGFuYnVs!5e0!3m2!1str!2str!4v1749721323356!5m2!1str!2str" 
+                                    style={{borderRadius:'10px', border:'2px solid cadetblue'}}
+                                    width="500" 
+                                    height="400" 
+                                    allowFullScreen 
+                                    loading="lazy" 
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    title="Orta Mahalle, Bektaş Sk. No:6/16, 06460 Kartal/İstanbul"
+                                />
                             </div>
                        </div> 
                     </div>

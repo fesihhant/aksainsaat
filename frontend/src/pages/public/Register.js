@@ -74,7 +74,7 @@ const Register = () => {
                             <form onSubmit={handleSubmitRegister} class="form-content">
                                 <div class="form-field">
                                     <div class="form-field-wrapper">
-                                        <label for="loginEmail" style={{color:'rgb(161 161 170)'}}>E-posta</label>
+                                        <label htmlFor="loginEmail" style={{color:'rgb(161 161 170)'}}>E-posta</label>
                                         <input  
                                             id="loginEmail"
                                             type="email" 
@@ -88,7 +88,7 @@ const Register = () => {
                                 </div>
                                 <div class="form-field">
                                     <div class="form-field-wrapper">
-                                        <label for="fullName" style={{color:'rgb(161 161 170)'}}>Ad Soyad</label>
+                                        <label htmlFor="fullName" style={{color:'rgb(161 161 170)'}}>Ad Soyad</label>
                                         <input 
                                             id="fullName"
                                             type="text" 
@@ -102,7 +102,7 @@ const Register = () => {
                                 </div>
                                 <div class="form-field">
                                     <div class="form-field-wrapper">
-                                        <label for="loginPassword" style={{color:'rgb(161 161 170)'}}>Şifre</label>
+                                        <label htmlFor="loginPassword" style={{color:'rgb(161 161 170)'}}>Şifre</label>
                                         <input
                                             id="loginPassword"
                                             type={showPassword ? "text" : "password"} // Şifreyi göster/gizle
@@ -122,7 +122,7 @@ const Register = () => {
                                 </div>
                                 <div class="form-field">
                                     <div class="form-field-wrapper">
-                                        <label for="loginPasswordAgain" style={{color:'rgb(161 161 170)'}}>Şifre (Tekrar)</label>
+                                        <label htmlFor="loginPasswordAgain" style={{color:'rgb(161 161 170)'}}>Şifre (Tekrar)</label>
                                         <input
                                             id="loginPasswordAgain"
                                             type={showPasswordAgain ? "text" : "password"} // Şifreyi göster/gizle

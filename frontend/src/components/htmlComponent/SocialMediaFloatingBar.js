@@ -1,40 +1,32 @@
 import { useEffect, useState } from 'react';
 import '../../css/SocialMediaFloatingBar.css';
-import { apiUrl, getSocialMedyaIcon, getSocialMediaBgColor } from '../../utils/utils';
+import { getSocialMedyaIcon, getSocialMediaBgColor } from '../../utils/utils';
+import { useApiCall } from '../../utils/apiCalls';
  
 const SocialMediaFloatingBar = () => {
   const [accounts, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [hovered, setHovered] = useState(null);
   
+  const { apiData, apiError, apiLoading } = useApiCall(
+    '/social-media',
+    'GET',
+    null,
+    false,
+    { cache: true, staleTimeMs: 60 * 60 * 1000, cacheStorage: 'both', dedupe: true, timeoutMs: 45000, retry: 1, retryDelayMs: 500 }
+  );
   
   useEffect(() => {
-      
-      const fetchData = async () => {
-          try {
-              const response = await fetch(`${apiUrl}/social-media`, {
-                  method: 'GET',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  }
-              });
-              const data = await response.json();
+    if (apiData && apiData.success) {
+      setData((apiData.accounts || []).filter((x) => x.active === true).sort());
+    }
+    if (apiError) {
+      console.error('Veriler yüklenirken hata:', apiError);
+    }
+  }, [apiData, apiError]);
 
-              if (data.success) {
-                  setData(data.accounts.filter((x) => x.active == true).sort());              
-              }
-          } catch (error) {
-              console.error('Veriler yüklenirken hata:', error);
-          } finally {
-              setLoading(false);
-          }
-      };
+  // Sayfayı kilitleme: loading durumunda bar'ı göstermiyoruz (placeholder da olabilir).
+  if (apiLoading && accounts.length === 0) return null;
 
-      fetchData();
-  }, []);
-if (loading) {
-    return <div>Yükleniyor...</div>;
-  }
 return (
     <div className="social-media-bar">
       {accounts.map((item, idx) => (

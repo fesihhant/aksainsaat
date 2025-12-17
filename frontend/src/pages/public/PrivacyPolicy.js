@@ -12,7 +12,13 @@ const PrivacyPolicy = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
         
-    const { apiData, apiError, apiLoading } = useApiCall('/privacyPolicies', 'GET', null, false);
+    const { apiData, apiError, apiLoading, refetch } = useApiCall(
+        '/privacyPolicies',
+        'GET',
+        null,
+        false,
+        { cache: true, staleTimeMs: 5 * 60 * 1000, cacheStorage: 'both', dedupe: true, timeoutMs: 45000, retry: 1, retryDelayMs: 500 }
+    );
 
     useEffect(() => {
         if (apiData && apiData.privacyPolicy) {
@@ -33,19 +39,24 @@ const PrivacyPolicy = () => {
             <div className="main-content">
                 <Breadcrumbs />
                 <div className="about-form-container">   
-                     
-                    {loading && <p>Yükleniyor...</p>}
-                    {error && <div className="error-message">{error}</div>}
-                    
-                    {formData && formData.title &&
-                        <>
-                            <div>
-                                <h2>{formData.title}</h2>
-                                <br/>
-                                <div dangerouslySetInnerHTML={{ __html: formData.content }} />
-                            </div>
-                        </>
-                    } 
+                    {apiLoading && !formData.title ? (
+                        <div className="skeleton" style={{ minHeight: 200, marginBottom: 20 }} />
+                    ) : null}
+                    {error && (
+                        <div className="error-message">
+                            {error}
+                            <button className="submit-button" style={{ marginLeft: 12 }} onClick={refetch}>
+                                Yeniden Dene
+                            </button>
+                        </div>
+                    )}
+                    {formData && formData.title && (
+                        <div>
+                            <h2>{formData.title}</h2>
+                            <br/>
+                            <div dangerouslySetInnerHTML={{ __html: formData.content }} />
+                        </div>
+                    )} 
                 </div>
             </div>
         </div>
