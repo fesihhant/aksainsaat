@@ -5,8 +5,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Breadcrumbs from '../public/Breadcrumbs';
 import '../../css/EditUser.css';
-import { useApiCall } from '../../utils/apiCalls';
-import {apiUrl, editorModules, editorFormats} from '../../utils/utils';
+import { useApiCall, apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
+import { editorModules, editorFormats } from '../../utils/utils';
 
 
 const EditAbout = () => {
@@ -53,37 +53,25 @@ const EditAbout = () => {
         // }
         
         try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                navigate('/login');
-                return;
-            }
+            const url = formData?._id ? `/abouts/${formData._id}` : '/abouts';
+            const method = formData?._id ? 'PUT' : 'POST';
 
-            const url = formData?._id ? '/abouts/' + formData._id : '/abouts';
-            const apiCallUrl = apiUrl + url;
-            
-            const response = await fetch(apiCallUrl, {
-                method: formData?._id ? 'PUT' : 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    aboutText: formData.aboutText,
-                    visionText: formData.visionText,
-                    missionText: formData.missionText,
-                    phoneNumber: formData.phoneNumber,
-                    email: formData.email,
-                    address: formData.address,
-                    fax: formData.fax
-                })
-            });
-
-            const data = await response.json();
+            const data = await apiRequest(method, url, {
+                aboutText: formData.aboutText,
+                visionText: formData.visionText,
+                missionText: formData.missionText,
+                phoneNumber: formData.phoneNumber,
+                email: formData.email,
+                address: formData.address,
+                fax: formData.fax
+            }, { isToken: true, retry: 1, retryDelayMs: 500 });
 
             if (data.success) { 
                 setFormData(data.about);
                 setError('');
+                invalidateApiCacheMany([
+                    { method: 'GET', urlPrefix: '/abouts' }
+                ]);
                 navigate('/about');
             } else {
                 setError(data.message || 'Veri kaydedilirken bir hata oluştu');

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Breadcrumbs from '../public/Breadcrumbs';
 import { apiUrl, serverUrl } from '../../utils/utils';
 import '../../css/HomePage.css';
+import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
 
 const EditReference = () => {
     const navigate = useNavigate();
@@ -113,7 +114,7 @@ const EditReference = () => {
                 navigate('/login');
                 return;
             }
-    
+
             // Form verilerini hazırlama
             const formDataToSend = new FormData();
             if (id) {
@@ -128,21 +129,25 @@ const EditReference = () => {
     
             // API URL'sini belirleme
             const url = id
-                ? `${apiUrl}/references/${id}` // Güncelleme için PUT
-                : `${apiUrl}/references`; // Yeni ürün için POST
-    
-            // API çağrısı
-            const response = await fetch(url, {
-                method: id ? 'PUT' : 'POST',
+                ? `/references/${id}` // Güncelleme için PUT
+                : '/references'; // Yeni ürün için POST
+            const method = id ? 'PUT' : 'POST';
+
+            const data = await apiRequest(method, url, formDataToSend, {
+                isToken: true,
+                timeoutMs: 60000,
+                retry: 1,
+                retryDelayMs: 500,
                 headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-                body: formDataToSend,
+                    'Authorization': `Bearer ${token}`
+                }
             });
     
-            const data = await response.json();
-    
             if (data.success) {
+                invalidateApiCacheMany([
+                    { method: 'GET', urlPrefix: '/references' },
+                    { method: 'GET', urlPrefix: '/references/referenceList' }
+                ]);
                 navigate('/references'); // Referanslar sayfasına yönlendirme
             } else {
                 setError(data.message || 'Bir hata oluştu');

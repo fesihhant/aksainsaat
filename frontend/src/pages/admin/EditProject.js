@@ -14,6 +14,7 @@ import { Checkbox } from '@mui/material';
 import { formatPrice, categoryTypeEnum, serverUrl , apiUrl,getCurrencySymbol, getCurrencyTypeOptions,
     editorModules, editorFormats,getYoutubeEmbedUrl
  } from '../../utils/utils';
+import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -254,7 +255,7 @@ const EditProject = () => {
                 navigate('/login');
                 return;
             }
-            
+
             const formDataToSend = new FormData();
             
             if (videoFiles.length > 0) {
@@ -312,20 +313,25 @@ const EditProject = () => {
             formDataToSend.append('youtubeUrl', formData.youtubeUrl || '');
 
             const url = formData?._id
-                ? `${apiUrl}/projects/${formData._id}` // Güncelleme için PUT
-                : `${apiUrl}/projects`; // Yeni proje için POST
+                ? `/projects/${formData._id}` // Güncelleme için PUT
+                : '/projects'; // Yeni proje için POST
+            const method = formData?._id ? 'PUT' : 'POST';
 
-            const response = await fetch(url, {
-                method: formData?._id ? 'PUT' : 'POST',
+            const data = await apiRequest(method, url, formDataToSend, {
+                isToken: true,
+                timeoutMs: 60000,
+                retry: 1,
+                retryDelayMs: 500,
                 headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-                body: formDataToSend,
+                    'Authorization': `Bearer ${token}`
+                }
             });
 
-            const data = await response.json();
-
             if (data.success) {
+                invalidateApiCacheMany([
+                    { method: 'GET', urlPrefix: '/projects' },
+                    { method: 'GET', urlPrefix: '/projects/projectList' }
+                ]);
                 navigate('/projects'); // Projeler sayfasına yönlendirme
             } else {
                 setError(data.message || 'Bir hata oluştu');

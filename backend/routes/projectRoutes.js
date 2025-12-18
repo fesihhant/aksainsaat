@@ -69,7 +69,27 @@ router.get('/projectList', async (req, res) => {
     }
 });
 
-// Tek kayıt getir - Public
+// Tek kayıt getir - Public (proje ismine göre / slug ile)
+router.get('/by-slug/:slug', async (req, res) => {
+    try {
+        const rawSlug = req.params.slug || '';
+        const decodedName = decodeURIComponent(rawSlug);
+
+        const project = await Project.findOne({ name: decodedName }).populate('typeofActivityId', 'name');
+        if (!project) {
+            return res.status(404).json({ success: false, message: 'Kayıt bulunamadı' });
+        }
+        res.json({
+            success: true,
+            project
+        });
+    } catch (error) {
+        console.error('Projeyi slug ile çekerken hata:', error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
+// Tek kayıt getir - Public (id ile, geriye dönük uyumluluk için)
 router.get('/:id', async (req, res) => {
     try {
         const project = await Project.findById(req.params.id);

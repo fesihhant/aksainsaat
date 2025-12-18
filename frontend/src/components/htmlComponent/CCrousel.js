@@ -110,18 +110,6 @@ const CCrousel = ({ imageList }) => {
                             {modalImageIndex > 0 && (
                                 <button
                                     className="prev-button"
-                                    // style={{
-                                    //     position: 'absolute',
-                                    //     left: 10,
-                                    //     top: '50%',
-                                    //     transform: 'translateY(-50%)',
-                                    //     fontSize: 40,
-                                    //     background: 'none',
-                                    //     border: 'none',
-                                    //     color: '#fff',
-                                    //     cursor: 'pointer',
-                                    //     zIndex: 10
-                                    // }}
                                     onClick={e => { e.stopPropagation(); handleModalPrev(); }}
                                     onMouseDown={e => e.stopPropagation()}
                                 >
@@ -131,25 +119,14 @@ const CCrousel = ({ imageList }) => {
                             {modalImageIndex < imageList.length - 1 && (
                                 <button
                                     className="next-button"
-                                    // style={{
-                                    //     position: 'absolute',
-                                    //     right: 10,
-                                    //     top: '50%',
-                                    //     transform: 'translateY(-50%)',
-                                    //     fontSize: 40,
-                                    //     background: 'none',
-                                    //     border: 'none',
-                                    //     color: '#fff',
-                                    //     cursor: 'pointer',
-                                    //     zIndex: 10
-                                    // }}
                                     onClick={e => { e.stopPropagation(); handleModalNext(); }}
                                     onMouseDown={e => e.stopPropagation()}
                                 >
                                     &#10095;
                                 </button>
                             )}
-                            <img loading="lazy" src={imageList[modalImageIndex]} style={{ objectFit: 'cover' }} alt="Büyütülmüş Görsel" className="modal-image" onClick={e => e.stopPropagation()} onMouseDown={e => e.stopPropagation()}/>
+                            <img loading="lazy" src={imageList[modalImageIndex]} style={{ objectFit: 'cover' }} alt="Büyütülmüş Görsel" 
+                            style={{ maxHeight:'600px'}} onClick={e => e.stopPropagation()} onMouseDown={e => e.stopPropagation()}/>
                         </div>
                     </div>,
                     document.body

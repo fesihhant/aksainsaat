@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../public/Breadcrumbs';
 import { useAuth } from '../../context/AuthContext';
 import '../../css/EditUser.css';
-import { useApiCall } from '../../utils/apiCalls';
+import { useApiCall, apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
 import { apiUrl } from '../../utils/utils';
 
 
@@ -98,32 +98,19 @@ const EditCategory = () => {
         setError('');
 
         try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                navigate('/login');
-                return;
-            }
-            
-            const url = id
-                ? `${apiUrl}/categories/${id}`
-                : `${apiUrl}/categories`;
-            
-            const response = await fetch(url, {
-                method: id ? 'PUT' : 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    id: id? id : null,
-                    name: formData.name,
-                    categoryTypeId: formData.categoryTypeId
-                })
-            });
+            const url = id ? `/categories/${id}` : '/categories';
+            const method = id ? 'PUT' : 'POST';
 
-            const data = await response.json();
+            const data = await apiRequest(method, url, {
+                id: id || null,
+                name: formData.name,
+                categoryTypeId: formData.categoryTypeId
+            }, { isToken: true, retry: 1, retryDelayMs: 500 });
 
             if (data.success) {
+                invalidateApiCacheMany([
+                    { method: 'GET', urlPrefix: '/categories' }
+                ]);
                 navigate('/categories');
             } else {
                 setError(data.message || 'Kategori kaydedilirken bir hata oluştu');

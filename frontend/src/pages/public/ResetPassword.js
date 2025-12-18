@@ -22,7 +22,7 @@ const ResetPassword = () => {
         const fetchCheckResetToken = async () => {
             try {
                 setLoading(true);
-                const url = resetToken ? `${apiUrl}/auth/check-reset-token?resetToken=${resetToken}` : `${apiUrl}/auth/activate?activationToken=${activatedToken}`
+                const url = `${apiUrl}/auth/check-reset-token?${resetToken ? 'resetToken=' + resetToken : 'activationToken=' + activatedToken}`;
                 const response = await fetch(url);
                 const data = await response.json();
 

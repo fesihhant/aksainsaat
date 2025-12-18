@@ -120,18 +120,33 @@ const Breadcrumbs = () => {
 
     
     const pathname = window.location.pathname;
-    const segments = pathname.split('/').filter(Boolean);;
+    const segments = pathname
+        .split('/')
+        .filter(Boolean)
+        .map(seg => {
+            try {
+                return decodeURIComponent(seg);
+            } catch {
+                return seg;
+            }
+        });
 
     const isId = (segment) => /^[0-9a-fA-F]{24}$/.test(segment) || /^\d+$/.test(segment);
+
+    // Özel durum: /project-detail/:slug için "project-detail" segmentini gizle,
+    // sadece proje adını göster (Anasayfa / Proje Adı)
+    const visibleSegments = segments.filter((seg, idx, arr) => {
+        if (isId(seg)) return false;
+        if (seg === 'project-detail' && idx < arr.length - 1) return false;
+        return true;
+    });
 
     let pathSoFar = '';
     return (
         <>
         <nav className="breadcrumbs">
             <Link to="/">Anasayfa</Link>
-            {segments
-            .filter(seg => !isId(seg))
-            .map((seg, idx, arr) => {
+            {visibleSegments.map((seg, idx, arr) => {
                 pathSoFar += '/' + seg;
                 const title = getPageTitle(seg) || seg;
                 const isLast = idx === arr.length - 1;

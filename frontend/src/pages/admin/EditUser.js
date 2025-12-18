@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import Breadcrumbs from '../public/Breadcrumbs';
 import { apiUrl, serverUrl, formatPhoneNumber } from '../../utils/utils';
+import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
 
 import '../../css/EditUser.css';
 import '../../css/HomePage.css';
@@ -156,20 +157,24 @@ const EditUser = () => {
             }
 
             const url = id
-                ? `${apiUrl}/users/${id}`
-                : `${apiUrl}/users`;
+                ? `/users/${id}`
+                : '/users';
+            const method = id ? 'PUT' : 'POST';
 
-            const response = await fetch(url, {
-                method: id ? 'PUT' : 'POST',
+            const data = await apiRequest(method, url, formDataToSend, {
+                isToken: true,
+                timeoutMs: 60000,
+                retry: 1,
+                retryDelayMs: 500,
                 headers: {
                     'Authorization': `Bearer ${token}`
-                },
-                body: formDataToSend
+                }
             });
 
-            const data = await response.json();
-
             if (data.success) {
+                invalidateApiCacheMany([
+                    { method: 'GET', urlPrefix: '/users' }
+                ]);
                 navigate('/users');
             } else {
                 setError(data.message || 'Kullanıcı kaydedilirken bir hata oluştu');

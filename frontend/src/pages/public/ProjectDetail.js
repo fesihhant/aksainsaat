@@ -11,7 +11,7 @@ import {serverUrl, getCurrencySymbol, getYoutubeEmbedUrl, apiUrl } from '../../u
 
 const ProjectDetail = () => {
     const navigate = useNavigate();
-    const { id } = useParams();
+    const { slug } = useParams();
     
     const [formData, setFormData] = useState({
             name: '',
@@ -32,7 +32,7 @@ const ProjectDetail = () => {
             setLoading(true);
             setError('');
             
-            const response = await fetch(`${apiUrl}/projects/${id}`);
+            const response = await fetch(`${apiUrl}/projects/by-slug/${encodeURIComponent(slug)}`);
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -68,10 +68,10 @@ const ProjectDetail = () => {
         } finally {
             setLoading(false);
         }
-    }, [id]);
+    }, [slug]);
 
     useEffect(() => {
-        if (id) {
+        if (slug) {
             fetchData();
         } else {
             setFormData({
@@ -87,11 +87,11 @@ const ProjectDetail = () => {
             });
             setImagePreviews([]);
         }
-    }, [id, fetchData]);
+    }, [slug, fetchData]);
     
     
     // Loading durumunda göster
-    if (loading && !formData.name && id) {
+    if (loading && !formData.name && slug) {
         return (
             <div className="home-container">
                 <div className="main-content">
@@ -103,7 +103,7 @@ const ProjectDetail = () => {
         );
     }
 
-    if (error && !formData.name && id) {
+    if (error && !formData.name && slug) {
         return (
             <div className="home-container">
                 <div className="main-content">

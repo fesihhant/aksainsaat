@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Breadcrumbs from '../public/Breadcrumbs';
 import { Checkbox } from '@mui/material';
 import { apiUrl } from '../../utils/utils';
+import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
 
 const SocialMediaEdit = () => {
 const { id } = useParams();
@@ -70,20 +71,22 @@ const [form, setForm] = useState({ name: '', mediaLink: '', active: true });
         return;
     }
     try {
-        
         const method = id ? 'PUT' : 'POST';
-        const url = id ? `${apiUrl}/social-media/${id}` : `${apiUrl}/social-media`;
-        const response = await fetch(url, {
-            method,
-            headers: { 
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(form)
+        const url = id ? `/social-media/${id}` : '/social-media';
+
+        const data = await apiRequest(method, url, form, {
+            isToken: true,
+            retry: 1,
+            retryDelayMs: 500,
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
-        const data = await response.json();
-    
+
         if (data.success) {
+            invalidateApiCacheMany([
+                { method: 'GET', urlPrefix: '/social-media' }
+            ]);
             navigate('/social-media'); // Ürünler sayfasına yönlendirme
         } else {
             setError(data.message || 'Bir hata oluştu');

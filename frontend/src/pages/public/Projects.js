@@ -110,7 +110,7 @@ const Projects = () => {
                                         <p>{substringValue(p.description,150)}</p>
                                         <button 
                                             className="project-details-btn"
-                                            onClick={() => navigate(`/project-detail/${p._id}`)}
+                                            onClick={() => navigate(`/project-detail/${encodeURIComponent(p.name)}`)}
                                         >
                                             Detayları Gör
                                         </button>

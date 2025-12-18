@@ -106,7 +106,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
 
             <Route path="/project-list" element={<ProjectList />} />
-            <Route path="/project-detail/:id" element={<ProjectDetail />} />
+            <Route path="/project-detail/:slug" element={<ProjectDetail />} />
             <Route path="/activities" element={<OurActivities />} />
             
             <Route path="/reset-password/:resetToken" element={<ResetPassword />} />

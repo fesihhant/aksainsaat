@@ -133,7 +133,7 @@ const OurActivities = () => {
                                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                 />
                             </div>
-                            <div className="box-cart-content" onClick={() => navigate(`/project-detail/${p._id}`)}>
+                            <div className="box-cart-content" onClick={() => navigate(`/project-detail/${encodeURIComponent(p.name)}`)}>
                                 <div className="title">
                                 <h3>{substringValue(p.name,150)}</h3>
                                 </div>

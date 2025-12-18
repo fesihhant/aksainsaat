@@ -4,8 +4,8 @@ import 'react-datepicker/dist/react-datepicker.css'; // CSS dosyasını ekliyoru
 import { useAuth } from '../../context/AuthContext';
 
 import Breadcrumbs from '../public/Breadcrumbs';
-import { useApiCall } from '../../utils/apiCalls';
-import {serverUrl, apiUrl} from '../../utils/utils';
+import { useApiCall, apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
+import { serverUrl, apiUrl } from '../../utils/utils';
 
 import '../../css/NewProduct.css';
 
@@ -118,7 +118,7 @@ const IntroductionBookletEdit = () => {
                 navigate('/login');
                 return;
             }
-            
+
             if (!imagePreview) {
                 setError('Kapak resmi yüklenmedi');
                 return;
@@ -141,17 +141,19 @@ const IntroductionBookletEdit = () => {
             }
             formDataToSend.append('description', formData.description);
 
-            const url = formData?._id ? '/introductionBooklet/' + formData._id : '/introductionBooklet';
-            
-            const response = await fetch(`${apiUrl}${url}`, {
-                method: formData?._id ? 'PUT' : 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                },
-                body: formDataToSend
-            });
+            const url = formData?._id ? `/introductionBooklet/${formData._id}` : '/introductionBooklet';
+            const method = formData?._id ? 'PUT' : 'POST';
 
-            const data = await response.json();
+            const data = await apiRequest(method, url, formDataToSend, {
+                isToken: true,
+                timeoutMs: 60000,
+                retry: 1,
+                retryDelayMs: 500,
+                headers: {
+                    // FormData kullanıldığı için Content-Type otomatik ayarlanacak
+                    'Authorization': `Bearer ${token}`
+                }
+            });
 
             if (data.success) {
                 setCoverImage(data.introductionBooklet.coverImageUrl);
@@ -161,6 +163,9 @@ const IntroductionBookletEdit = () => {
                 
                 setFormData(data.introductionBooklet);
                 setError('');
+                invalidateApiCacheMany([
+                    { method: 'GET', urlPrefix: '/introductionBooklet' }
+                ]);
             } else {
                 setError(data.message || 'Bir hata oluştu');
             }

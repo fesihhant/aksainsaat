@@ -80,7 +80,7 @@ const HomePage = () => {
                                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                         />
                                     </div>
-                                    <div className="box-cart-content" onClick={() => navigate(`/project-detail/${p._id}`)}>
+                                    <div className="box-cart-content" onClick={() => navigate(`/project-detail/${encodeURIComponent(p.name)}`)}>
                                         <div className="title">
                                             {substringValue(p.name, 100)}
                                             <br />

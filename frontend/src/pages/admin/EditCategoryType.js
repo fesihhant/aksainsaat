@@ -4,6 +4,7 @@ import Breadcrumbs from '../public/Breadcrumbs';
 import { useAuth } from '../../context/AuthContext';
 import '../../css/EditUser.css';
 import { apiUrl } from '../../utils/utils';
+import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
  
 
 const EditCategoryType = () => {
@@ -82,23 +83,25 @@ const EditCategoryType = () => {
             }
 
             const url = id
-                ? `${apiUrl}/categoryTypes/${id}`
-                : `${apiUrl}/categoryTypes`;
-            
-            const response = await fetch(url, {
-                method: id ? 'PUT' : 'POST',
+                ? `/categoryTypes/${id}`
+                : '/categoryTypes';
+            const method = id ? 'PUT' : 'POST';
+
+            const data = await apiRequest(method, url, {
+                name: formData.name
+            }, {
+                isToken: true,
+                retry: 1,
+                retryDelayMs: 500,
                 headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: formData.name
-                })
+                    'Authorization': `Bearer ${token}`
+                }
             });
 
-            const data = await response.json();
-
             if (data.success) {
+                invalidateApiCacheMany([
+                    { method: 'GET', urlPrefix: '/categoryTypes' }
+                ]);
                 navigate('/categoryTypes');
             } else {
                 setError(data.message || 'Kategori Türü  kaydedilirken bir hata oluştu');

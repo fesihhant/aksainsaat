@@ -4,6 +4,7 @@ import Breadcrumbs from '../public/Breadcrumbs';
 import { useAuth } from '../../context/AuthContext';
 import '../../css/EditUser.css';
 import { apiUrl } from '../../utils/utils';
+import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { editorModules, editorFormats } from '../../utils/utils';
@@ -93,24 +94,26 @@ const EditTermsOfService = () => {
             formDataToSend.append('content', formData.content);
 
             const url = id
-                ? `${apiUrl}/termsOfServices/${id}`
-                : `${apiUrl}/termsOfServices`;
-            
-            const response = await fetch(url, {
-                method: id ? 'PUT' : 'POST',
+                ? `/termsOfServices/${id}`
+                : '/termsOfServices';
+            const method = id ? 'PUT' : 'POST';
+
+            const data = await apiRequest(method, url, {
+                title: formData.title,
+                content: formData.content
+            }, {
+                isToken: true,
+                retry: 1,
+                retryDelayMs: 500,
                 headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    title: formData.title,
-                    content: formData.content
-                })
+                    'Authorization': `Bearer ${token}`
+                }
             });
 
-            const data = await response.json();
-
             if (data.success) {
+                invalidateApiCacheMany([
+                    { method: 'GET', urlPrefix: '/termsOfServices' }
+                ]);
                 navigate('/termsofservices');
             } else {
                 setError(data.message || 'TermsOfService kaydedilirken bir hata oluştu');

@@ -71,6 +71,104 @@ async function fetchJsonWithRetry({ fullUrl, fetchOptions, timeoutMs, retry, ret
     throw lastError;
 }
 
+function isFormData(value) {
+    return typeof FormData !== 'undefined' && value instanceof FormData;
+}
+
+// Generic mutation helper (POST/PUT/PATCH/DELETE/GET) with auth, timeout, retry
+export async function apiRequest(
+    method,
+    url,
+    body = null,
+    {
+        isToken = false,
+        timeoutMs = 45000,
+        retry = 0,
+        retryDelayMs = 400,
+        headers: extraHeaders = {}
+    } = {}
+) {
+    const token = isToken ? localStorage.getItem('token') : null;
+    if (isToken && !token) {
+        throw new Error('Token not found');
+    }
+
+    const headers = { ...extraHeaders };
+    if (!isFormData(body) && !headers['Content-Type']) {
+        headers['Content-Type'] = 'application/json';
+    }
+    if (isToken && token) {
+        headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    const fullUrl = `${apiUrl}${url}`;
+    const fetchOptions = {
+        method,
+        headers,
+        body: body
+            ? isFormData(body)
+                ? body
+                : safeJsonStringify(body)
+            : null
+    };
+
+    const response = await fetchJsonWithRetry({
+        fullUrl,
+        fetchOptions,
+        timeoutMs,
+        retry,
+        retryDelayMs
+    });
+
+    if (response.status === 401) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/login';
+        throw new Error('Unauthorized');
+    }
+
+    if (!response.ok) {
+        const text = await response.text().catch(() => '');
+        throw new Error(text || 'Network response was not ok');
+    }
+
+    return await response.json();
+}
+
+// Cache invalidation helpers
+export function invalidateApiCache(method, urlPrefix) {
+    try {
+        const targetPrefix = `${method.toUpperCase()}:${apiUrl}${urlPrefix}`;
+
+        // In-memory cache
+        for (const key of Array.from(memoryCache.keys())) {
+            if (key.startsWith(targetPrefix)) {
+                memoryCache.delete(key);
+            }
+        }
+
+        // LocalStorage cache
+        for (let i = 0; i < localStorage.length; i++) {
+            const storageKey = localStorage.key(i);
+            if (!storageKey || !storageKey.startsWith('apiCache:')) continue;
+            const inner = storageKey.substring('apiCache:'.length);
+            if (inner.startsWith(targetPrefix)) {
+                localStorage.removeItem(storageKey);
+            }
+        }
+    } catch {
+        // localStorage erişim hatalarını yut
+    }
+}
+
+export function invalidateApiCacheMany(entries) {
+    if (!Array.isArray(entries)) return;
+    entries.forEach((e) => {
+        if (!e || !e.method || !e.urlPrefix) return;
+        invalidateApiCache(e.method, e.urlPrefix);
+    });
+}
+
 export const useApiCall = (url, method, body, isToken = false, options = {}) => {
     const [apiData, setData] = useState(null);
     const [apiError, setError] = useState(null);
@@ -241,7 +339,7 @@ export const useDeleteApiCall = () => {
     const [apiError, setError] = useState(null);
     const [apiLoading, setLoading] = useState(false);
 
-    const deleteData = async (url) => {
+    const deleteData = async (url, invalidateEntries) => {
         setLoading(true);
         setError(null);
         setSuccess(false);
@@ -269,6 +367,10 @@ export const useDeleteApiCall = () => {
             }
             const result = await response.json();
             setSuccess(result.success);
+
+            if (result.success && invalidateEntries) {
+                invalidateApiCacheMany(invalidateEntries);
+            }
             return result.success;
         } catch (error) {
             setError(error.message || "Silme işlemi sırasında bir hata oluştu");

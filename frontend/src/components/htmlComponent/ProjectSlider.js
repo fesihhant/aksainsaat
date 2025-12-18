@@ -68,7 +68,7 @@ const ProjectSlider = ({ projects, navigate }) => {
                         {slides[current].name} 
                     </div>
                     <button className="project-detail-button" 
-                        onClick={() => navigate(`/project-detail/${slides[current].project._id}`)}>
+                        onClick={() => navigate(`/project-detail/${encodeURIComponent(slides[current].project.name)}`)}>
                         Proje Detayları
                     </button>
                 </div>
