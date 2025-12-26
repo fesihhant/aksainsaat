@@ -49,7 +49,8 @@ const TermsOfServiceList = () => {
     const [deleteId, setDeleteId] = useState(null);
 
     const handleDelete = async (itemId) => {
-        const success = await deleteData(`/termsOfServices/${itemId}`);
+        const clearCacheKey = [{method:'GET', urlPrefix:`/termsOfServices`}];
+        const success = await deleteData(`/termsOfServices/${itemId}`, clearCacheKey);
         if (success) {
             setData(data.filter(p => p._id !== itemId));
             

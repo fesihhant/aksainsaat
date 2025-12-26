@@ -1,29 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 require('dotenv').config();
-
-//#region models
-const User = require('./models/User');
-
-//#endregion
-
-const jwt = require('jsonwebtoken');
-const authRoutes = require('./routes/authRoutes');
-const userRoutes = require('./routes/userRoutes');
-const projectRoutes = require('./routes/projectRoutes');
-const categoryRoutes = require('./routes/categoryRoutes');
-const categoryTypeRoutes = require('./routes/categoryTypeRoutes');
-const referenceRoutes = require('./routes/referenceRoutes');
-const introductionBookletRoutes = require('./routes/introductionBookletRoutes');
-const aboutRoutes = require('./routes/aboutRoutes');
-const contactRoutes = require('./routes/contactRoutes');
-const socialMediaRoute = require('./routes/socialMediaRoute');
-const privacyPolicyRoutes = require('./routes/privacyPolicyRoutes');
-const termsOfServiceRoutes = require('./routes/termsOfServiceRoutes');
 
 const app = express();
 
@@ -95,29 +75,35 @@ const upload = multer({
     limits: {
         fileSize: 5 * 1024 * 1024 // 5MB
     }
-});
+}); 
 
-// Uploads klasörünü statik olarak serve et - Route'lardan ÖNCE olmalı
-app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
-    setHeaders: (res, path) => {
-        res.set('Access-Control-Allow-Origin', '*');
-        res.set('Cache-Control', 'public, max-age=31536000'); // 1 yıl cache
-    }
-}));
 
-// Routes
+// #region Routes
+
+const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
+const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
+const projectRoutes = require('./routes/projectRoutes');
 app.use('/api/projects', projectRoutes);
+const categoryRoutes = require('./routes/categoryRoutes');
 app.use('/api/categories',categoryRoutes);
+const categoryTypeRoutes = require('./routes/categoryTypeRoutes');
 app.use('/api/categoryTypes', categoryTypeRoutes);
+const referenceRoutes = require('./routes/referenceRoutes');
 app.use('/api/references', referenceRoutes);
+const introductionBookletRoutes = require('./routes/introductionBookletRoutes');
 app.use('/api/introductionBooklet', introductionBookletRoutes);
+const aboutRoutes = require('./routes/aboutRoutes');
 app.use('/api/abouts', aboutRoutes);
+const contactRoutes = require('./routes/contactRoutes');
 app.use('/api/contact', contactRoutes);
+const socialMediaRoute = require('./routes/socialMediaRoute');
 app.use('/api/social-media', socialMediaRoute);
+const privacyPolicyRoutes = require('./routes/privacyPolicyRoutes');
 app.use('/api/privacyPolicies', privacyPolicyRoutes);
+const termsOfServiceRoutes = require('./routes/termsOfServiceRoutes');
 app.use('/api/termsOfServices', termsOfServiceRoutes); 
- 
+// 
 module.exports = app;
 

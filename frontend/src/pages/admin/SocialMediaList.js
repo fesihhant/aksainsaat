@@ -67,10 +67,10 @@ const SocialMediaList = () => {
     const [deleteId, setDeleteId] = useState(null);
 
     const handleDelete = async (itemId) => {
-        const success = await deleteData(`/social-media/${itemId}`);
+        const clearCacheKey = [{method:'GET', urlPrefix:`/social-media`}];
+        const success = await deleteData(`/social-media/${itemId}`, clearCacheKey);
         if (success) {
-            setData(dataList.filter(p => p._id !== itemId));
-            
+            setData(dataList.filter(p => p._id !== itemId));            
         } else if (deleteError) {
             setError(deleteError);
         }

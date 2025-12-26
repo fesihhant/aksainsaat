@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CHelmet from '../../components/htmlComponent/CHelmet';
-import { useApiCall } from '../../utils/apiCalls';
+import { useApiCall,  } from '../../utils/apiCalls';
 import {serverUrl, substringValue} from '../../utils/utils';
 import ProjectSlider from '../../components/htmlComponent/ProjectSlider';
 import OptimizedImage from '../../components/htmlComponent/OptimizedImage';
@@ -20,7 +20,7 @@ const HomePage = () => {
     );
     useEffect(() => {
         setError('');
-        try {
+        try { 
             if (apiData) { 
                 if (apiData.success) {
                     setData(apiData.projects);                
@@ -34,7 +34,8 @@ const HomePage = () => {
         } catch (err) {
             setError('Projeler yüklenirken bir hata oluştu');
         }
-    }, [apiData, apiError, apiLoading]);
+    }, [apiData, apiLoading, apiError]);
+
     return (
         <>
             <CHelmet pageName="Projelerimiz" projectName="İnşaat projeleri, doğalgaz" categoryName="boru hattı" />
@@ -78,6 +79,7 @@ const HomePage = () => {
                                                 : `${serverUrl}/uploads/projects/default.png`}
                                             alt={p.name}
                                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            priority={true}
                                         />
                                     </div>
                                     <div className="box-cart-content" onClick={() => navigate(`/project-detail/${encodeURIComponent(p.name)}`)}>

@@ -25,6 +25,7 @@ const About = () => {
     })
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    
         
     const { apiData, apiError, apiLoading } = useApiCall(
         '/abouts',

@@ -54,7 +54,8 @@ const References = () => {
     const [deleteId, setDeleteId] = useState(null);
 
     const handleDelete = async (itemId) => {
-        const success = await deleteData(`/references/${itemId}`);
+        const clearCacheKey = [{method:'GET', urlPrefix:`/references`}];
+        const success = await deleteData(`/references/${itemId}`, clearCacheKey);
         if (success) {
             setData(references.filter(p => p._id !== itemId));
             

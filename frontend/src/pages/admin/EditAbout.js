@@ -46,12 +46,7 @@ const EditAbout = () => {
         e.preventDefault();
         setLoading(true);
         setError('');
-
-        // if (typeof validate === "function" && !validate()) {
-        //     setLoading(false);
-        //     return;
-        // }
-        
+ 
         try {
             const url = formData?._id ? `/abouts/${formData._id}` : '/abouts';
             const method = formData?._id ? 'PUT' : 'POST';

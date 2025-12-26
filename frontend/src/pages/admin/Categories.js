@@ -48,7 +48,8 @@ const Categories = () => {
     const [deleteId, setDeleteId] = useState(null);
 
     const handleDelete = async (itemId) => {
-        const success = await deleteData(`/categories/${itemId}`);
+        const clearCacheKey = [{method:'GET', urlPrefix:'/categories'}];
+        const success = await deleteData(`/categories/${itemId}`, clearCacheKey);
         if (success) {
             setCategories(categories.filter(cat => cat._id !== itemId));
             

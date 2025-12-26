@@ -59,7 +59,8 @@ const Users = () => {
     const [deleteId, setDeleteId] = useState(null);
 
     const handleDelete = async (itemId) => {
-        const success = await deleteData(`/users/${itemId}`);
+        const clearCacheKey = [{method:'GET', urlPrefix:`/users`}];
+        const success = await deleteData(`/users/${itemId}`, clearCacheKey);
         if (success) {
             setData(users =>
             users.map(user =>

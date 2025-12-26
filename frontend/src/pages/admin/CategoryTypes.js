@@ -48,7 +48,8 @@ const CategoryTypes = () => {
     const [deleteId, setDeleteId] = useState(null);
 
     const handleDelete = async (itemId) => {
-        const success = await deleteData(`/categoryTypes/${itemId}`);
+        const clearCacheKey = [{method:'GET', urlPrefix:`/categoryTypes`}];
+        const success = await deleteData(`/categoryTypes/${itemId}`, clearCacheKey);
         if (success) {
             setData(categoryTypes.filter(cat => cat._id !== itemId));
             

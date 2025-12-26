@@ -35,6 +35,7 @@ const [form, setForm] = useState({ name: '', mediaLink: '', active: true });
       const data = await response.json();
       if (data.success && data.account) {
         setForm(data.account);
+
       } else {
         setError(data.message || 'Sosyal medya bilgileri yüklenemedi');
       }
@@ -87,7 +88,7 @@ const [form, setForm] = useState({ name: '', mediaLink: '', active: true });
             invalidateApiCacheMany([
                 { method: 'GET', urlPrefix: '/social-media' }
             ]);
-            navigate('/social-media'); // Ürünler sayfasına yönlendirme
+            navigate('/social-media');
         } else {
             setError(data.message || 'Bir hata oluştu');
         }

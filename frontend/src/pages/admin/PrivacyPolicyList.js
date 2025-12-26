@@ -49,7 +49,8 @@ const PrivacyPolicyList = () => {
     const [deleteId, setDeleteId] = useState(null);
 
     const handleDelete = async (itemId) => {
-        const success = await deleteData(`/privacyPolicies/${itemId}`);
+        const clearCacheKey = [{method:'GET', urlPrefix:`/privacyPolicies`}];
+        const success = await deleteData(`/privacyPolicies/${itemId}`, clearCacheKey);
         if (success) {
             setData(data.filter(p => p._id !== itemId));
             

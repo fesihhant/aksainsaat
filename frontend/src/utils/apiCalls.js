@@ -75,19 +75,27 @@ function isFormData(value) {
     return typeof FormData !== 'undefined' && value instanceof FormData;
 }
 
+export function apiOptions(isToken = false, invalidateEntries = null) {
+    return { 
+            data: null,
+            headers: {},
+            params: null,
+            cache: true, 
+            staleTimeMs: 30 * 60 * 1000, 
+            cacheStorage: 'both', 
+            dedupe: true,
+            timeoutMs: 45000, 
+            retry: 1, 
+            retryDelayMs: 500, 
+            isToken: isToken,   
+            // optional explicit invalidation entries for mutations
+            invalidateEntries : invalidateEntries
+        };
+}
 // Generic mutation helper (POST/PUT/PATCH/DELETE/GET) with auth, timeout, retry
-export async function apiRequest(
-    method,
-    url,
-    body = null,
-    {
-        isToken = false,
-        timeoutMs = 45000,
-        retry = 0,
-        retryDelayMs = 400,
-        headers: extraHeaders = {}
-    } = {}
-) {
+export async function apiRequest( method, url, body = null, isToken, 
+                        { timeoutMs = 45000, retry = 0, retryDelayMs = 400, headers: extraHeaders = {} } = {} ) 
+{
     const token = isToken ? localStorage.getItem('token') : null;
     if (isToken && !token) {
         throw new Error('Token not found');

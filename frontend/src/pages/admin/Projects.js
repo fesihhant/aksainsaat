@@ -41,7 +41,8 @@ const Projects = () => {
     const [deleteId, setDeleteId] = useState(null);
 
     const handleDelete = async (itemId) => {
-        const success = await deleteData(`/projects/${itemId}`);
+        const clearCacheKey = [{method:'GET', urlPrefix:`/projects`}];
+        const success = await deleteData(`/projects/${itemId}`, clearCacheKey);
         if (success) {
             setData(projects.filter(p => p._id !== itemId));
             
