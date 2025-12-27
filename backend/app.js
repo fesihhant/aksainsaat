@@ -8,7 +8,17 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-app.use(cors());
+// app.use(cors());
+// Public CORS ayarları (resim servisi için)
+const corsOptions = {
+  origin: ["https://aksainsaat.tr", "http://localhost:3001"], // sadece senin frontend domainine izin ver
+  methods: ["GET", "OPTIONS"],     // resim servisi için GET yeterli
+  allowedHeaders: ["Content-Type"],
+  credentials: false               // login yok, cookie taşınmasına gerek yok
+};
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Preflight isteğini handle et
+
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 
@@ -47,35 +57,7 @@ if (!fs.existsSync(introductionBookletPath)) {
 
 if (!fs.existsSync(SocialMediaPath)) {
     fs.mkdirSync(SocialMediaPath);
-}
-
-// Multer yapılandırması
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        const uploadPath = file.fieldname === 'avatar' ? avatarsPath : projectsPath;
-        cb(null, uploadPath);
-    },
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + path.extname(file.originalname));
-    }
-});
-
-const fileFilter = (req, file, cb) => {
-    if (file.mimetype.startsWith('image/')) {
-        cb(null, true);
-    } else {
-        cb(new Error('Sadece resim dosyaları yüklenebilir!'), false);
-    }
-};
-
-const upload = multer({
-    storage: storage,
-    fileFilter: fileFilter,
-    limits: {
-        fileSize: 5 * 1024 * 1024 // 5MB
-    }
-}); 
+} 
 
 
 // #region Routes

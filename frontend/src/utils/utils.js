@@ -128,7 +128,7 @@ export const categoryTypeEnum = {
 };
 
 export const serverUrl = process.env.REACT_APP_IS_LOCAL === 'true' ? process.env.REACT_APP_LOCAL_URL : process.env.REACT_APP_SERVER_URL;
-// export const serverUrl ='https://aksa-insaat.onrender.com';
+// export const serverUrl ='https://aksainsaat-server.onrender.com';
 export const apiUrl = serverUrl + '/api';
 export const apiUrlPath= (apiName) =>{
     return (apiUrl + '/' + apiName );
