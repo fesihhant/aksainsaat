@@ -1,0 +1,170 @@
+[{
+  "_id": {
+    "$oid": "681d4207e7519a5b587cba2c"
+  },
+  "name": "İzmir Gaz Hattı Döşeme",
+  "description": "<p class=\"ql-indent-1\">İzmir Gaz Hattı Döşeme Projesi tamamlandı.</p>",
+  "statusType": "true",
+  "projectCost": 15000000,
+  "imageUrls": [
+    "/uploads/projects/1753094564758-.png",
+    "/uploads/projects/1753094564763-.png"
+  ],
+  "startDate": {
+    "$date": "2025-08-27T13:41:01.511Z"
+  },
+  "endDate": {
+    "$date": "2025-08-27T13:41:01.511Z"
+  },
+  "createdAt": {
+    "$date": "2025-05-08T23:45:11.464Z"
+  },
+  "__v": 0,
+  "isVisibleCost": false,
+  "typeofActivityId": {
+    "$oid": "68274c9c5e96c62362b99115"
+  },
+  "currencyType": "USD",
+  "youtubeUrl": "https://www.youtube.com/watch?v=hIpJziKUWPc",
+  "videoUrls": []
+},
+{
+  "_id": {
+    "$oid": "6882c93637343ad4c7e4d60d"
+  },
+  "name": "Doğalgaz Yapım İşleri",
+  "description": "<p>açıklama</p>",
+  "statusType": "true",
+  "typeofActivityId": {
+    "$oid": "68274c9c5e96c62362b99115"
+  },
+  "projectCost": 250000,
+  "isVisibleCost": false,
+  "currencyType": "EUR",
+  "startDate": {
+    "$date": "2025-11-15T12:30:29.933Z"
+  },
+  "endDate": {
+    "$date": "2025-11-15T12:30:29.933Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T00:00:54.620Z"
+  },
+  "__v": 0,
+  "imageUrls": [
+    "/uploads/projects/1753467217123-.jpg",
+    "/uploads/projects/1753467217135-.jpg"
+  ],
+  "youtubeUrl": "https://www.youtube.com/shorts/bpBX10saL6A"
+},
+{
+  "_id": {
+    "$oid": "6882cb687147e62243463d96"
+  },
+  "name": "Doğalgaz Yapım İşleri ",
+  "description": "<p>as</p>",
+  "statusType": "true",
+  "typeofActivityId": {
+    "$oid": "68274c9c5e96c62362b99115"
+  },
+  "projectCost": 2312312312,
+  "isVisibleCost": false,
+  "currencyType": "EUR",
+  "startDate": {
+    "$date": "2025-07-26T22:03:31.368Z"
+  },
+  "endDate": {
+    "$date": "2025-07-26T22:03:31.368Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T00:10:16.183Z"
+  },
+  "__v": 0,
+  "imageUrls": [
+    "/uploads/projects/1753534054581-.jpg"
+  ]
+},
+{
+  "_id": {
+    "$oid": "68835509369c3a454632537e"
+  },
+  "name": "Resim yükleme",
+  "description": "<p>Açıklama</p>",
+  "statusType": "true",
+  "typeofActivityId": {
+    "$oid": "68277d76e00af12bcc51af76"
+  },
+  "projectCost": 85000,
+  "isVisibleCost": false,
+  "currencyType": "GBP",
+  "startDate": {
+    "$date": "2025-07-25T18:13:51.743Z"
+  },
+  "endDate": {
+    "$date": "2025-07-25T18:13:51.743Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T09:57:29.773Z"
+  },
+  "__v": 0,
+  "imageUrls": [
+    "/uploads/projects/1753467242016-.jpg"
+  ]
+},
+{
+  "_id": {
+    "$oid": "688356069613addc5307e2ad"
+  },
+  "name": "Resimler geliyor mu",
+  "description": "<p>Resimler için açıklama</p>",
+  "statusType": "true",
+  "typeofActivityId": {
+    "$oid": "68274c9c5e96c62362b99115"
+  },
+  "projectCost": 85690000,
+  "isVisibleCost": false,
+  "currencyType": "EUR",
+  "imageUrls": [
+    "/uploads/projects/1753437702217-.jpg",
+    "/uploads/projects/1753437702229-.jpg"
+  ],
+  "startDate": {
+    "$date": "2025-07-26T12:50:17.740Z"
+  },
+  "endDate": {
+    "$date": "2025-07-26T12:50:17.740Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T10:01:42.250Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ad95922b71d60d9627dff2"
+  },
+  "name": "Asfalt işleri",
+  "description": "<p>Asfalt işleri</p>",
+  "statusType": "true",
+  "typeofActivityId": {
+    "$oid": "682780a6e00af12bcc51af9e"
+  },
+  "projectCost": 100,
+  "isVisibleCost": false,
+  "currencyType": "EUR",
+  "imageUrls": [
+    "/uploads/projects/1765799479810-Ekrangrnts20251215145001.png"
+  ],
+  "startDate": {
+    "$date": "2019-08-27T11:06:59.000Z"
+  },
+  "endDate": {
+    "$date": "2025-08-26T11:06:59.811Z"
+  },
+  "createdAt": {
+    "$date": "2025-08-26T11:08:02.774Z"
+  },
+  "__v": 0,
+  "videoUrls": [],
+  "youtubeUrl": ""
+}]

@@ -15,10 +15,8 @@ import { formatPrice, categoryTypeEnum, serverUrl , apiUrl,getCurrencySymbol, ge
     editorModules, editorFormats,getYoutubeEmbedUrl
  } from '../../utils/utils';
 import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
-
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-
+import TextAreaComponent from '../../components/htmlComponent/TextAreaComponent';
+ 
 const EditProject = () => {
     const navigate = useNavigate();
     const { id } = useParams();
@@ -276,7 +274,7 @@ const EditProject = () => {
                 if (existingImages.length > 0) {
                     // Mevcut resimlerden hangilerinin korunacağını gönder
                     const keptImages = imagePreviews
-                        .filter(preview => typeof preview === 'string' && preview.startsWith('http') && existingImages.includes(preview))
+                        .filter(preview => typeof preview === 'string' && preview.startsWith('http') && existingImages.includes(preview.replace(serverUrl, '')))
                         .map(preview => {
                             // URL'den relative path'i çıkar
                             return preview.replace(serverUrl, '');
@@ -520,16 +518,16 @@ const EditProject = () => {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="description">Açıklama</label>
-                        <ReactQuill
-                            theme="snow"
-                            style={{minHeight:'300px'}}
+                        <label htmlFor="description">Açıklama</label> 
+                        <TextAreaComponent
+                            field={{
+                                name: 'description',
+                                placeholder: 'Açıklama giriniz...',
+                                required: true
+                            }}
                             value={formData.description}
-                            onChange={value => setFormData((prev) => ({ ...prev, description: value }))}
-                            placeholder="Açıklama giriniz..."
-                            modules={editorModules()}
-                            formats={editorFormats()}
-                        />
+                            onBlur={value => setFormData((prev) => ({ ...prev, description: value }))}
+                        />  
                     </div>
                     <div className="form-group">
                         <label htmlFor="images">Proje Görselleri</label>

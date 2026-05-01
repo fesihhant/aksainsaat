@@ -36,7 +36,7 @@ const Contact = () => {
                 setFormData({ name: '', email: '', message: '', succesMessage: 'Mesajınız başarıyla gönderilmiştir.' });
                 setTimeout(() => setShowSuccess(false), 5000);
             } else {
-                alert('Mail gönderilemedi: ' + data.message);
+                alert('Mail gönderilemedi: ' + data.message + data.error);
             }
         } catch (err) {
             alert('Sunucu hatası: ' + err.message);

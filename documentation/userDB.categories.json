@@ -1,0 +1,520 @@
+[{
+  "_id": {
+    "$oid": "68274c9c5e96c62362b99115"
+  },
+  "name": "Doğalgaz Yapım İşleri",
+  "categoryTypeId": {
+    "$oid": "685d36dc47089ae0b79408c7"
+  },
+  "createdAt": {
+    "$date": "2025-05-16T14:33:00.354Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68277d76e00af12bcc51af76"
+  },
+  "name": "İçme Suyu Yapım İşleri",
+  "categoryTypeId": {
+    "$oid": "685d36dc47089ae0b79408c7"
+  },
+  "createdAt": {
+    "$date": "2025-05-16T18:01:26.203Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68277d8be00af12bcc51af7b"
+  },
+  "name": "Yağmur Suyu Kanalı Yapım İşleri",
+  "categoryTypeId": {
+    "$oid": "685d36dc47089ae0b79408c7"
+  },
+  "createdAt": {
+    "$date": "2025-05-16T18:01:47.911Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68277d9ce00af12bcc51af80"
+  },
+  "name": "Atık Su Kanalı Yapım İşleri",
+  "categoryTypeId": {
+    "$oid": "685d36dc47089ae0b79408c7"
+  },
+  "createdAt": {
+    "$date": "2025-05-16T18:02:04.532Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68277f73e00af12bcc51af87"
+  },
+  "name": "Park ve Peyzaj Yapım İşleri",
+  "categoryTypeId": {
+    "$oid": "685d36dc47089ae0b79408c7"
+  },
+  "createdAt": {
+    "$date": "2025-05-16T18:09:55.912Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68277f89e00af12bcc51af8c"
+  },
+  "name": "Yol Zemini Hazırlama ve Kaplama İşleri",
+  "categoryTypeId": {
+    "$oid": "685d36dc47089ae0b79408c7"
+  },
+  "createdAt": {
+    "$date": "2025-05-16T18:10:17.880Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68277fe9e00af12bcc51af91"
+  },
+  "name": "Taş Duvar İşleri",
+  "categoryTypeId": {
+    "$oid": "685d36dc47089ae0b79408c7"
+  },
+  "createdAt": {
+    "$date": "2025-05-16T18:11:53.177Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6827800ce00af12bcc51af94"
+  },
+  "name": "Kilit Taşı ve Kaldırım Yapım İşleri",
+  "categoryTypeId": {
+    "$oid": "685d36dc47089ae0b79408c7"
+  },
+  "createdAt": {
+    "$date": "2025-05-16T18:12:28.555Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68278098e00af12bcc51af9b"
+  },
+  "name": "Hafriyat Kazı ve Nakliye İşleri",
+  "categoryTypeId": {
+    "$oid": "685d36dc47089ae0b79408c7"
+  },
+  "createdAt": {
+    "$date": "2025-05-16T18:14:48.704Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682780a6e00af12bcc51af9e"
+  },
+  "name": "Asfalt İşleri",
+  "categoryTypeId": {
+    "$oid": "685d36dc47089ae0b79408c7"
+  },
+  "createdAt": {
+    "$date": "2025-05-16T18:15:02.045Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682780c5e00af12bcc51afa1"
+  },
+  "name": "Fiberoptik(İletişim) Altyapı İşleri",
+  "categoryTypeId": {
+    "$oid": "685d36dc47089ae0b79408c7"
+  },
+  "createdAt": {
+    "$date": "2025-05-16T18:15:33.161Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682780dbe00af12bcc51afa4"
+  },
+  "name": "Pimapen Doğrama ve Montaj İşleri",
+  "categoryTypeId": {
+    "$oid": "685d36dc47089ae0b79408c7"
+  },
+  "createdAt": {
+    "$date": "2025-05-16T18:15:55.911Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "682780f2e00af12bcc51afa7"
+  },
+  "name": "Tadilat Dekorasyon ve Ahşap İşleri",
+  "categoryTypeId": {
+    "$oid": "685d36dc47089ae0b79408c7"
+  },
+  "createdAt": {
+    "$date": "2025-05-16T18:16:18.671Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6838ffbb29a83ceba3a87c87"
+  },
+  "name": "Yürüyüş",
+  "categoryTypeId": {
+    "$oid": "685d36ed47089ae0b79408d1"
+  },
+  "createdAt": {
+    "$date": "2025-05-30T00:45:47.687Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6839000229a83ceba3a87c92"
+  },
+  "name": "Dağcılık",
+  "categoryTypeId": {
+    "$oid": "685d36ed47089ae0b79408d1"
+  },
+  "createdAt": {
+    "$date": "2025-05-30T00:46:58.466Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6839001029a83ceba3a87c9b"
+  },
+  "name": "Sosyal",
+  "categoryTypeId": {
+    "$oid": "685d36ed47089ae0b79408d1"
+  },
+  "createdAt": {
+    "$date": "2025-05-30T00:47:12.313Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862d944501be9cf6164d1d9"
+  },
+  "name": "Endodonti",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-06-30T18:36:52.122Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862d9b8501be9cf6164d1fa"
+  },
+  "name": "Protetik",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-06-30T18:38:48.563Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862da05501be9cf6164d203"
+  },
+  "name": "Periodonti",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-06-30T18:40:05.130Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862da64501be9cf6164d21b"
+  },
+  "name": "Cerrahi",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-06-30T18:41:40.861Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6862da8d501be9cf6164d224"
+  },
+  "name": "İmplant",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-06-30T18:42:21.854Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdc866fd7dd1edf08e9e4"
+  },
+  "name": "Kanal Eğeleri",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:09:42.042Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdca76fd7dd1edf08ea11"
+  },
+  "name": "Gutta Percha / Güta Perka",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:10:15.150Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdcca6fd7dd1edf08ea2c"
+  },
+  "name": "Paper Point Çeşitleri",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:10:50.291Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdcde6fd7dd1edf08ea43"
+  },
+  "name": "Kanal Dolgu Maddeleri",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:11:10.346Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdcea6fd7dd1edf08ea52"
+  },
+  "name": "Kanal Dezanfektanları",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:11:22.257Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdcf56fd7dd1edf08ea61"
+  },
+  "name": "Dentin Pimi",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:11:33.252Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdd036fd7dd1edf08ea70"
+  },
+  "name": "Endobox / Endo Stand",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:11:47.712Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdd0e6fd7dd1edf08ea7f"
+  },
+  "name": "Guta Çözücü",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:11:58.159Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdd176fd7dd1edf08ea92"
+  },
+  "name": "İrrigasyon İğneleri",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:12:07.434Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdd216fd7dd1edf08eaa1"
+  },
+  "name": "Kanal Dezenfeksiyonu & Sinir Öldürücü",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:12:17.793Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdd2b6fd7dd1edf08eab0"
+  },
+  "name": "Pivo Ve Postlar",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:12:27.990Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdd3c6fd7dd1edf08eac3"
+  },
+  "name": "Frezler",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:12:44.717Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdd486fd7dd1edf08ead2"
+  },
+  "name": "Kalsiyum Hidroksit",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:12:56.154Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdd526fd7dd1edf08eae5"
+  },
+  "name": "El Eğesi",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:13:06.888Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdd5d6fd7dd1edf08eaf4"
+  },
+  "name": "MTA Ürünleri",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:13:17.441Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdd686fd7dd1edf08eb03"
+  },
+  "name": "Solüsyonlar",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:13:28.371Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdd756fd7dd1edf08eb16"
+  },
+  "name": "İrrigasyon Solüsyonları",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:13:41.509Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdd836fd7dd1edf08eb25"
+  },
+  "name": "Pulpa Öldürücüler",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:13:55.741Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687cdd916fd7dd1edf08eb3c"
+  },
+  "name": "Kanama Durdurucular",
+  "categoryTypeId": {
+    "$oid": "686294ac9d223a27cbc3aa14"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T12:14:09.132Z"
+  },
+  "__v": 0
+}]

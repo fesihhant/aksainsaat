@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import { useAuth } from '../../context/AuthContext'; 
 import Breadcrumbs from '../public/Breadcrumbs';
+import { useApiCall, apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls'; 
+import TextAreaComponent from '../../components/htmlComponent/TextAreaComponent';
 import '../../css/EditUser.css';
-import { useApiCall, apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
-import { editorModules, editorFormats } from '../../utils/utils';
 
 
 const EditAbout = () => {
@@ -116,42 +114,39 @@ const EditAbout = () => {
                 
                     <div className="form-group">
                         <label htmlFor="aboutText">Hakkımızda</label> 
-                        <ReactQuill
-                            name={'aboutText'}
-                            theme="snow"
-                            required
-                            className='react-quill-custom'
-                            modules={editorModules()}
-                            formats={editorFormats()}
-                            value={formData.aboutText} 
-                            onChange={(e) => setFormData({ ...formData, aboutText: e })}  
-                        /> 
+                        <TextAreaComponent
+                            field={{
+                                name: 'aboutText',
+                                placeholder: 'Açıklama giriniz...',
+                                required: true
+                            }}
+                            value={formData.aboutText}
+                            onBlur={value => setFormData((prev) => ({ ...prev, aboutText: value }))}
+                        />  
                     </div>
                     <div className="form-group">
-                        <label htmlFor="visionText">Vizyonumuz</label>                        
-                        <ReactQuill
-                            name={'visionText'}
-                            theme="snow"
-                            required
-                            className='react-quill-custom'
-                            modules={editorModules()}
-                            formats={editorFormats()}
-                            value={formData.visionText} 
-                            onChange={(e) => setFormData({ ...formData, visionText: e })}  
-                        /> 
+                        <label htmlFor="visionText">Vizyonumuz</label>  
+                        <TextAreaComponent
+                            field={{
+                                name: 'visionText',
+                                placeholder: 'Açıklama giriniz...',
+                                required: true
+                            }}
+                            value={formData.visionText}
+                            onBlur={value => setFormData((prev) => ({ ...prev, visionText: value }))}
+                        />  
                     </div>
                     <div className="form-group">
-                        <label htmlFor="missionText">Misyonumuz</label>
-                        <ReactQuill
-                            name={'missionText'}
-                            theme="snow"
-                            required
-                            className='react-quill-custom'
-                            modules={editorModules()}
-                            formats={editorFormats()}
-                            value={formData.missionText} 
-                            onChange={(e) => setFormData({ ...formData, missionText: e})}  
-                        /> 
+                        <label htmlFor="missionText">Misyonumuz</label> 
+                        <TextAreaComponent
+                            field={{
+                                name: 'missionText',
+                                placeholder: 'Açıklama giriniz...',
+                                required: true
+                            }}
+                            value={formData.missionText}
+                            onBlur={value => setFormData((prev) => ({ ...prev, missionText: value }))}
+                        />  
                     </div>
                     <div className="form-group">
                         <label htmlFor="phoneNumber">Telefon Numarası</label>
@@ -186,24 +181,16 @@ const EditAbout = () => {
                         />  
                     </div>
                     <div className="form-group">
-                        <label htmlFor="address">Adres</label>
-                        {/* <textarea
-                            id="address"
-                            name="address"
-                            required
-                            value={formData.address} 
-                            onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                        /> */}
-                        <ReactQuill
-                            name={'address'}
-                            theme="snow"
-                            required
-                            className='react-quill-custom'
-                            modules={editorModules()}
-                            formats={editorFormats()}
-                            value={formData.address} 
-                            onChange={(e) => setFormData({ ...formData, address: e })}  
-                        /> 
+                        <label htmlFor="address">Adres</label> 
+                        <TextAreaComponent
+                            field={{
+                                name: 'address',
+                                placeholder: 'Açıklama giriniz...',
+                                required: true
+                            }}
+                            value={formData.address}
+                            onBlur={value => setFormData((prev) => ({ ...prev, address: value }))}
+                        />  
                     </div>
                 </form>
             </div>

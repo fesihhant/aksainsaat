@@ -1,0 +1,64 @@
+[{
+  "_id": {
+    "$oid": "6836f1381a5c2a30a75717fa"
+  },
+  "name": "facebook",
+  "mediaLink": "https://www.facebook.com/?locale=tr_TR",
+  "active": true,
+  "__v": 0,
+  "iconClasses": "fa-solid fa-copyright"
+},
+{
+  "_id": {
+    "$oid": "6836f22f1a5c2a30a7571856"
+  },
+  "name": "instagram",
+  "mediaLink": "https://www.instagram.com/",
+  "active": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6836f2d51a5c2a30a7571863"
+  },
+  "name": "whatsapp",
+  "mediaLink": "https://wa.me/905536540341",
+  "active": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6836f3071a5c2a30a7571870"
+  },
+  "name": "youtube",
+  "mediaLink": "https://www.youtube.com/@fesihhant4905",
+  "active": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6836f35e1a5c2a30a757187d"
+  },
+  "name": "Linkedin",
+  "mediaLink": "https://www.linkedin.com/in/fesih-hant-12839693/",
+  "active": false,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6836f3931a5c2a30a757188a"
+  },
+  "name": "X(twitter)",
+  "mediaLink": "https://x.com/fesih2012",
+  "active": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6836f4381a5c2a30a7571897"
+  },
+  "name": "twitch",
+  "mediaLink": "https://www.twitch.tv/",
+  "active": false,
+  "__v": 0
+}]

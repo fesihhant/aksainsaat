@@ -156,25 +156,7 @@ input, button {
   content: '>';
   margin: 0 5px;
   color: #6c757d;
-}@media (max-width:700px){
-  .breadcrumbs {
-    font-size: 14px;
-  }
-  .page-header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;  
-    padding: 0 0 8px 0;
-  }
-
-  .page-header h1,h2 {  
-    padding-left: 0;
-    font-size: 12px;
-  }
-  .headerClass{
-    display: none;
-  }
-}
+} 
 .row {
   display: flex;
 }
@@ -495,67 +477,7 @@ input, button {
 
 .varible-input{
   width: 75%;
-}
-@media (max-width: 768px) {  
-  .main-content {
-    padding-top: 18px;
-  }
-  .submit-button {
-      font-size: 12px;
-      padding: 8px 14px;
-  }
-  .cancel-button {
-      font-size: 12px;
-      padding: 8px 14px;
-  }
-  .search-box {
-     display: flex;     
-  }
-  .data-grid-container {
-      padding: 0.5rem;
-      height: calc(100vh - 200px);
-  }
-  .css-t89xny-MuiDataGrid-columnHeaderTitle{
-    font-size: 12px!important; /* Başlık yazı boyutu */
-    font-weight: 600!important; /* Başlık kalınlığı */
-    color: slategrey!important /* Başlık rengi */ 
-  }
-  .css-az8st9-MuiDataGrid-root .MuiDataGrid-withBorderColor{
-    max-width: 100%;
-    width: 100%;
-  }
-  .css-s1v7zr-MuiDataGrid-virtualScrollerRenderZone{
-    font-size: 12px;
-  }
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .form-group label {
-    min-width: 50px;
-  }
-  .form-group 
-    input[type="text"],
-    input[type="email"], 
-    input[type="password"], 
-    input[type="number"], 
-    input[type="date"], 
-    input[type="time"],
-    textarea {
-    width: 100%;
-  }
-  .avatar-content{
-    flex-direction: column;
-  }
-  .varible-input{
-    width: 100%;
-  }
-  .row {
-    display: flex;
-    flex-direction: column;
-  }
-}
+} 
 
 .home-container,
 .main-content,
@@ -563,12 +485,7 @@ input, button {
   overflow: visible !important;
   position: static !important;
   z-index: auto !important;
-}
-
-/* ReactQuil */
-.ql-container {
-  min-height: 300px;
-}
+} 
 
 .box-items {
   background: #fff;
@@ -716,21 +633,6 @@ input, button {
 .box-card .box-cart-content .status .completed {
   color: #fff;
 }
-
-@media (max-width: 768px) {
-    .box-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        padding: 3px;
-    }
-    
-    .box-card {
-        margin: 10px;
-        max-width: -webkit-fill-available;
-        min-width: fit-content;
-    }
-}
 .filter-list {
     display: flex;
     justify-content: center;
@@ -751,8 +653,110 @@ input, button {
     /* background: #003da6; */
     color: #d62b2b;
     border-radius: 6px;
+} 
+/* #region ckeditor css */
+.ck-powered-by {
+  display: none;
 }
-.react-quill-custom {
-  min-height: 300px;
-  max-width: fit-content;
+.ck.ck-editor {
+  width: 75%;
+}
+.ck-editor__editable {
+  min-height: 150px;
+} 
+/* endregion ckeditor css */
+
+@media (max-width:700px){
+  .breadcrumbs {
+    font-size: 14px;
+  }
+  .page-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;  
+    padding: 0 0 8px 0;
+  }
+
+  .page-header h1,h2 {  
+    padding-left: 0;
+    font-size: 12px;
+  }
+  .headerClass{
+    display: none;
+  }
+  .ck.ck-editor {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 18px;
+  }
+  .submit-button {
+      font-size: 12px;
+      padding: 8px 14px;
+  }
+  .cancel-button {
+      font-size: 12px;
+      padding: 8px 14px;
+  }
+  .search-box {
+     display: flex;     
+  }
+  .data-grid-container {
+      padding: 0.5rem;
+      height: calc(100vh - 200px);
+  }
+  .css-t89xny-MuiDataGrid-columnHeaderTitle{
+    font-size: 12px!important; /* Başlık yazı boyutu */
+    font-weight: 600!important; /* Başlık kalınlığı */
+    color: slategrey!important /* Başlık rengi */ 
+  }
+  .css-az8st9-MuiDataGrid-root .MuiDataGrid-withBorderColor{
+    max-width: 100%;
+    width: 100%;
+  }
+  .css-s1v7zr-MuiDataGrid-virtualScrollerRenderZone{
+    font-size: 12px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .form-group label {
+    min-width: 50px;
+  }
+  .form-group 
+    input[type="text"],
+    input[type="email"], 
+    input[type="password"], 
+    input[type="number"], 
+    input[type="date"], 
+    input[type="time"],
+    textarea {
+    width: 100%;
+  }
+  .avatar-content{
+    flex-direction: column;
+  }
+  .varible-input{
+    width: 100%;
+  }
+  .row {
+    display: flex;
+    flex-direction: column;
+  }
+  .box-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 3px;
+  }
+  
+  .box-card {
+      margin: 10px;
+      max-width: -webkit-fill-available;
+      min-width: fit-content;
+  }
 }

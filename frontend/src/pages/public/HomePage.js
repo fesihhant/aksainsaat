@@ -82,7 +82,10 @@ const HomePage = () => {
                                             priority={true}
                                         />
                                     </div>
-                                    <div className="box-cart-content" onClick={() => navigate(`/project-detail/${encodeURIComponent(p.name)}`)}>
+                                    <div className="box-cart-content" onClick={() => 
+                                            // navigate(`/project-detail/${encodeURIComponent(p.name)}`)
+                                                window.open(`/project-detail/${encodeURIComponent(p.name)}`, '_blank')
+                                            }>
                                         <div className="title">
                                             {substringValue(p.name, 100)}
                                             <br />

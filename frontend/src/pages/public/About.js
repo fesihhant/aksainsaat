@@ -91,7 +91,7 @@ const About = () => {
                     {bookletFormData && bookletFormData.coverImageUrl && bookletFormData.fileUrl && (
                         <>
                             <h2>Tanıtım Dosyası</h2>
-                            <div style={{maxWidth:150,paddingLeft:'inherit'}}>
+                            <div style={{maxWidth:150}}>
                                 <a title='Tanıtım dosyasını indir'
                                     href={bookletFormData.fileUrl.startsWith('http') ? bookletFormData.fileUrl : `${serverUrl}/${bookletFormData.fileUrl.replace(/^\//, '')}`}
                                     download

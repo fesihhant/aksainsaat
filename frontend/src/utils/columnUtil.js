@@ -175,7 +175,7 @@ export const createActionsRender = (actions) => {
     return createSafeRenderCell((params) => (
         <div style={{ display: 'flex', gap: '8px' }}>
             {actions.map((action, index) => (
-                <div key={index} style={{ display: 'flex', gap: '8px' }}>
+                <div key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'stretch', height:'48px' }}>
                     <button
                         onClick={(e) => {
                             e.stopPropagation();

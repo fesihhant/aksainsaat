@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "682e61d7324922d196179e85"
+  },
+  "aboutText": "<p>Altyapı ve üst yapı sektöründe faaliyet gösteren AKSA İNŞAAT 2006 yılında İstanbul'da kuruldu. Düzeltme oldu mu?</p>",
+  "visionText": "<p>Yüksek Kalite ve en üst düzeyde memnuniyet sağlayarak içinde bulunduğumuz sektörlerde lider olabilmek gayreti içindeyiz.</p><p>Düzeltme gönder</p>",
+  "missionText": "<p>İhtiyaç, talep ve beklentileri tam anlamıyla karşılayacak şekilde çalışmak, kaliteli, sürekli ve güvenilir bir hizmet sunmak. İş süreçleriyle birlikte iş planına, şartnamelerine ve prosedürlerine uygundur.</p><p>Düzeltme gönder</p>",
+  "createdAt": {
+    "$date": "2025-05-21T23:29:27.997Z"
+  },
+  "__v": 0,
+  "address": "Orta Mahalle, Bektaş Sokak, No: 6/18, Kartal, İstanbul",
+  "email": "aksainsaat12@gmail.com",
+  "fax": "+90 216 451 13 13",
+  "phoneNumber": "+90 216 451 13 13"
+}]

@@ -110,10 +110,10 @@ const TermsOfServiceList = () => {
                 {
                     label: 'Sil',
                     color: '#f44336',
-                    // disabled: (row) => !row.isActivated,
+                    disabled: (row) => data.length,
                     onClick: (row) => {
                         setDeleteId(row._id);
-                        setModalOpen(true);
+                        if (data.length > 1) setModalOpen(true);
                     }
                 }
             ])
@@ -131,6 +131,7 @@ const TermsOfServiceList = () => {
             columns={columns} 
             loading={loading} 
             pageSize={10}
+            showNewButton={data.length == 0}
         />         
         <ModalMessage
             open={modalOpen}

@@ -1,0 +1,13 @@
+[{
+  "_id": {
+    "$oid": "6834fba75ce42c3c54a98d76"
+  },
+  "description": "Tanıtım Kitapçığı 2025",
+  "coverImageUrl": "/uploads/introductionBooklet/1748302759700-.jpg",
+  "fileUrl": "/uploads/introductionBooklet/1748302759701-.pdf",
+  "createdAt": {
+    "$date": "2025-05-26T23:39:19.704Z"
+  },
+  "__v": 0,
+  "videoUrl": null
+}]

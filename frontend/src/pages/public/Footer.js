@@ -107,7 +107,7 @@ const Footer = () => {
         
           
             <div style={{ width:'100%', padding: 12, marginTop: 16 }}>
-              <div style={{color:'#003da6', fontWeight:'bold', marginBottom: 8}}>REFERANSLARIMIZ</div>
+              {/* <div style={{color:'#003da6', fontWeight:'bold', marginBottom: 8}}>REFERANSLARIMIZ</div> */}
                 <div className="image-section-slider">
                   <div className="slider-container" ref={scrollRef}>
                     {referenceList.map((ref, index) => (
@@ -158,15 +158,7 @@ const Footer = () => {
               
               ))}
             </ul>
-            </div>
-            {/* <div class="col-8">               
-                <p style={{textAlign:'center', fontSize:'12px', color:'gray'}}>
-                    <a href="/">@aksainsaat </a> telif hakkı ihlali düşündüğünüz içerikler için lütfen 
-                    <a href="/contact" style={{color:'darkblue'}}> iletişim sayfamızdan</a> bizimle iletişime geçin.
-                    <a href="/privacy-policy" style={{color:'darkblue'}}> Gizlilik Politikası</a> | 
-                    <a href="/terms-of-service" style={{color:'darkblue'}}> Kullanım Şartları</a>
-                </p>
-            </div> */}
+            </div> 
         </div> 
       </div>   
       
@@ -203,7 +195,6 @@ const Footer = () => {
                 )}
             </div>
         </div>
-        <br/>
         <br/>
         <div className="row" style={{alignItems: 'center', justifyContent: 'space-around'}}>              
             <div>

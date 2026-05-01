@@ -8,6 +8,7 @@ import { useApiCall, apiRequest, invalidateApiCacheMany } from '../../utils/apiC
 import { serverUrl, apiUrl } from '../../utils/utils';
 
 import '../../css/NewProduct.css';
+import TextAreaComponent from '../../components/htmlComponent/TextAreaComponent';
 
 const IntroductionBookletEdit = () => {
     const navigate = useNavigate();
@@ -222,11 +223,14 @@ const IntroductionBookletEdit = () => {
 
                     <div className="form-group">
                         <label htmlFor="description">Açıklama</label>
-                        <textarea
-                            id="description"
-                            name="description"
-                            value={formData.description} 
-                            onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                        <TextAreaComponent
+                            field={{
+                                name: 'description',
+                                placeholder: 'Açıklama giriniz...',
+                                required: true
+                            }}
+                            value={formData.description}
+                            onBlur={value => setFormData((prev) => ({ ...prev, description: value }))}
                         />
                     </div>
                      <div className='row'>

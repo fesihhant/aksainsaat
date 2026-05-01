@@ -1,0 +1,52 @@
+[{
+  "_id": {
+    "$oid": "682930f843019261ffd3607d"
+  },
+  "name": "İGDAŞ",
+  "description": "İGDAŞ",
+  "imageUrl": "/uploads/references/1747530092352.png",
+  "createdAt": {
+    "$date": "2025-05-18T00:59:36.303Z"
+  },
+  "__v": 0,
+  "webLink": "https://www.igdas.com.tr/"
+},
+{
+  "_id": {
+    "$oid": "682a68045cf1d958154b4d1e"
+  },
+  "name": "Bilgi Teknolojileri ve İletişim Kurumu",
+  "description": "Bilgi Teknolojileri ve İletişim Kurumu",
+  "imageUrl": "/uploads/references/1753565970354.png",
+  "createdAt": {
+    "$date": "2025-05-18T23:06:44.608Z"
+  },
+  "__v": 0,
+  "webLink": "https://www.btk.tr/"
+},
+{
+  "_id": {
+    "$oid": "682a68c45cf1d958154b4d2d"
+  },
+  "name": "Kocaeli Su ve Kanalijasyon-İsu",
+  "description": "Kocaeli Su ve Kanalijasyon-İsu",
+  "imageUrl": "/uploads/references/1747609796618.png",
+  "createdAt": {
+    "$date": "2025-05-18T23:09:56.619Z"
+  },
+  "__v": 0,
+  "webLink": "https://www.isu.gov.tr/"
+},
+{
+  "_id": {
+    "$oid": "687b7e0e4cba6f2c1a36a1b6"
+  },
+  "name": "İGDAŞ",
+  "description": "İGDAŞ",
+  "imageUrl": "/uploads/references/1747530092352.png",
+  "createdAt": {
+    "$date": "2025-05-18T00:59:36.303Z"
+  },
+  "__v": 0,
+  "webLink": "https://www.igdas.com.tr/"
+}]

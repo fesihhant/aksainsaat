@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "67b66b08af9b96bd6f4a6415"
+  },
+  "fullName": "Fesih Hant",
+  "email": "fesih2012@gmail.com",
+  "password": "$2a$10$OSifjVvZqCMUw7jeenbl0ePVYgaUPGSAyiKEFwpm8paFDoTA78VQe",
+  "createdAt": {
+    "$date": "2025-02-19T23:36:40.577Z"
+  },
+  "__v": 0,
+  "role": "admin",
+  "isActivated": true,
+  "phone": "(553) 654 03 41",
+  "avatar": "/uploads/avatars/1761396500091-662705007.jpg",
+  "avatarType": "upload"
+},
+{
+  "_id": {
+    "$oid": "6844480d909208500ab960e5"
+  },
+  "fullName": "Ahmet Esat",
+  "email": "aesat@gmail.com",
+  "phone": "(546) 321 12 09",
+  "password": "$2a$10$u2IWygp7c3.O3TIiym2p8O0D4A.kds1IXi5OFXkpuK9B3WbojQ1Gm",
+  "role": "user",
+  "avatar": "/uploads/avatars/default.jpg",
+  "avatarType": "preset",
+  "isActivated": false,
+  "createdAt": {
+    "$date": "2025-06-07T14:09:17.152Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687ab6ce416f608d61e9a9ac"
+  },
+  "fullName": "Aksa İnşaat",
+  "email": "aksainsaat12@gmail.com",
+  "phone": "(543) 855 98 76",
+  "password": "$2a$10$ZhpEJxK2sfXCCKJcESqnp.ys3keGS2e3s2KTPnsbR1w9EVE9goCve",
+  "role": "admin",
+  "avatar": "/uploads/avatars/1752872653972-585733163.png",
+  "avatarType": "upload",
+  "isActivated": true,
+  "createdAt": {
+    "$date": "2025-07-18T21:04:14.134Z"
+  },
+  "__v": 0
+}]

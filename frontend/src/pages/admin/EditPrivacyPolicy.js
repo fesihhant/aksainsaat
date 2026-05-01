@@ -4,10 +4,8 @@ import Breadcrumbs from '../public/Breadcrumbs';
 import { useAuth } from '../../context/AuthContext';
 import '../../css/EditUser.css';
 import { apiUrl } from '../../utils/utils';
-import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { editorModules, editorFormats } from '../../utils/utils';
+import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls'; 
+import TextAreaComponent from '../../components/htmlComponent/TextAreaComponent';
  
 
 const EditPrivacyPolicy = () => {
@@ -186,16 +184,16 @@ const EditPrivacyPolicy = () => {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="content">Content</label>
-                        <ReactQuill
-                            theme="snow"                            
-                            style={{minHeight:'300px'}}
+                        <label htmlFor="content">Content</label> 
+                        <TextAreaComponent
+                            field={{
+                                name: 'content',
+                                placeholder: 'Açıklama giriniz...',
+                                required: true
+                            }}
                             value={formData.content}
-                            onChange={value => setFormData((prev) => ({ ...prev, content: value }))}   
-                            placeholder="Açıklama giriniz..."
-                            modules={editorModules()}
-                            formats={editorFormats()}
-                        /> 
+                            onBlur={value => setFormData((prev) => ({ ...prev, content: value }))}
+                        />  
                     </div> 
                 </form>
             </div>

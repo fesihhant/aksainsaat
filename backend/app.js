@@ -8,16 +8,16 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-// app.use(cors());
+app.use(cors());
 // Public CORS ayarları (resim servisi için)
-const corsOptions = {
-  origin: ["https://aksainsaat.tr", "http://localhost:3001"], // sadece senin frontend domainine izin ver
-  methods: ["GET", "OPTIONS"],     // resim servisi için GET yeterli
-  allowedHeaders: ["Content-Type"],
-  credentials: false               // login yok, cookie taşınmasına gerek yok
-};
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // Preflight isteğini handle et
+// const corsOptions = {
+//   origin: ["https://aksainsaat.tr", "http://localhost:3001"], // sadece senin frontend domainine izin ver
+//   methods: ["GET", "OPTIONS"],     // resim servisi için GET yeterli
+//   allowedHeaders: ["Content-Type"],
+//   credentials: false               // login yok, cookie taşınmasına gerek yok
+// };
+// app.use(cors(corsOptions));
+// app.options("*", cors(corsOptions)); // Preflight isteğini handle et
 
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
