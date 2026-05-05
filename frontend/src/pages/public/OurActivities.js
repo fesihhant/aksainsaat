@@ -118,7 +118,7 @@ const OurActivities = () => {
                 <div className="box-grid" style={{ gridTemplateColumns: `${filteredprojects.length > 0 && filteredprojects.length < 3 ? 'repeat(auto-fit, minmax(0,400px))' : 'repeat(auto-fit, minmax(400px, 1fr))'}` }}>
                     {filteredprojects.length === 0 && (
                         <EmptyRecord 
-                            message={categoryName ? `${categoryName} kategorisine ait proje bulunamadı.` : 'Proje bulunamadı.'}                            
+                            message={categoryName ? `${categoryName} faaliyetinde henüz projemiz yoktur.` : 'Proje bulunamadı.'}                            
                         />
                     )}
                     {filteredprojects                 

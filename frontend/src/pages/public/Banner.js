@@ -98,7 +98,7 @@ const Banner = ({ storedUser, setStoredUser }) => {
         logout();
         setStoredUser({});
         setIsLoggedIn(false);
-        navigate('/');
+        window.location.href ='/';
     };
 
     const handleSubmitLogin = async (e) => {
@@ -126,9 +126,9 @@ const Banner = ({ storedUser, setStoredUser }) => {
 
                 // Admin ise yönetim paneline, değilse ana sayfaya yönlendir
                 if (data.user.role === 'admin') {
-                    navigate('/projects');
+                    window.location.href ='/projects';
                 } else {
-                    navigate('/');
+                    window.location.href ='/';
                 }
             } else {
                 setError(data.message || 'Giriş yapılırken bir hata oluştu');
@@ -301,11 +301,13 @@ const Banner = ({ storedUser, setStoredUser }) => {
                                     <div className="auth-buttons">
                                         <i className="fa fa-sign-out logout-button" onClick={handleLogout} aria-hidden="true"></i>
                                     </div>
-                                ) : !isRegisterPage &&  !isloginPage && (
-                                    <div className="auth-buttons">
-                                        <i onClick={() => changeModalStyle('login',true)} className="fa fa-sign-in login-link" aria-hidden="true"></i>
-                                    </div>
-                                )}
+                                ) : (null)
+                                // !isRegisterPage &&  !isloginPage && (
+                                //     <div className="auth-buttons">
+                                //         <i onClick={() => changeModalStyle('login',true)} className="fa fa-sign-in login-link" aria-hidden="true"></i>
+                                //     </div>
+                                // )
+                                }
                             </div>
                         </div>
                     </div>
@@ -318,11 +320,13 @@ const Banner = ({ storedUser, setStoredUser }) => {
                         <div className="auth-buttons">
                             <i className="fa fa-sign-out logout-button" onClick={handleLogout} aria-hidden="true"></i>
                         </div>
-                    ) : !isRegisterPage &&  !isloginPage && (
-                        <div className="auth-buttons">
-                            <i onClick={() => changeModalStyle('login',true)} className="fa fa-sign-in login-link" aria-hidden="true"></i>
-                        </div>
-                    )}
+                    ) : (null)
+                    // !isRegisterPage &&  !isloginPage && (
+                    //     <div className="auth-buttons">
+                    //         <i onClick={() => changeModalStyle('login',true)} className="fa fa-sign-in login-link" aria-hidden="true"></i>
+                    //     </div>
+                    // )
+                    }
                 </div>
 
 

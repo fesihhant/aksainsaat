@@ -47,9 +47,9 @@ const Login = () => {
 
                 // Admin ise yönetim paneline, değilse ana sayfaya yönlendir
                 if (data.user.role === 'admin') {
-                    navigate('/users');
-                } else {
                     navigate('/projects');
+                } else {
+                    navigate('/');
                 }
             } else {
                 setError(data.message || 'Giriş yapılırken bir hata oluştu');

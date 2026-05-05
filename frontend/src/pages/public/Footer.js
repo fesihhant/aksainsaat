@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import '../../css/imageSlider.css';
 import '../../css/SocialMediaFloatingBar.css';
-import { useNavigate  } from 'react-router-dom';
 import { serverUrl, getSocialMedyaIcon, getSocialMediaBgColor } from '../../utils/utils';
 import { useApiCall } from '../../utils/apiCalls';
+import MailLinks  from '../../utils/MailLinks';
 
 
 const Footer = () => {
-    const navigate = useNavigate();
     const [accounts, setData] = useState([]);
     const [contactInfo, setContactInfo] = useState([]);
     const [hovered, setHovered] = useState(null); 
-    
+    const [isPaused, setIsPaused] = useState(false);
+
     const { apiData: socialData, apiError: socialError } = useApiCall(
       '/social-media',
       'GET',
@@ -36,7 +36,7 @@ const Footer = () => {
       'GET',
       null,
       false,
-      { cache: true, staleTimeMs: 60 * 60 * 1000, cacheStorage: 'both', dedupe: true, timeoutMs: 45000, retry: 1, retryDelayMs: 500 }
+      // { cache: true, staleTimeMs: 60 * 60 * 1000, cacheStorage: 'both', dedupe: true, timeoutMs: 45000, retry: 1, retryDelayMs: 500 }
     );
 
     useEffect(() => {
@@ -72,46 +72,75 @@ const Footer = () => {
       }
     }, [refData, refError]);
 
+    // useEffect(() => {
+    //   if (referenceList.length > 0) {
+    //     let resetTimeout = null;
+    //     const interval = setInterval(() => {
+    //       if (scrollRef.current) {
+    //         // Toleransı artırın (ör: 30px)
+    //         if (
+    //           scrollRef.current.scrollLeft + scrollRef.current.offsetWidth >=
+    //           scrollRef.current.scrollWidth - 30
+    //         ) {
+    //           // Son resme gelince kısa bir bekleme ile başa dön
+    //           if (!resetTimeout) {
+    //               resetTimeout = setTimeout(() => {
+    //                 scrollRef.current.scrollLeft = 0;
+    //                 resetTimeout = null;
+    //               }, 500); // 0.5 saniye bekle
+    //           }
+    //         } else {
+    //           scrollRef.current.scrollLeft += 2;
+    //         }
+    //       }
+    //     }, 30);
+    //     return () => {
+    //       clearInterval(interval);
+    //       if (resetTimeout) clearTimeout(resetTimeout);
+    //     };
+    //   }
+    // }, [referenceList]);
+
     useEffect(() => {
       if (referenceList.length > 0) {
         let resetTimeout = null;
         const interval = setInterval(() => {
-          if (scrollRef.current) {
-            // Toleransı artırın (ör: 30px)
+          if (!isPaused && scrollRef.current) {
             if (
               scrollRef.current.scrollLeft + scrollRef.current.offsetWidth >=
               scrollRef.current.scrollWidth - 30
             ) {
-              // Son resme gelince kısa bir bekleme ile başa dön
               if (!resetTimeout) {
-                  resetTimeout = setTimeout(() => {
-                    scrollRef.current.scrollLeft = 0;
-                    resetTimeout = null;
-                  }, 500); // 0.5 saniye bekle
+                resetTimeout = setTimeout(() => {
+                  scrollRef.current.scrollLeft = 0;
+                  resetTimeout = null;
+                }, 500);
               }
             } else {
               scrollRef.current.scrollLeft += 2;
             }
           }
         }, 30);
+
         return () => {
           clearInterval(interval);
           if (resetTimeout) clearTimeout(resetTimeout);
         };
       }
-    }, [referenceList]);
+    }, [referenceList, isPaused]);
   return ( 
 
     <div className="footer"> 
-      {referenceList && referenceList.length > 0 && (
-        
-          
-            <div style={{ width:'100%', padding: 12, marginTop: 16 }}>
-              {/* <div style={{color:'#003da6', fontWeight:'bold', marginBottom: 8}}>REFERANSLARIMIZ</div> */}
-                <div className="image-section-slider">
-                  <div className="slider-container" ref={scrollRef}>
-                    {referenceList.map((ref, index) => (
-                    <div className="slider-feature-card" key={index}>
+      {referenceList && referenceList.length > 0 && (       
+        <div style={{ width:'100%', padding: 12, marginTop: 16 }}>
+            {/* <div style={{color:'#003da6', fontWeight:'bold', marginBottom: 8}}>REFERANSLARIMIZ</div> */}
+              <div className="image-section-slider">
+                <div className="slider-container" ref={scrollRef}>
+                  {referenceList.map((ref, index) => (
+                    <div className="slider-feature-card" key={index}
+                      onMouseEnter={() => setIsPaused(true)}
+                      onMouseLeave={() => setIsPaused(false)}
+                    >
                       {ref.webLink ? (
                         <a href={ref.webLink} target="_blank" rel="noopener noreferrer">
                           <img
@@ -129,84 +158,95 @@ const Footer = () => {
                       )}
                     </div>
                   ))}
-                  </div>
                 </div>
-           </div>
-        )}
-
-      <div className='form-container'>         
-        <div className="row" style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-            <div className="col-4 social-media-footer-bar">
-              <ul style={{ display: 'flex', justifyContent:'flex-end', gap:'4px', listStyleType: 'none', padding: 0, margin: 0}}>        
-              {accounts.map((item, idx) => (
-                <li key={item._id || item.name || idx}>
-                  <a
-                      href={item.mediaLink}
-                      className="social-media-link-footer"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title={item.name}
-                      style={{ backgroundColor: hovered === idx ? getSocialMediaBgColor(item.name) : getSocialMediaBgColor(item.name),
-                                  transition: 'background 0.2s, color 0.2s'
-                      }}
-                      onMouseEnter={() => setHovered(idx)}
-                      onMouseLeave={() => setHovered(null)}
-                  >
-                      <i className={`fa-brands ${getSocialMedyaIcon(item.name)}`}></i>
-                  </a>
-                </li> 
-              
-              ))}
-            </ul>
-            </div> 
-        </div> 
-      </div>   
-      
-      <div style={{ width:'100%', padding: 12, marginTop: 16,backgroundColor:'black',color:'white', borderRadius:8, padding:8 }}>
-        <div className="row" style={{alignItems: 'center', justifyContent: 'space-around'}}>
-            <div className='col-6'>
-                {contactInfo && contactInfo.address && (
-                    <>
-                        <i className="fa-solid fa-location-dot"></i>
-                        <a
-                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactInfo.address)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{ color: 'inherit', textDecoration: 'none' }}
-                        >
-                            &nbsp;{contactInfo.address}
-                        </a> 
-                    </>
-                )}
-            </div>
-            <div className='col-2'>
-                {contactInfo && contactInfo.phoneNumber && (
-                    <span><i className="fa-solid fa-phone"></i> <a href={`tel:${contactInfo.phoneNumber}`} >{contactInfo.phoneNumber}</a></span>
-                )}
-            </div>
-            <div className='col-2'>
-                {contactInfo && contactInfo.email && (
-                    <span> <i className="fa-solid fa-envelope"></i> <a href={`mailto:${contactInfo.email}`} >{contactInfo.email}</a></span>
-                )}
-            </div>
-            <div className='col-2'>
-                {contactInfo && contactInfo.fax && (
-                    <span> <i className="fa-solid fa-fax"></i> {contactInfo.fax}</span>
-                )}
-            </div>
+              </div>
         </div>
-        <br/>
-        <div className="row" style={{alignItems: 'center', justifyContent: 'space-around'}}>              
+      )}
+      <div style={{ width:'100%', marginTop: 16, backgroundColor:'black', color:'white', borderRadius:8, padding:'24px 16px' }}>
+  
+        {/* İletişim Bilgileri */}
+        <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'space-around', marginBottom:16 }}>
+          {contactInfo?.address && (
             <div>
-              <p style={{textAlign:'center', fontSize:'12px'}}>
-                  <a href="/"><i className="fa-solid fa-at"></i>aksainsaat </a> telif hakkı ihlali düşündüğünüz içerikler için lütfen 
-                  <a href="/contact" style={{color:'cornflowerblue'}}> iletişim sayfamızdan</a> bizimle iletişime geçin.
-                  <a href="/privacy-policy" style={{color:'cornflowerblue'}}> Gizlilik Politikası</a> | 
-                  <a href="/terms-of-service" style={{color:'cornflowerblue'}}> Kullanım Şartları</a>
-              </p>
+              <i className="fa-solid fa-location-dot"></i>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contactInfo.address)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'inherit', textDecoration: 'none', marginLeft: 6 }}
+              >
+                {contactInfo.address}
+              </a>
             </div>
-        </div> 
-      </div>         
+          )}
+
+          {contactInfo?.phoneNumber && (
+            <div>
+              <i className="fa-solid fa-phone"></i>
+              <a href={`tel:${contactInfo.phoneNumber}`} style={{ color:'inherit', marginLeft: 6 }}>
+                {contactInfo.phoneNumber}
+              </a>
+            </div>
+          )}
+
+          {contactInfo?.fax && (
+            <div>
+              <i className="fa-solid fa-fax"></i>
+              <span style={{ marginLeft: 6 }}>{contactInfo.fax}</span>
+            </div>
+          )}
+
+          {contactInfo?.email && (
+            <div> 
+              <MailLinks mailaddress={contactInfo.email}/>
+            </div>
+          )}
+        </div>
+
+        {/* Sosyal Medya Hesapları */}
+        <div className="social-media-footer-bar" style={{ textAlign:'center', marginBottom:16 }}>
+          <ul style={{ display:'flex', justifyContent:'center', gap:'8px', listStyleType:'none', padding:0, margin:0 }}>
+            {accounts.map((item, idx) => (
+              <li key={item._id || item.name || idx}>
+                <a
+                  href={item.mediaLink}
+                  className="social-media-link-footer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={item.name}
+                  style={{
+                    backgroundColor: getSocialMediaBgColor(item.name),
+                    // color:'white',
+                    // borderRadius:'50%',
+                    // width:36,
+                    // height:36,
+                    // display:'flex',
+                    // alignItems:'center',
+                    // justifyContent:'center',
+                    transition:'background 0.2s, color 0.2s'
+                  }}
+                  onMouseEnter={() => setHovered(idx)}
+                  onMouseLeave={() => setHovered(null)}
+                >
+                  <i className={`fa-brands ${getSocialMedyaIcon(item.name)}`}></i>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Telif ve Yasal Bilgiler */}
+        <div style={{ textAlign:'center', fontSize:'12px' }}>
+          <p>
+            <a href="/" style={{ color:'white', textDecoration:'none' }}>
+              <i className="fa-solid fa-at"></i> aksainsaat
+            </a> © Tüm hakları saklıdır. Telif hakkı ihlali düşündüğünüz içerikler için lütfen 
+            <a href="/contact" style={{ color:'cornflowerblue', marginLeft:4 }}> iletişim sayfamızdan</a> bizimle iletişime geçin.  
+            <a href="/privacy-policy" style={{ color:'cornflowerblue', marginLeft:4 }}> Gizlilik Politikası</a> | 
+            <a href="/terms-of-service" style={{ color:'cornflowerblue', marginLeft:4 }}> Kullanım Şartları</a>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
