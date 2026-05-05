@@ -118,7 +118,7 @@ const References = () => {
             renderCell: createActionsRender([
                 {
                     label: 'Düzenle',
-                    color: '#4CAF50',
+                    color: '#369ae7',
                     onClick: (row) => navigate(`/reference/edit/${row._id}`)
                 },
                 {

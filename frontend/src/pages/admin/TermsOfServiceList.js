@@ -104,7 +104,7 @@ const TermsOfServiceList = () => {
             renderCell: createActionsRender([
                 {
                     label: 'Düzenle',
-                    color: '#4CAF50',
+                    color: '#369ae7',
                     onClick: (row) => navigate(`/termsofservices/edit/${row._id}`)
                 },
                 {

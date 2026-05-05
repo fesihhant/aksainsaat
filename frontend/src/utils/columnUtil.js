@@ -183,8 +183,8 @@ export const createActionsRender = (actions) => {
                         }}
                         disabled={action.disabled ? action.disabled(params.row) : false}
                         style={{
-                            backgroundColor: action.color || '#4CAF50',
-                            color: 'white',
+                            // backgroundColor: action.color || '#369ae7',
+                            color: action.color || '#369ae7', //'white',
                             border: 'none',
                             padding: '5px 10px',
                             borderRadius: '4px',

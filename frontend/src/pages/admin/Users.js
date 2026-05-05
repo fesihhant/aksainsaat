@@ -134,7 +134,7 @@ const Users = () => {
             renderCell: createActionsRender([
                 {
                     label: 'Düzenle',
-                    color: '#4CAF50',
+                    color: '#369ae7',
                     onClick: (row) => navigate(`/users/edit/${row._id}`)
                 },
                 {

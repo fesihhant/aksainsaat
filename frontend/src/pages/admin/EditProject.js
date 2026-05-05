@@ -454,7 +454,7 @@ const EditProject = () => {
                     <div className="form-row">
                         <div className="form-group">
                             <label htmlFor="isVisibleCost">Maliyet Görünsün mü?</label>
-                            <Checkbox style={{ height: '24px', maxWidth: '24px', color: 'cadetblue' }}
+                            <Checkbox style={{ height: '24px', maxWidth: '24px'}}
                                 type="checkbox"
                                 id="isVisibleCost"
                                 name="isVisibleCost"
@@ -468,7 +468,7 @@ const EditProject = () => {
                     <div className="form-row">
                         <div className="form-group">
                             <label htmlFor="statusType">Proje Aktif mi?</label>
-                            <Checkbox style={{ height: '24px', maxWidth: '24px', color: 'cadetblue' }}
+                            <Checkbox style={{ height: '24px', maxWidth: '24px'}}
                                 type="checkbox"
                                 id="statusType"
                                 name="statusType"
