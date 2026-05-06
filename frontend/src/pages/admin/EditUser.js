@@ -317,7 +317,7 @@ const EditUser = () => {
                                 <div className="avatar-content" >
                                     
                                     <div className="upload-section">
-                                        <label htmlFor="avatar" className="upload-label" style={{ textAlign: 'center',width: '100%',color: 'white' }}>
+                                        <label htmlFor="avatar" className="submit-button" >
                                             Resim Yükle
                                             <input
                                                 type="file"

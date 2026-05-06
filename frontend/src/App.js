@@ -140,7 +140,7 @@ function App() {
             <Route path="/reference/edit/:id" element={<PrivateRoute requireAdmin><EditReference /></PrivateRoute>}/>
             <Route path="/referencedetail" element={<PrivateRoute requireAdmin><EditReference /></PrivateRoute>}/>
             
-            <Route path="/introductionBooklet" element={<PrivateRoute requireAdmin><IntroductionBookletEdit /></PrivateRoute>}/>
+            <Route path="/introductionbooklet" element={<PrivateRoute requireAdmin><IntroductionBookletEdit /></PrivateRoute>}/>
             
             <Route path="/editAbout" element={<PrivateRoute requireAdmin> <EditAbout /></PrivateRoute>} />
                

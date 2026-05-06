@@ -243,4 +243,20 @@ export function getYoutubeEmbedUrl(url) {
     }
     return url; // Diğer video kaynakları için orijinal url
 }
+
+export function HtmlRenderer({ html }) {
+  const transformOembed = (html) => {
+    return html.replace(
+      /<oembed url="([^"]+)"><\/oembed>/g,
+      (match, url) => {
+        const videoId = new URL(url).searchParams.get("v");
+        return `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
+      }
+    );
+  };
+
+  return (
+    <div dangerouslySetInnerHTML={{ __html: transformOembed(html) }} />
+  );
+}
    

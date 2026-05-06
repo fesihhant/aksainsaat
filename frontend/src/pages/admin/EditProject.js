@@ -16,6 +16,7 @@ import { formatPrice, categoryTypeEnum, serverUrl , apiUrl,getCurrencySymbol, ge
  } from '../../utils/utils';
 import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
 import TextAreaComponent from '../../components/htmlComponent/TextAreaComponent';
+import { Switch } from 'antd';
  
 const EditProject = () => {
     const navigate = useNavigate();
@@ -454,28 +455,16 @@ const EditProject = () => {
                     <div className="form-row">
                         <div className="form-group">
                             <label htmlFor="isVisibleCost">Maliyet Görünsün mü?</label>
-                            <Checkbox style={{ height: '24px', maxWidth: '24px'}}
-                                type="checkbox"
-                                id="isVisibleCost"
-                                name="isVisibleCost"
-                                checked={isVisibleCost}
-                                value={formData.isVisibleCost}
-                                onChange={(e) => setIsVisibleCost(e.target.checked)}
-                            />
+                            <Switch value={formData?.isVisibleCost || false} onChange={(value) => setIsVisibleCost(value)}
+                                  checkedChildren={'Evet'} unCheckedChildren={'Hayır'} />
                         </div>
                     </div>
 
                     <div className="form-row">
                         <div className="form-group">
                             <label htmlFor="statusType">Proje Aktif mi?</label>
-                            <Checkbox style={{ height: '24px', maxWidth: '24px'}}
-                                type="checkbox"
-                                id="statusType"
-                                name="statusType"
-                                checked={isActive}
-                                value={formData.statusType}
-                                onChange={(e) => setIsActive(e.target.checked)}
-                            />
+                            <Switch value={formData?.statusType || false} onChange={(value) => setIsActive(value)}
+                                  checkedChildren={'Evet'} unCheckedChildren={'Hayır'} />
                         </div>
                     </div>
 
@@ -489,7 +478,7 @@ const EditProject = () => {
                                 showMonthDropdown={true}
                                 dropdownMode="select"
                                 locale={tr}
-                                calendarIconClassname={"calendar-icon"}
+                                calendarIconClassName={"calendar-icon"}
                                 dateFormat="dd/MM/yyyy"
                                 selected={startDate}
                                 maxDate={new Date()} // Bugünden önceki tarihleri seçememek için
@@ -505,7 +494,7 @@ const EditProject = () => {
                                 showMonthDropdown={true}
                                 dropdownMode="select"
                                 locale={tr}
-                                calendarIconClassname={"calendar-icon"}
+                                calendarIconClassName={"calendar-icon"}
                                 dateFormat="dd/MM/yyyy"
                                 selected={endDate}
                                 minDate={startDate} // Başlama tarihinden sonra bir tarih seçilmesini sağlıyoruz
@@ -533,7 +522,7 @@ const EditProject = () => {
                         <label htmlFor="images">Proje Görselleri</label>
                         <div className="avatar-options">
                             <div className="upload-section">
-                                <label htmlFor="images" className="upload-label" style={{ textAlign: 'center',width: '100%',color: 'white' }}>
+                                <label htmlFor="images" className="submit-button" >
                                     Resim Yükle
                                     <input
                                         type="file"
@@ -626,10 +615,10 @@ const EditProject = () => {
                         <small style={{ color: 'gray' }}>Yüklenen resimler otomatik olarak  yenilenecektir.</small>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="videoUrls">Proje Videoları (Opsiyonel)</label>
+                        <label htmlFor="videoUrls">Proje Videoları (Opsiyonel) </label>
                         <div className="avatar-options">
                             <div className="upload-section">
-                                <label className="upload-label" style={{ textAlign: 'center', width: '100%', color: 'white' }}>
+                                <label className="submit-button" >
                                     Video Yükle
                                     <input
                                         type="file"

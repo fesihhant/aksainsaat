@@ -249,7 +249,7 @@ const EditReference = () => {
                         <label htmlFor="image">Referans Görseli</label>
                         <div className="avatar-options">
                             <div className="upload-section">
-                                <label htmlFor="image" className="upload-label" style={{ textAlign: 'center',width: '100%',color: 'white' }}>
+                                <label htmlFor="image" className="submit-button" style={{ textAlign: 'center',width: '100%',color: 'white' }}>
                                     Resim Yükle
                                     <input
                                         type="file"

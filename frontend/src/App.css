@@ -3,6 +3,11 @@
   min-height: 100vh;
   background-color: white;
 } 
+:root {
+  --primary-color:#2977ff; /*#048cf5;*/
+  --primary-color-hover:#0d65ff; /*#1071bb;*/
+  --submit-button-color:#003da6;
+}
 /* Scroll bar genişliği */
 ::-webkit-scrollbar {
   width: 12px;
@@ -17,14 +22,14 @@
 
 /* Scroll bar kaydırma kısmı (thumb) */
 ::-webkit-scrollbar-thumb {
-  background: #369ae7!important;
+  background: var(--primary-color);
   border-radius: 6px;
   border: 2px solid #f0f0f0; /* thumb ile track arasında boşluk */
 }
 
 /* Hover efekti */
 ::-webkit-scrollbar-thumb:hover {
-  background: #0686e7!important;
+  background: var(--primary-color-hover);
 }
 
 body {
@@ -310,9 +315,8 @@ input, button {
 
 /* Global button styles */
 .submit-button{
-    color:  #343c72!important;
-    /* color: white; */
-    border: 1px solid #343c72!important;
+    color:  var(--submit-button-color); 
+    border: 1px solid var(--submit-button-color);
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
@@ -323,7 +327,7 @@ input, button {
 }
 
 .submit-button:hover {
-    background-color: #343c72!important;
+    background-color: var(--submit-button-color);
     color: white!important;
 }
 
@@ -333,7 +337,6 @@ input, button {
 }
 .cancel-button {
   color: #d32f2f;
-  /* color: white; */
   border: 1px solid #d32f2f;
   border-radius: 8px;
   cursor: pointer;
@@ -443,22 +446,6 @@ input, button {
 .upload-section {
     margin-bottom: 20px;
 }
-
-.upload-label {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color:  #343c72;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s;
-}
-
-.upload-label:hover {
-    background-color: #343c72;
-}
-
 .default-avatars label {
     display: block;
     margin-bottom: 15px;
@@ -692,6 +679,12 @@ input, button {
 
 .mail-link {
   display: flex ;
+}
+.ant-switch{
+  background-color: rgba(0,0,0,0.45)!important;
+}
+ .ant-switch.ant-switch-checked {
+    background: #1677ff!important;
 }
 @media (max-width:700px){
   .breadcrumbs {

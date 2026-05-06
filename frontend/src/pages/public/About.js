@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Breadcrumbs from './Breadcrumbs';
 import { useApiCall } from '../../utils/apiCalls';
-import {serverUrl} from '../../utils/utils';
+import {serverUrl, HtmlRenderer} from '../../utils/utils';
 import '../../css/HomePage.css';
 
 
@@ -73,7 +73,8 @@ const About = () => {
                     {formData && formData.aboutText &&
                         <>
                             <h2>HAKKIMIZDA</h2>
-                            <div dangerouslySetInnerHTML={{ __html: formData.aboutText }} />
+                            {/* <div dangerouslySetInnerHTML={{ __html: formData.aboutText }} /> */}
+                            <HtmlRenderer html={formData.aboutText} />
                         </>
                     }
                     {formData && formData.visionText &&

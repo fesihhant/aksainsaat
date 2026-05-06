@@ -10,9 +10,6 @@ const Sidebar = () => {
     const [categories, setCategories] = useState([]);
     const baseUrl = `${apiUrl}/categories`;
 
-    const handleMenuClick = (path) => {
-        navigate(path);
-    };
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -33,7 +30,7 @@ const Sidebar = () => {
 
         fetchCategories();
     }, []);
-
+    
     const handleCategoryClick = (catId) => {
         navigate('/activities', { state: {categoryId: catId }});
     };
@@ -48,21 +45,21 @@ const Sidebar = () => {
                             <i className="fa fa-caret-down"></i>
                         </button>
                         <div className="dropdown-content">
-                            <a onClick={() => handleMenuClick('/users')}>Kullanıcılar</a>
-                            <a onClick={() => handleMenuClick('/projects')} >Projeler</a>
-                            <a onClick={() => handleMenuClick('/categories')}>Kategoriler</a>
-                            <a onClick={() => handleMenuClick('/categoryTypes')} >Kategori Türleri</a>
-                            <a onClick={() => handleMenuClick('/references')} >Referanslar</a>
-                            <a onClick={() => handleMenuClick('/introductionBooklet')} >Tanıtım Kitapçığı</a>
-                            <a onClick={() => handleMenuClick('/editAbout')} >Biz Kimiz</a>
-                            <a onClick={() => handleMenuClick('/social-media')} >Sosyal Medya</a>
-                            <a onClick={() => handleMenuClick('/privacypolicies')}>Gizlilik Politikası</a>
-                            <a onClick={() => handleMenuClick('/termsofservices')}>Kullanım şartları</a>
+                            <a href='/users'>Kullanıcılar</a>
+                            <a href='/projects' >Projeler</a>
+                            <a href='/categories'>Kategoriler</a>
+                            <a href='/categoryTypes' >Kategori Türleri</a>
+                            <a href='/references'>Referanslar</a>
+                            <a href='/introductionbooklet' >Tanıtım Kitapçığı</a>
+                            <a href='/editAbout'>Biz Kimiz</a>
+                            <a href='/social-media' >Sosyal Medya</a>
+                            <a href='/privacypolicies'>Gizlilik Politikası</a>
+                            <a href='/termsofservices'>Kullanım şartları</a>
                         </div>
                     </div>
                 ) : <div></div>
             }
-            <a onClick={() => handleMenuClick('/')}>Anasayfa</a>
+            <a href='/'>Anasayfa</a>
             {categories.length > 0 && 
             
                 <div className="dropdown">
@@ -79,8 +76,8 @@ const Sidebar = () => {
                 </div>
             }
             
-            <a onClick={() => handleMenuClick('/about')}>Biz Kimiz</a>
-            <a onClick={() => handleMenuClick('/contact')} >İletişim</a>
+            <a href='/about'>Biz Kimiz</a>
+            <a href='/contact'>İletişim</a>
         </div>
         
     );

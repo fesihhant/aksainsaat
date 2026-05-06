@@ -238,7 +238,7 @@ const IntroductionBookletEdit = () => {
                             <label htmlFor="image">Tanıtım Kitapçığı</label>
                             <div>
                                 <div className="upload-section">
-                                    <label htmlFor="image" className="upload-label" style={{ textAlign: 'center',width: '100%',color: 'white' }}>
+                                    <label htmlFor="image" className="submit-button" style={{ textAlign: 'center',width: '100%',color: 'white' }}>
                                         Kapak Resmi Yükle
                                         <input
                                             type="file"
@@ -250,7 +250,7 @@ const IntroductionBookletEdit = () => {
                                     </label>
                                 </div>
                                 <div className="upload-section">
-                                    <label htmlFor="bookletFile" className="upload-label" style={{ textAlign: 'center', width: '100%', color: 'white' }}>
+                                    <label htmlFor="bookletFile" className="submit-button" style={{ textAlign: 'center', width: '100%', color: 'white' }}>
                                         PDF Yükle
                                         <input
                                         type="file"
