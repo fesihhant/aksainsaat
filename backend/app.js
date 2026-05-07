@@ -30,6 +30,9 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
     }
 }));
 
+// React build dosyaları public_html içindeyse:
+app.use(express.static(path.join(__dirname, '../public_html')));
+
 // Uploads klasörünü oluştur
 const uploadsPath = path.join(__dirname, 'uploads');
 const avatarsPath = path.join(uploadsPath, 'avatars');
@@ -87,5 +90,8 @@ app.use('/api/privacyPolicies', privacyPolicyRoutes);
 const termsOfServiceRoutes = require('./routes/termsOfServiceRoutes');
 app.use('/api/termsOfServices', termsOfServiceRoutes); 
 // 
+app.get('*', (req, res) => {
+ res.sendFile(path.join(__dirname, '../public_html', 'index.html'));
+});
 module.exports = app;
 
