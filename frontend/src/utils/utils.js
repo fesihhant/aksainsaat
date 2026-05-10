@@ -148,18 +148,30 @@ export const getSocialMedyaIcon = (name) => {
   if (searchValue.includes('x-twitter') || searchValue.includes('twitter') || searchValue === 'x') return 'fa-x-twitter';
   if (searchValue.includes('twitch')) return 'fa-twitch';
   if (searchValue.includes('whatsapp')) return 'fa-whatsapp';
-  return '';
+  if (searchValue.includes('telegram')) return 'fa-telegram';
+  if (searchValue.includes('snapchat')) return 'fa-snapchat';
+  if (searchValue.includes('tiktok')) return 'fa-tiktok';
+  if (searchValue.includes('pinterest')) return 'fa-pinterest';
+  if (searchValue.includes('reddit')) return 'fa-reddit';
+  if (searchValue.includes('vimeo')) return 'fa-vimeo-v';
+
+
+  return 'fa-solid fa-copyright';
 };
 
 export const getSocialMediaBgColor=(name) =>{
   const searchValue = `${name}`.toLowerCase();
   if (searchValue.includes('facebook')) return '#365493';
-  if (searchValue.includes('instagram')) return '#ca860b';
+  if (searchValue.includes('instagram')) return '#f3ab29';
   if (searchValue.includes('youtube')) return '#CB2027';
   if (searchValue.includes('linkedin')) return 'cadetblue';
   if (searchValue.includes('x-twitter') || searchValue.includes('twitter') || searchValue === 'x') return 'black';
   if (searchValue.includes('twitch')) return 'green';
   if (searchValue.includes('whatsapp')) return '#1ebea5';
+  if (searchValue.includes('tiktok')) return '#1E3051';
+  if (searchValue.includes('pinterest')) return '#1E3051';
+  if (searchValue.includes('reddit')) return '#1E3051';
+  if (searchValue.includes('vimeo')) return '#1E3051'; 
 }
 
 export const ModalMessage = ({ message, type, onClose }) => {
