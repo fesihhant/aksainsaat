@@ -10,8 +10,9 @@
 }
 /* Scroll bar genişliği */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px; /* yatay scroll için */
+  width: 8px;
+  height: 8px; /* yatay scroll için */
+  display: none;
 }
 
 /* Scroll bar arka planı (track) */
@@ -23,7 +24,7 @@
 /* Scroll bar kaydırma kısmı (thumb) */
 ::-webkit-scrollbar-thumb {
   background: var(--primary-color);
-  border-radius: 6px;
+  border-radius: 3px;
   border: 2px solid #f0f0f0; /* thumb ile track arasında boşluk */
 }
 
@@ -315,7 +316,7 @@ input, button {
 
 /* Global button styles */
 .submit-button{
-    color:  var(--submit-button-color); 
+    color:  var(--submit-button-color)!important; 
     border: 1px solid var(--submit-button-color);
     border-radius: 8px;
     cursor: pointer;
