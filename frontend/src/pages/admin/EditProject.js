@@ -455,16 +455,28 @@ const EditProject = () => {
                     <div className="form-row">
                         <div className="form-group">
                             <label htmlFor="isVisibleCost">Maliyet Görünsün mü?</label>
-                            <Switch value={formData?.isVisibleCost || false} onChange={(value) => setIsVisibleCost(value)}
-                                  checkedChildren={'Evet'} unCheckedChildren={'Hayır'} />
+                            <Checkbox style={{ height: '24px', maxWidth: '24px'}}
+                                type="checkbox"
+                                id="isVisibleCost"
+                                name="isVisibleCost"
+                                checked={isVisibleCost}
+                                value={formData.isVisibleCost}
+                                onChange={(e) => setIsVisibleCost(e.target.checked)}
+                            />
                         </div>
                     </div>
 
                     <div className="form-row">
                         <div className="form-group">
                             <label htmlFor="statusType">Proje Aktif mi?</label>
-                            <Switch value={formData?.statusType || false} onChange={(value) => setIsActive(value)}
-                                  checkedChildren={'Evet'} unCheckedChildren={'Hayır'} />
+                            <Checkbox style={{ height: '24px', maxWidth: '24px'}}
+                                type="checkbox"
+                                id="statusType"
+                                name="statusType"
+                                checked={isActive}
+                                value={formData.statusType}
+                                onChange={(e) => setIsActive(e.target.checked)}
+                            />
                         </div>
                     </div>
 
