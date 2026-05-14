@@ -61,9 +61,9 @@
   "scripts": {
     "start": "set PORT=3002 && react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "powershell -Command \"Get-ChildItem -Path build -Recurse -Include *.map | Remove-Item\"",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build:obfuscate": "for /R src %f in (*.js) do xcopy %f build /E /I && javascript-obfuscator build/ --output build/ --config obfuscator-config.json"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

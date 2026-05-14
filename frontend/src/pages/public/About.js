@@ -73,7 +73,6 @@ const About = () => {
                     {formData && formData.aboutText &&
                         <>
                             <h2>HAKKIMIZDA</h2>
-                            {/* <div dangerouslySetInnerHTML={{ __html: formData.aboutText }} /> */}
                             <HtmlRenderer html={formData.aboutText} />
                         </>
                     }

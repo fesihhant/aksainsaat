@@ -4,6 +4,7 @@ backend/uploads/avatars
 backend/uploads/projects
 backend/uploads/references
 backend/uploads/introductionBooklet
+backend/scripts
 
 
 frontend/.env
