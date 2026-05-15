@@ -1,11 +1,10 @@
 
 .banner {
-    /* background:linear-gradient(59deg, #000000, transparent); 
+    background:linear-gradient(59deg, #000000, transparent); 
     color:white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);  */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
 
     transition: background 0.3s; 
-    color: white;
     padding-top: 15px;
     position: fixed;
     width: 100%;
@@ -13,9 +12,9 @@
     --tw-border-opacity: 1;
     z-index: 1000;
 
-    background: #fff;
+    /* background: #fff;
     color: black; 
-    box-shadow: 0 2px 8px rgba(0,0,0,1);
+    box-shadow: 0 2px 8px rgba(0,0,0,1); */
 }
 .banner.banner-scrolled,
 .banner.banner-hovered {

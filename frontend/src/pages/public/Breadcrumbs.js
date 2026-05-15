@@ -86,11 +86,9 @@ const Breadcrumbs = () => {
             case 'addCategory':
                 return 'Yeni';
 
-            case 'categoryTypes':
+            case 'categorytypes':
                 return 'Kategori Türleri';
-            case 'categoryType':
-                return 'Kategori Türü';
-            case 'editcategoryType':
+            case 'editcategorytype':
                 return 'Güncelle';
             case 'addCategoryType':
                 return 'Yeni';
