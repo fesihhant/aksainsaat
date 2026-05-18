@@ -79,13 +79,13 @@ const About = () => {
                     {formData && formData.visionText &&
                         <>
                             <h2>VİZYONUMUZ</h2>
-                            <div dangerouslySetInnerHTML={{ __html: formData.visionText }} />
+                            <HtmlRenderer html={formData.visionText} />
                         </>
                     }
                     {formData && formData.missionText &&
                         <>                            
                             <h2>MİSYONUMUZ</h2>
-                            <div dangerouslySetInnerHTML={{ __html: formData.missionText }} />
+                            <HtmlRenderer html={formData.missionText} />
                         </>
                     }
                     {bookletFormData && bookletFormData.coverImageUrl && bookletFormData.fileUrl && (

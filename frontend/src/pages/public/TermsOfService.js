@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Breadcrumbs from './Breadcrumbs';
 import { useApiCall } from '../../utils/apiCalls';
 import '../../css/HomePage.css';
+import { HtmlRenderer } from '../../utils/utils';
 
 
 const TermsOfService = () => {
@@ -54,7 +55,7 @@ const TermsOfService = () => {
                         <div>
                             <h2>{formData.title}</h2>
                             <br/>   
-                            <div dangerouslySetInnerHTML={{ __html: formData.content }} />
+                            <HtmlRenderer html={formData.content} />
                         </div>
                     )} 
                 </div>

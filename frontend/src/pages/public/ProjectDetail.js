@@ -7,7 +7,7 @@ import CHelmet from '../../components/htmlComponent/CHelmet';
 import CCrousel from '../../components/htmlComponent/CCrousel';
 import '../../css/HomePage.css';
 import '../../css/Projects.css';
-import {serverUrl, getCurrencySymbol, getYoutubeEmbedUrl, apiUrl } from '../../utils/utils';
+import {serverUrl, getCurrencySymbol, getYoutubeEmbedUrl, apiUrl, HtmlRenderer } from '../../utils/utils';
 
 const ProjectDetail = () => {
     const navigate = useNavigate();
@@ -188,7 +188,7 @@ const ProjectDetail = () => {
                                     <div className="form-group">
                                         <label htmlFor="description">Açıklama</label>
                                         <div id="description" name="description">
-                                            <div dangerouslySetInnerHTML={{ __html: formData.description }} />
+                                            <HtmlRenderer html={formData.description} />
                                         </div>
                                     </div>
                                 </div>
