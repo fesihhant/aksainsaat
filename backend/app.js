@@ -3,7 +3,6 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const { uploadsBaseDir } = require('./utils/generalUtils');
 require('dotenv').config();
 
 const app = express();
