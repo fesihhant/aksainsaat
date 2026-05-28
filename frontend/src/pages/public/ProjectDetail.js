@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Helmet} from 'react-helmet-async';
+import { useNavigate, useParams } from 'react-router-dom'; 
 
 import Breadcrumbs from '../public/Breadcrumbs';
-import CHelmet from '../../components/htmlComponent/CHelmet';
+import CSeoHelmet from '../../components/htmlComponent/CSeoHelmet';
 import CCrousel from '../../components/htmlComponent/CCrousel';
 import '../../css/HomePage.css';
 import '../../css/Projects.css';
@@ -118,18 +117,17 @@ const ProjectDetail = () => {
         );
     }
     
-    const pageName = formData.name || 'Proje Detayları';
-    const content = formData.description
-                        ? (formData.description
-                            ? formData.description.substring(0, 160)
-                            : "Proje detaylarını inceleyin.")
-                        : "Proje detaylarını inceleyin.";
-
     const categoryName = formData.typeofActivityId?.name || '';  
 
     return (
         <>
-            <CHelmet pageName={pageName} content={content} categoryName={categoryName} />
+            <CSeoHelmet
+                pageName={formData.name}
+                content={formData.description || 'İnşaat projeleri'}
+                categoryName={categoryName}
+                canonicalUrl={`/project-detail/${encodeURIComponent(formData.name)}`}
+                ogImage={formData.imageUrls?.[0] ? `${formData.imageUrls[0]}` : null}
+            />
             <div className="home-container">
                 <div className="main-content">
                     <Breadcrumbs />
@@ -175,7 +173,7 @@ const ProjectDetail = () => {
                                     </div>
                                 </div>
                                 <div className="col-6">
-                                    {formData.statusType == 'false' && formData.endDate && (
+                                    {formData.statusType === 'false' && formData.endDate && (
                                         <div className="form-group">
                                             <label htmlFor="endDate">Bitiş Tarihi</label>
                                             <label className='justifyLabel' id="endDate" name="endDate">{new Date(formData.endDate).toLocaleDateString()}</label>

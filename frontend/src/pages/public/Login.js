@@ -83,8 +83,8 @@ const Login = () => {
                                 )}
                                 <div class="form-field">
                                     <div class="form-field-wrapper">
-                                    <label htmlFor="loginUsername" style={{color:'rgb(161 161 170)'}}>Kullanıcı Adı</label>
-                                    <input type="text" name="email" id="loginUsername"
+                                    <label style={{color:'rgb(161 161 170)'}}>Kullanıcı Adı</label>
+                                    <input type="text" name="email"
                                         value={formData.email}
                                         onChange={handleInputChange}
                                         required/>

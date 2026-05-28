@@ -169,6 +169,7 @@ export const getSocialMediaBgColor=(name) =>{
   if (searchValue.includes('twitch')) return 'green';
   if (searchValue.includes('whatsapp')) return '#1ebea5';
   if (searchValue.includes('tiktok')) return '#1E3051';
+  if (searchValue.includes('telegram')) return '#2c4c85';
   if (searchValue.includes('pinterest')) return '#1E3051';
   if (searchValue.includes('reddit')) return '#1E3051';
   if (searchValue.includes('vimeo')) return '#1E3051'; 
@@ -195,35 +196,6 @@ export const ModalMessage = ({ message, type, onClose }) => {
         </div>
     );
 };
-
-
-export const editorModules = () => {
-    return {
-        toolbar: [
-            [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
-            [{size: []}],
-            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-            [{'list': 'ordered'}, {'list': 'bullet'}, 
-            {'indent': '-1'}, {'indent': '+1'}],
-            [{ 'color': [] }, { 'background': [] }], // <-- renk ve arka plan ekledik
-            ['link', 'image', 'video'],
-            ['clean']
-        ],
-        clipboard: {
-            matchVisual: false,
-        }
-    }
-}
-
-export const editorFormats = () => {
-    return [
-        'header', 'font', 'size',
-        'bold', 'italic', 'underline', 'strike', 'blockquote',
-        'list', 'bullet', 'indent',
-        'link', 'image', 'video',
-        'color', 'background' // <-- renk ve arka plan ekledik
-    ]   
-}
 
 export function getCurrencySymbol(type) {
     switch (type) {

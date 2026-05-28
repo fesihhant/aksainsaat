@@ -342,8 +342,8 @@ const Banner = ({ storedUser, setStoredUser }) => {
                              <form onSubmit={handleSubmitLogin} className="form-content">
                                  <div className="form-field">
                                      <div className="form-field-wrapper">
-                                     <label htmlFor="loginUsername">Kullanıcı Adı</label>
-                                     <input type="text" name="email" id="loginUsername"
+                                     <label >Kullanıcı Adı</label>
+                                     <input type="text" name="email"
                                          value={formData.email}
                                          onChange={handleInputChange}
                                          required/>

@@ -7,9 +7,14 @@ const CCrousel = ({ imageList }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0); // Slider için
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalImageIndex, setModalImageIndex] = useState(0); // Modal için
-    const visibleImagesCount = 8;
+    const visibleImagesCount = 8; 
 
     useEffect(() => {
+        imageList && imageList.map(image => {
+            if (image instanceof File) {
+                URL.revokeObjectURL(image);
+            }
+        });
         setCurrentImageIndex(0);
     }, [imageList]);
 
@@ -80,15 +85,19 @@ const CCrousel = ({ imageList }) => {
                         </button>
                     )}
                     <div className="image-slider-container">
-                        {visibleImages.map((image, index) => (
-                            <img
+                        {visibleImages.map((image, index) => {
+                            const src = image instanceof File ? URL.createObjectURL(image) : image;
+                            return (
+                                <img
                                 key={index}
-                                src={image}
-                                alt={`${currentImageIndex + index + 1}`}
+                                src={src}
+                                alt={`image-${index}`}
                                 className="slider-image"
                                 onClick={() => handleImageClick(image, index)}
-                            />
-                        ))}
+                                />
+                            ); 
+                        })}
+
                     </div>
                     {currentImageIndex < imageList.length - visibleImagesCount && (
                         <button type="button" className="next-button" onClick={handleNextImage}>
@@ -125,8 +134,11 @@ const CCrousel = ({ imageList }) => {
                                     &#10095;
                                 </button>
                             )}
-                            <img loading="lazy" src={imageList[modalImageIndex]} style={{ objectFit: 'cover' }} alt="Büyütülmüş Görsel" 
-                            style={{ maxHeight:'600px'}} onClick={e => e.stopPropagation()} onMouseDown={e => e.stopPropagation()}/>
+                            <img loading="lazy" src={imageList[modalImageIndex] instanceof File 
+                                    ? URL.createObjectURL(imageList[modalImageIndex]) 
+                                    : imageList[modalImageIndex]} 
+                                alt="Büyütülmüş Görsel" 
+                            style={{ objectFit: 'cover', maxHeight:'600px'}} onClick={e => e.stopPropagation()} onMouseDown={e => e.stopPropagation()}/>
                         </div>
                     </div>,
                     document.body

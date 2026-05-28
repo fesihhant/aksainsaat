@@ -32,7 +32,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     limits: {
-        fileSize: 100 * 1024 * 1024 // 100MB limit (video dosyaları için artırıldı)
+        fileSize: 1000 * 1024 * 1024 // 1GB limit (video dosyaları için artırıldı)
     },
     fileFilter: function (req, file, cb) {
         if (!file.originalname.match(/\.(jpg|jpeg|png|gif|mp4|avi|mov|mkv)$/)) {
@@ -177,7 +177,7 @@ router.put('/:id', protect, authorize('admin'),
     upload.fields([{ name: 'images' }, { name: 'videos' }]), async (req, res) => {
     
     try {        
-        const { name, statusType, description, projectCost, isVisibleCost, typeofActivityId, youtubeUrl, currencyType, startDate, endDate, keptImages } = req.body;
+        const { name, statusType, description, projectCost, isVisibleCost, typeofActivityId, youtubeUrl, currencyType, startDate, endDate, keptImages, keptVideos } = req.body;
 
         const project = await Project.findById(req.params.id);
 
@@ -202,29 +202,7 @@ router.put('/:id', protect, authorize('admin'),
         project.startDate = startDate ? new Date(startDate) : project.startDate; // Tarih formatını kontrol et
         project.endDate = endDate ? new Date(endDate) : null; // Tarih formatını kontrol et
        
-        const oldImageUrls = project.imageUrls || [];
-        
-        // // Yeni resim yüklenmişse, eski resimleri sil ve yeni resimleri ekle
-        // if (req.files && req.files.length > 0) {
-        //     const imagePaths = req.files.map(file => '/uploads/projects/' + file.filename);
-        //     if (imagePaths.length > 0) {
-        //         project.imageUrls = imagePaths;
-        //     }
-        //     // Eski resimleri silme işlemini yanıt gönderilmeden önce yapın
-        //     if (oldImageUrls.length > 0) {
-        //         oldImageUrls.forEach(file => {
-        //             if (file && typeof file === 'string') {
-        //                 const oldImagePath = path.join(__dirname, '..', file);
-        //                 if (fs.existsSync(oldImagePath)) {
-        //                     if (project.imageUrls.includes(oldImagePath)) {
-        //                     }else {
-        //                         fs.unlinkSync(oldImagePath);
-        //                     }
-        //                 }
-        //             }
-        //         });
-        //     }
-        // }
+         
         // Frontend'den silinen resimleri kontrol et ve sil
         if (keptImages) {
             try {
@@ -245,41 +223,50 @@ router.put('/:id', protect, authorize('admin'),
                         }
                     }
                 });
-                
                 // Sadece korunan resimleri tut
                 project.imageUrls = currentImageUrls.filter(url => keptImagesArray.includes(url));
+
             } catch (err) {
                 console.error('keptImages parse hatası:', err);
             }
         }
-        
         // Yeni yüklenen resim/video varsa mevcut listeye ekle
         if (req.files && req.files.images) {
             const newImages = req.files.images.map(file => '/uploads/projects/' + file.filename);
             project.imageUrls = [...(project.imageUrls || []), ...newImages];
-        }
-        if (req.files && req.files.videos) {
-            const oldVideoUrls = project.videoUrls || [];            
-            // Eski videoları silme işlemini yanıt gönderilmeden önce yapın
-            if (oldVideoUrls.length > 0) {
-                oldVideoUrls.forEach(file => {  
-                    if (file && typeof file === 'string') {
-                        const oldVideoPath = path.join(__dirname, '..', file);
-                        if (fs.existsSync(oldVideoPath)) {
-                            if (project.videoUrls.includes(oldVideoPath)) {
-                            }else {
-                                fs.unlinkSync(oldVideoPath);
+        } 
+        if (keptVideos) {
+            try {
+                const keptVideosArray = typeof keptVideos === 'string' ? JSON.parse(keptVideos) : keptVideos;
+                const currentVideoUrls = project.videoUrls || [];
+
+                // Silinmesi gereken videoları bul ve sil
+                const videosToDelete = currentVideoUrls.filter(url => !keptVideosArray.includes(url));
+                videosToDelete.forEach(videoUrl => {
+                    if (videoUrl && typeof videoUrl === 'string') {
+                        const videoPath = path.join(__dirname, '..', videoUrl);
+                        if (fs.existsSync(videoPath)) {
+                            try {
+                                fs.unlinkSync(videoPath);
+                            } catch (err) {
+                                console.error('Video silinirken hata:', err.message);
                             }
                         }
                     }
                 });
-            }
 
+                // Sadece korunan videoları tut
+                project.videoUrls = currentVideoUrls.filter(url => keptVideosArray.includes(url));
+            } catch (err) {
+                console.error('keptVideos parse hatası:', err);
+            }
+        }
+
+        // Yeni yüklenen videoları ekle
+        if (req.files && req.files.videos) {
             const newVideos = req.files.videos.map(file => '/uploads/projects/' + file.filename);
             project.videoUrls = [...(project.videoUrls || []), ...newVideos];
-
         }
-        
         const updatedProject = await Project.findByIdAndUpdate(
             req.params.id, 
             project, 

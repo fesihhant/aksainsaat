@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CHelmet from '../../components/htmlComponent/CHelmet';
+import CSeoHelmet from '../../components/htmlComponent/CSeoHelmet';
 import { useApiCall,  } from '../../utils/apiCalls';
 import {serverUrl, substringValue} from '../../utils/utils';
 import ProjectSlider from '../../components/htmlComponent/ProjectSlider';
@@ -38,7 +38,11 @@ const HomePage = () => {
 
     return (
         <>
-            <CHelmet pageName="Projelerimiz" projectName="İnşaat projeleri, doğalgaz" categoryName="boru hattı" />
+            <CSeoHelmet pageName="Anasayfa" content="İnşaat projeleri, doğalgaz" categoryName="boru hattı"
+                canonicalUrl="/"
+                ogImage={"/aksa-insaat.png"}
+             />
+            
             <div className="home-container" >
                 <div className="main-content" style={{paddingTop:'0'}}>
                     {/* Slider bloklamasın: veri gelene kadar skeleton */}

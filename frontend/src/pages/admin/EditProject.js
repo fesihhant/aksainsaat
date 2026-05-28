@@ -7,16 +7,14 @@ import 'react-datepicker/dist/react-datepicker.css'; // CSS dosyasını ekliyoru
 
 import Breadcrumbs from '../public/Breadcrumbs';
 import CCrousel from '../../components/htmlComponent/CCrousel';
-import VideoPlayer from '../../components/htmlComponent/VideoPlayer';
 
 import '../../css/NewProduct.css';
 import { Checkbox } from '@mui/material';
 import { formatPrice, categoryTypeEnum, serverUrl , apiUrl,getCurrencySymbol, getCurrencyTypeOptions,
-    editorModules, editorFormats,getYoutubeEmbedUrl
- } from '../../utils/utils';
+    getYoutubeEmbedUrl} from '../../utils/utils';
 import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
 import TextAreaComponent from '../../components/htmlComponent/TextAreaComponent';
-import { Switch } from 'antd';
+import VideoPlayer from '../../components/htmlComponent/VideoPlayer';
  
 const EditProject = () => {
     const navigate = useNavigate();
@@ -27,11 +25,7 @@ const EditProject = () => {
     const [isActive, setIsActive] = useState(true); // Status checkbox için state
     const [isVisibleCost, setIsVisibleCost] = useState(false); // Status checkbox için state
     const [images, setImages] = useState([]); // Sadece yeni yüklenen File objeleri
-    const [imagePreviews, setImagePreviews] = useState([]); // Hem mevcut hem yeni resimlerin preview'ları
-    const [existingImages, setExistingImages] = useState([]); // Mevcut resim URL'leri (veritabanından gelen)
-    const [previewToImageMap, setPreviewToImageMap] = useState(new Map()); // Preview URL'den File objesine mapping
     const [videoFiles, setVideoFiles] = useState([]);
-    const [videoPreviews, setVideoPreviews] = useState([]);
 
     const [categories, setCategories] = useState([]); // Faaliyet türleri için state
     const [formData, setFormData] = useState({
@@ -53,8 +47,6 @@ const EditProject = () => {
 
     const fetchCategories = useCallback(async () => {
         try {
-            const token = localStorage.getItem('token');
-
             const categoryTypeId = categoryTypeEnum.PROJECT; // Faaliyet türü için ID
             const baseUrl = `${apiUrl}/categories/categorytypes`;
             const response = await fetch(`${baseUrl}/?categoryTypeId=${categoryTypeId}`);
@@ -109,20 +101,15 @@ const EditProject = () => {
 
                 if (data.project.imageUrls && data.project.imageUrls.length > 0) {
                     const imageUrls = data.project.imageUrls.map(url => `${serverUrl}${url}`);
-                    setExistingImages(imageUrls); // Mevcut resimleri ayrı state'te tut
-                    setImagePreviews(imageUrls); // Preview'ları ayarla
-                    setImages([]); // Yeni resimler için boş başlat
+                    setImages(imageUrls); // Yeni resimler için boş başlat
                 } else {
-                    setExistingImages([]);
                     setImages([]);
-                    setImagePreviews([]);
-                    setPreviewToImageMap(new Map());
                 }
                 if (data.project.videoUrls && data.project.videoUrls.length > 0) {
-                    setVideoFiles(data.project.videoUrls.map(url => ({ name: url.split('/').pop(), url: `${serverUrl}${url}` }))); // Video dosyalarını ayarlıyoruz
-                    setVideoPreviews(data.project.videoUrls.map(url => ({ name: url.split('/').pop(), url: `${serverUrl}${url}` }))); // Video önizlemelerini ayarlıyoruz
+                    const videoUrls = data.project.videoUrls.map(video => `${serverUrl}${video}`);
+                    setVideoFiles(videoUrls); // Yeni videolar için boş başlat
                 } else {
-                    setVideoPreviews([]);
+                    setVideoFiles([]);
                 }
             } else {
                 setError(data.message || 'Proje bilgileri yüklenemedi');
@@ -159,10 +146,7 @@ const EditProject = () => {
                 imageUrls: [],
                 videoUrls: []
             });
-            setExistingImages([]);
             setImages([]);
-            setImagePreviews([]);
-            setPreviewToImageMap(new Map());
         }
     }, [id, navigate, fetchCategories, fetchData]);
 
@@ -189,8 +173,8 @@ const EditProject = () => {
         const files = Array.from(e.target.files);
 
         const validFiles = files.filter(file => {
-            if (file.size > 5 * 1024 * 1024) {
-                setError('Resim boyutu 5MB\'dan küçük olmalıdır');
+            if (file.size > 200 * 1024 * 1024) {
+                setError('Resim boyutu 200MB\'dan küçük olmalıdır');
                 return false;
             }
             if (!file.type.startsWith('image/')) {
@@ -200,22 +184,8 @@ const EditProject = () => {
             return true;
         });
 
-        if (validFiles.length > 0) {
-            // Yeni resimleri mevcut resimlere ekle
-            const newPreviews = validFiles.map(file => URL.createObjectURL(file));
-            const newMap = new Map();
-            validFiles.forEach((file, index) => {
-                newMap.set(newPreviews[index], file);
-            });
-            
+        if (validFiles.length > 0) { 
             setImages(prev => [...prev, ...validFiles]);
-            setPreviewToImageMap(prev => {
-                const updated = new Map(prev);
-                newMap.forEach((file, preview) => updated.set(preview, file));
-                return updated;
-            });
-            // Preview'ları güncelle: mevcut resimler + yeni resimler
-            setImagePreviews(prev => [...prev, ...newPreviews]);
         }
         setError('');
         // Input'u temizle ki aynı dosya tekrar seçilebilsin
@@ -226,8 +196,8 @@ const EditProject = () => {
         const files = Array.from(e.target.files);
         const validFiles = files.filter(file => {
             // ör: maksimum 100MB toplam veya tekil limit isteğe göre değiştirilebilir
-            if (file.size > 100 * 1024 * 1024) {
-                setError('Video boyutu 100MB\'dan küçük olmalıdır');
+            if (file.size > 500 * 1024 * 1024) {
+                setError('Video boyutu 500MB\'dan küçük olmalıdır');
                 return false;
             }
             if (!file.type.startsWith('video/')) {
@@ -237,9 +207,7 @@ const EditProject = () => {
             return true;
         });
 
-        setVideoFiles(validFiles);
-        // video preview için blob url veya isim gösterebilirsin
-        setVideoPreviews(validFiles.map(f => ({ name: f.name, url: URL.createObjectURL(f) })));
+        setVideoFiles(prev => [...prev, ...validFiles]);
         setError('');
     };
 
@@ -256,49 +224,72 @@ const EditProject = () => {
             }
 
             const formDataToSend = new FormData();
-            
-            if (videoFiles.length > 0) {
-                // toplam boyut kontrol istersen buraya ekle
-                videoFiles.forEach(video => {
-                    // Eğer video bir File objesi ise direkt ekle, değilse url'den File oluştur
-                    if (video instanceof File) {
-                        formDataToSend.append('videos', video);
-                    } else if (video.url) {
-                        // Mevcut video URL'i, backend'de korunacak
-                        // Yeni video dosyaları için File objesi gerekli
-                    }
-                });
-            }
+
             if (formData?._id) {
                 formDataToSend.append('id', formData._id); // Güncelleme için ID
                 // Silinen mevcut resimleri backend'e bildir
-                if (existingImages.length > 0) {
+                if (images.length > 0) {
                     // Mevcut resimlerden hangilerinin korunacağını gönder
-                    const keptImages = imagePreviews
-                        .filter(preview => typeof preview === 'string' && preview.startsWith('http') && existingImages.includes(preview.replace(serverUrl, '')))
+                    const keptImages = images
+                        .filter(preview => typeof preview === 'string' && preview.startsWith('http'))
                         .map(preview => {
                             // URL'den relative path'i çıkar
                             return preview.replace(serverUrl, '');
                         });
                     formDataToSend.append('keptImages', JSON.stringify(keptImages));
+                }else {
+                    formDataToSend.append('keptImages', JSON.stringify([]));
+                }
+
+                if (videoFiles && videoFiles.length > 0) {
+                    // Sadece mevcut (URL'si http ile başlayan) videoları bul
+                    const keptVideos = videoFiles
+                        .filter(preview => typeof preview === 'string' && preview.startsWith('http'))
+                        .map(preview => {
+                            return preview.replace(serverUrl, '');
+                        });
+                    formDataToSend.append('keptVideos', JSON.stringify(keptVideos));
+                }else {
+                    formDataToSend.append('keptVideos', JSON.stringify([]));
                 }
             }
+            
             if (images.length > 0) {
                 // Sadece File objelerini kontrol et (yeni yüklenen resimler)
                 const totalSize = images
                     .filter(img => img instanceof File)
                     .reduce((sum, img) => sum + img.size, 0);
                 
-                if (totalSize > 5 * 1024 * 1024) {
-                    setError('Toplam resim boyutu 5MB\'dan küçük olmalıdır');
+                if (totalSize > 200 * 1024 * 1024) {
+                    setError('Toplam resim boyutu 200MB\'dan küçük olmalıdır');
                     setLoading(false);
                     return;
                 }
                 
                 // Sadece File objelerini gönder
-                images
-                    .filter(img => img instanceof File)
-                    .forEach(image => formDataToSend.append('images', image));
+                images.forEach(image => {
+                    if (image instanceof File) {
+                        formDataToSend.append('images', image); 
+                    }
+                });
+            }
+            
+            if (videoFiles.length > 0) {
+                // toplam boyut kontrol istersen buraya ekle
+                const totalVideoSize = videoFiles
+                    .filter(video => video instanceof File)
+                    .reduce((sum, video) => sum + video.size, 0);
+
+                if (totalVideoSize > 500 * 1024 * 1024) {
+                    setError('Toplam video boyutu 500MB\'dan küçük olmalıdır');
+                    setLoading(false);
+                    return;
+                }
+                videoFiles.forEach((video, index) => {
+                    if (video instanceof File) {
+                        formDataToSend.append('videos', video); 
+                    } 
+                });
             }
             formDataToSend.append('typeofActivityId', formData.typeofActivityId._id || formData.typeofActivityId);
             formDataToSend.append('name', formData.name);
@@ -428,7 +419,7 @@ const EditProject = () => {
                                 placeholder="0.00"
                                 pattern="^\d*\.?\d{0,2}$"
                                 inputMode="decimal"
-                                required
+                                required={isVisibleCost === true? true : false}
                             />
                         </div>
                         <div className="form-group">
@@ -482,9 +473,8 @@ const EditProject = () => {
 
                     <div className="form-row">
                         <div className="form-group">
-                            <label htmlFor="startDate">Başlama Tarihi</label>
-                             <DatePicker
-                                required
+                            <label>Başlama Tarihi</label>
+                             <DatePicker 
                                 isClearable
                                 showYearDropdown={true}
                                 showMonthDropdown={true}
@@ -500,7 +490,7 @@ const EditProject = () => {
                         <div className="form-group">
                             <label htmlFor="endDate">Bitiş Tarihi</label>
                             <DatePicker
-                                required
+                                name="endDate"
                                 isClearable
                                 showYearDropdown={true}
                                 showMonthDropdown={true}
@@ -519,7 +509,7 @@ const EditProject = () => {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="description">Açıklama</label> 
+                        <label>Açıklama</label> 
                         <TextAreaComponent
                             field={{
                                 name: 'description',
@@ -548,18 +538,19 @@ const EditProject = () => {
                                 </label>
                             </div>
                             <div >
-                            {imagePreviews && imagePreviews.length > 0 && (
+                            {images && images.length > 0 && (
+
                                 <div>
-                                    <CCrousel imageList={imagePreviews} />
+                                    <CCrousel imageList={images} />
                                     <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                                        {imagePreviews.map((preview, index) => {
-                                            const isExistingImage = typeof preview === 'string' && preview.startsWith('http') && existingImages.includes(preview);
-                                            const isNewImage = typeof preview === 'string' && preview.startsWith('blob:');
-                                            
+                                        {images.map((preview, index) => {
+                                            const isExistingImage = typeof preview === 'string' && preview.startsWith('http') && images.includes(preview);
+                                            const isNewImage = preview instanceof File;
+                                            const previewUrl = isExistingImage ? preview : (isNewImage ? URL.createObjectURL(preview) : null);
                                             return (
                                                 <div key={index} style={{ position: 'relative', display: 'inline-block' }}>
                                                     <img 
-                                                        src={preview} 
+                                                        src={previewUrl} 
                                                         alt={`Preview ${index}`}
                                                         style={{ 
                                                             width: '100px', 
@@ -574,23 +565,16 @@ const EditProject = () => {
                                                         onClick={() => {
                                                             if (isExistingImage) {
                                                                 // Mevcut resmi kaldır
-                                                                setExistingImages(prev => prev.filter(url => url !== preview));
+                                                                setImages(prev => prev.filter(url => url !== preview));
                                                             } else if (isNewImage) {
                                                                 // Yeni resmi kaldır - blob URL'i revoke et
                                                                 URL.revokeObjectURL(preview);
                                                                 // İlgili File objesini bul ve kaldır
-                                                                const fileToRemove = previewToImageMap.get(preview);
+                                                                const fileToRemove = images.find(img => img === preview);
                                                                 if (fileToRemove) {
                                                                     setImages(prev => prev.filter(img => img !== fileToRemove));
-                                                                    setPreviewToImageMap(prev => {
-                                                                        const updated = new Map(prev);
-                                                                        updated.delete(preview);
-                                                                        return updated;
-                                                                    });
                                                                 }
                                                             }
-                                                            // Preview'dan kaldır
-                                                            setImagePreviews(prev => prev.filter((_, i) => i !== index));
                                                         }}
                                                         style={{
                                                             position: 'absolute',
@@ -621,13 +605,13 @@ const EditProject = () => {
                             )}
                             </div>
                         </div>
+                    </div>                    
+                    <div className="form-group">
+                        <label>Not:</label>
+                        <small style={{ color: 'gray' }}>Maksimum resim boyutu: 200MB, yüklenen resimler otomatik olarak  yenilenecektir.</small> 
                     </div>
                     <div className="form-group">
-                        <small style={{ color: 'gray' }}>Maksimum resim boyutu: 5MB</small><br></br>
-                        <small style={{ color: 'gray' }}>Yüklenen resimler otomatik olarak  yenilenecektir.</small>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="videoUrls">Proje Videoları (Opsiyonel) </label>
+                        <label htmlFor="videos">Proje Videoları (Opsiyonel) </label>
                         <div className="avatar-options">
                             <div className="upload-section">
                                 <label className="submit-button" >
@@ -638,58 +622,40 @@ const EditProject = () => {
                                         name="videos"
                                         multiple
                                         onChange={handleVideoChange}
-                                        accept="video/*"
+                                        accept="video/mp4"
                                         style={{ display: 'none' }}
                                     />
                                 </label>
                             </div>
-
                             {/* Yüklenen video dosyalarının preview'ı */}
-                            {videoPreviews && videoPreviews.length > 0 && (
-                                <div style={{ marginTop: 16 }}>
-                                    <h4>Yüklenen Videolar:</h4>
-                                    {videoPreviews.map((v, i) => (
-                                        <div key={i} style={{ marginBottom: 6 }}>
-                                            <span>✓ {v.name}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-
-                            {/* Veritabanından gelen videoların oynatılması */}
-                            {formData.videoUrls && formData.videoUrls.length > 0 && (
-                                <div style={{ marginTop: 16 }}>
-                                    <h4>Proje Videoları:</h4>
-                                    <VideoPlayer
-                                        videoList={formData.videoUrls}
-                                        serverUrl={serverUrl}
-                                    />
-                                </div>
-                            )}
+                            <VideoPlayer videoList={videoFiles} setVideoFiles={setVideoFiles} />                             
                         </div>
+                    </div>                    
+                    <div className="form-group">
+                        <label >Not:</label>
+                        <small style={{ color: 'gray' }}>Maksimum video boyutu: 500MB, yüklenen videolar otomatik olarak  yenilenecektir.</small>
                     </div>
                     <div className="form-group">
                         <label htmlFor="youtubeUrl">Youtube Video URL (Opsiyonel)</label>
                         <div className="avatar-options">
-                        <input
-                            type="text"
-                            id="youtubeUrl"
-                            name="youtubeUrl"
-                            value={formData.youtubeUrl}
-                            onChange={handleInputChange}
-                        />
-                        <br></br>
-                        {formData.youtubeUrl && formData.youtubeUrl.trim() !== '' && (
-                        <div className="video-container">
-                            <iframe
-                                width="100%"
-                                height="400"
-                                src={getYoutubeEmbedUrl(formData.youtubeUrl)}
-                                title="Project Video"
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                            ></iframe>
+                            <input
+                                type="text"
+                                id="youtubeUrl"
+                                name="youtubeUrl"
+                                value={formData.youtubeUrl}
+                                onChange={handleInputChange}
+                            />
+                            {formData.youtubeUrl && formData.youtubeUrl.trim() !== '' && (
+                            <div className="video-container">
+                                <iframe
+                                    width="100%"
+                                    height="400"
+                                    src={getYoutubeEmbedUrl(formData.youtubeUrl)}
+                                    title="Project Video"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                ></iframe>
                             </div>
                             )}
                         </div>

@@ -46,7 +46,7 @@ const Breadcrumbs = () => {
             case 'socialmediaList':
                 return 'Sosyal Medya Hesapları';
             case 'social-media':
-                return 'Sosyal Medya Hesabları';
+                return 'Sosyal Medya Hesapları';
 
              
             case 'about':

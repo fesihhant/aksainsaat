@@ -23,8 +23,8 @@ const projectSchema = new mongoose.Schema({
     },
     projectCost: {
         type: Number,
-        required: [true, 'Maliyet zorunludur'],
-        min: [0, 'Fiyat 0\'dan küçük olamaz']
+        min: [0, 'Fiyat 0\'dan küçük olamaz'],
+        default: 0
     },
     isVisibleCost: {
         type: Boolean,
@@ -52,7 +52,6 @@ const projectSchema = new mongoose.Schema({
     },
     startDate: {
         type: Date,
-        required: [true, 'Başlangıç tarihi zorunludur'],
         default: Date.now
     },    
     endDate: {
