@@ -17,15 +17,15 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   padding: 8px 3px 8px 14px;
   /* padding: 5px 3px 3px 8px; */
-  width: 48px;
-  min-width: 48px;
+  width: 40px;
+  min-width: 40px;
   overflow: visible;
   transition: background 0.2s;
   position: relative;
   /* border-radius: 20px; */
 }
 .social-media-link i {
-  font-size: 24px;
+  /* font-size: 24px; */
   margin-right: 4px;
   z-index: 2;
   cursor: pointer;
@@ -74,7 +74,7 @@
   opacity: 1;
   width: 100px;
   max-width: 120px;
-  height: 40px;
+  height: 32px;
   pointer-events: auto;
 }
 .social-media-footer-bar{

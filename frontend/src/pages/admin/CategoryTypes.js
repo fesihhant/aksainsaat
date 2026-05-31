@@ -99,15 +99,15 @@ const CategoryTypes = () => {
                     label: 'Düzenle',
                     color: '#369ae7',
                     onClick: (row) => navigate(`/categoryTypes/edit/${row._id}`)
-                },
-                {
-                    label: 'Sil',
-                    color: '#f44336',
-                    onClick: (row) => {
-                        setDeleteId(row._id);
-                        setModalOpen(true);
-                    }
-                }
+                } 
+                // ,{
+                //     label: 'Sil',
+                //     color: '#f44336',
+                //     onClick: (row) => {
+                //         setDeleteId(row._id);
+                //         setModalOpen(true);
+                //     }
+                // }
             ])
         }
     ];    
