@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Breadcrumbs from './Breadcrumbs';
 import { useApiCall } from '../../utils/apiCalls';
 import {serverUrl, HtmlRenderer} from '../../utils/utils';
+import Loading from '../../components/htmlComponent/Loading';
 import '../../css/HomePage.css';
 
 
@@ -60,6 +61,10 @@ const About = () => {
             } 
         }
     }, [apiData, apiError, apiLoading,bookletData, bookletError, bookletLoading]);
+
+    if (loading || bookletLoading || apiLoading) {
+        return <Loading />;
+    }
 
     return (
         <div className="home-container">

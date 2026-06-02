@@ -4,9 +4,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Breadcrumbs from '../public/Breadcrumbs';
 import CSeoHelmet from '../../components/htmlComponent/CSeoHelmet';
 import CCrousel from '../../components/htmlComponent/CCrousel';
+import {serverUrl, getCurrencySymbol, getYoutubeEmbedUrl, apiUrl, HtmlRenderer } from '../../utils/utils';
+import Loading from '../../components/htmlComponent/Loading';
+
 import '../../css/HomePage.css';
 import '../../css/Projects.css';
-import {serverUrl, getCurrencySymbol, getYoutubeEmbedUrl, apiUrl, HtmlRenderer } from '../../utils/utils';
 
 const ProjectDetail = () => {
     const navigate = useNavigate();
@@ -34,7 +36,7 @@ const ProjectDetail = () => {
             const response = await fetch(`${apiUrl}/projects/by-slug/${encodeURIComponent(slug)}`);
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                setError(`HTTP error! status: ${response.status}`);
             }
 
             const data = await response.json();
@@ -62,7 +64,6 @@ const ProjectDetail = () => {
                 setError(data.message || 'Proje bilgileri yüklenemedi');
             }
         } catch (error) {
-            console.error('Proje bilgileri getirme hatası:', error);
             setError(error.message || 'Sunucu bağlantısı başarısız');
         } finally {
             setLoading(false);
@@ -95,7 +96,7 @@ const ProjectDetail = () => {
             <div className="home-container">
                 <div className="main-content">
                     <div style={{ padding: '2rem', textAlign: 'center' }}>
-                        <div>Yükleniyor...</div>
+                        <Loading />
                     </div>
                 </div>
             </div>

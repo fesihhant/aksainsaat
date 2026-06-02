@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import '../../css/EditUser.css';
 import { useApiCall, apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
 import { apiUrl } from '../../utils/utils';
-
+import Loading from '../../components/htmlComponent/Loading';
 
 const EditCategory = () => {
     const { id } = useParams();
@@ -144,7 +144,7 @@ const EditCategory = () => {
             <div className="home-container">
                 <div className="main-content">
                     <div style={{ padding: '2rem', textAlign: 'center' }}>
-                        <div>Yükleniyor...</div>
+                        <Loading />
                     </div>
                 </div>
             </div>

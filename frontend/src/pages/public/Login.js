@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { apiUrl } from '../../utils/utils';
 import {changeModalStyle} from '../../utils/loginUtil';
+import Loading from '../../components/htmlComponent/Loading';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -63,7 +64,7 @@ const Login = () => {
     };
 
     if (loading) {
-        return <div>Yükleniyor...</div>;
+        return <Loading />;
     }
 
     return (

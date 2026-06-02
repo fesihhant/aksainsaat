@@ -5,6 +5,7 @@ import Breadcrumbs from './Breadcrumbs';
 import { useApiCall } from '../../utils/apiCalls';
 import OptimizedImage from '../../components/htmlComponent/OptimizedImage';
 import {substringValue, serverUrl} from '../../utils/utils';
+import Loading from '../../components/htmlComponent/Loading';
 
 const Projects = () => {
     const navigate = useNavigate();
@@ -30,8 +31,7 @@ const Projects = () => {
             }
         }
         if (apiError) {
-            console.error('Projeler yüklenirken hata:', apiError);
-            setError('Sunucu bağlantısı başarısız');
+            setError('Sunucu bağlantısı başarısız: ' + (apiError.message || 'Bilinmeyen hata'));
         }
         setLoading(apiLoading);
     }, [apiData, apiError, apiLoading]);
@@ -58,7 +58,7 @@ const Projects = () => {
             <div className="home-container">
                 <div className="main-content">
                     <Breadcrumbs breadcrumbs={pathnames} />
-                    {loading && <div>Yükleniyor...</div>}
+                    {loading && <Loading />}
                     {error && <div className="error-message" style={{color: 'red', marginBottom: '1rem', padding: '0.5rem'}}>{error}</div>}
                     <div className="page-header">
                         {/* <h1 className='headerClass'><i class="fa-solid fa-list-check"></i> Projeler</h1> */}

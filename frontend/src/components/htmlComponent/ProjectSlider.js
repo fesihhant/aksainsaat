@@ -67,10 +67,14 @@ const ProjectSlider = ({ projects, navigate }) => {
                     <div className="project-details">
                         {slides[current].name} 
                     </div>
-                    <button className="project-detail-button" 
-                        onClick={() => navigate(`/project-detail/${encodeURIComponent(slides[current].project.name)}`)}>
+                    {/* <button className="project-detail-button" 
+                        onClick={() => 
+                        navigate(`/project-detail/${encodeURIComponent(slides[current].project.name)}`)}>
                         Proje Detayları
-                    </button>
+                    </button> */}
+                    <a  className="project-detail-button" href={`/project-detail/${encodeURIComponent(slides[current].project.name)}`} target="_blank" rel="noopener noreferrer">
+                        Proje Detayları
+                    </a>
                 </div>
             </div>
             <button

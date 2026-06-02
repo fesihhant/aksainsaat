@@ -6,6 +6,7 @@ import CHelmet from '../../components/htmlComponent/CHelmet';
 import EmptyRecord from './EmptyRecord';
 import OptimizedImage from '../../components/htmlComponent/OptimizedImage';
 import {substringValue, apiUrl, serverUrl} from '../../utils/utils';
+import Loading from '../../components/htmlComponent/Loading';
 
 
 const OurActivities = () => {
@@ -16,12 +17,15 @@ const OurActivities = () => {
     const [statusType, setStatusType] = useState('');
     const [activeStatus, setActiveStatus] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
      
     const categoryId = location.state?.categoryId;
 
     useEffect(() => {
         
         const fetchCategoryName = async () => {
+            setLoading(true);
             try {   
                 const response = await fetch(`${apiUrl}/categories/getCategoryNameById?categoryId=${categoryId}`);
                 const data = await response.json();
@@ -31,11 +35,13 @@ const OurActivities = () => {
                     setCategoryName(categoryName);
                 } else {
                     setCategoryName('');
-                    console.error('Kategori adı alınamadı:', data.message);
+                    setError('Kategori adı alınamadı:', data.message);
                 }
             } catch (error) {   
                 setCategoryName('');
-                console.error('Kategori adı alınırken hata:', error);
+                setError('Kategori adı alınırken hata:', error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -55,13 +61,15 @@ const OurActivities = () => {
                         setProjects(filteredProjects);
                     } else {
                         setProjects([]);
-                        console.error('Bu kategoriye ait proje bulunamadı'); 
+                        setError('Bu kategoriye ait proje bulunamadı');
                     }
                 } else {
-                    console.error('Projeler alınamadı:', data.message);
+                    setError('Projeler alınamadı:', data.message);
                 }
             } catch (error) {
-                console.error('Projeler alınırken hata:', error);
+                setError('Projeler alınırken hata:', error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -75,13 +83,7 @@ const OurActivities = () => {
     const handleSearch = (e) => {
         setSearchTerm(e.target.value);
     }; 
-
-    const pathnames = [
-    {
-        path: 'Faaliyetlerimiz' + (categoryName ? ' - ' + categoryName : ''),
-        link: '',
-    }];
-    
+ 
     const filteredprojects = projects
         .filter(x =>
             (x.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -89,6 +91,10 @@ const OurActivities = () => {
             &&
             (statusType === '' || x.statusType === statusType)
         );
+    
+    if (loading) {
+        return <Loading />;
+    }
     return (
         <>
         <CHelmet pageName="Faaliyetlerimiz" content={categoryName} categoryName={categoryName} />

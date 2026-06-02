@@ -6,6 +6,7 @@ import ModalMessage from '../public/ModalMessage';
 import '../../css/Products.css';
 import { serverUrl } from '../../utils/utils';
 import {createRelatedValueGetter, createTextRender, createImageRender, createDateRender, createActionsRender , createStatusRender} from '../../utils/columnUtil';
+import Loading from '../../components/htmlComponent/Loading';
 
 const Projects = () => {
     const navigate = useNavigate();
@@ -143,13 +144,11 @@ const Projects = () => {
             ])
         }
     ];
-    {loading && (
-        <div className="loading-spinner">
-            <div className="spinner"></div>
-        </div>
-    )}
     if (error) {
         return <div className="error-message">{error}</div>;
+    }
+    if (loading) {
+        return <Loading />;
     }
     return (
         <>

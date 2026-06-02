@@ -9,6 +9,7 @@ import { serverUrl, apiUrl } from '../../utils/utils';
 
 import '../../css/NewProduct.css';
 import TextAreaComponent from '../../components/htmlComponent/TextAreaComponent';
+import Loading from '../../components/htmlComponent/Loading';
 
 const IntroductionBookletEdit = () => {
     const navigate = useNavigate();
@@ -189,8 +190,9 @@ const IntroductionBookletEdit = () => {
     if (!currentUser || currentUser.role !== 'admin') {
         return <div>Bu sayfaya erişim yetkiniz yok.</div>;
     }
+       
     if (loading) {
-        return <div className="loading">Yükleniyor...</div>;
+        return <Loading />;
     }
     return (
         <div className="home-container">

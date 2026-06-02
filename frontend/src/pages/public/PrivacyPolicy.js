@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Breadcrumbs from './Breadcrumbs';
 import { useApiCall } from '../../utils/apiCalls';
-import '../../css/HomePage.css';
 import { HtmlRenderer } from '../../utils/utils';
+import Loading from '../../components/htmlComponent/Loading';
+import '../../css/HomePage.css';
 
 
 const PrivacyPolicy = () => {
@@ -41,7 +42,7 @@ const PrivacyPolicy = () => {
                 <Breadcrumbs />
                 <div className="about-form-container">   
                     {apiLoading && !formData.title ? (
-                        <div className="skeleton" style={{ minHeight: 200, marginBottom: 20 }} />
+                        <Loading />
                     ) : null}
                     {error && (
                         <div className="error-message">

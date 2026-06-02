@@ -48,7 +48,7 @@
 .image-slider-container {
     display: flex; /* Resimleri yan yana sıralar */
     gap: 10px; /* Resimler arasındaki boşluk */
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     width: 100%;
     overflow: hidden; /* Taşan resimleri gizler */

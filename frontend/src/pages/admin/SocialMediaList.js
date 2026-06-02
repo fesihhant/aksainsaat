@@ -5,7 +5,7 @@ import ModalMessage from '../public/ModalMessage';
 import { useDeleteApiCall } from '../../utils/apiCalls';
 import { apiUrl } from '../../utils/utils';
 import {createTextRender, createActionsRender , createStatusRender} from '../../utils/columnUtil';
-
+import Loading from '../../components/htmlComponent/Loading';
 import '../../css/Products.css';
 
 const SocialMediaList = () => {
@@ -136,6 +136,9 @@ const SocialMediaList = () => {
         }
     ];
 
+    if (loading) {
+        return <Loading />;
+    }
     return (
         <>
             <CListContainer pageName={'socialmediaList'} 

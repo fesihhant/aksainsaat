@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import Breadcrumbs from '../public/Breadcrumbs';
 import { useApiCall, apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls'; 
 import TextAreaComponent from '../../components/htmlComponent/TextAreaComponent';
+import Loading from '../../components/htmlComponent/Loading';
 import '../../css/EditUser.css';
 
 
@@ -81,7 +82,7 @@ const EditAbout = () => {
         return <div>Bu sayfaya erişim yetkiniz yok.</div>;
     }
     if (loading) {
-        return <div className="loading">Yükleniyor...</div>;
+        return <Loading />;
     }
     
     return (

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import CListContainer from '../../components/htmlComponent/CListContainer';
 import ModalMessage from '../public/ModalMessage';
+import Loading from '../../components/htmlComponent/Loading';
 import { useApiCall, useDeleteApiCall } from '../../utils/apiCalls';
 import { serverUrl } from '../../utils/utils';
 import {
@@ -152,9 +153,9 @@ const Users = () => {
 
     if (!currentUser || currentUser.role !== 'admin') {
         return <div>Bu sayfaya erişim yetkiniz yok.</div>;
-    }
+    }    
     if (loading) {
-        return <div className="loading">Yükleniyor...</div>;
+        return <Loading />;
     }
 
     return (

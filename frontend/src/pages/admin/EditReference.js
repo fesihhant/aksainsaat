@@ -4,6 +4,7 @@ import Breadcrumbs from '../public/Breadcrumbs';
 import { apiUrl, serverUrl } from '../../utils/utils';
 import '../../css/HomePage.css';
 import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
+import Loading from '../../components/htmlComponent/Loading';
 
 const EditReference = () => {
     const navigate = useNavigate();
@@ -177,7 +178,7 @@ const EditReference = () => {
             <div className="home-container">
                 <div className="main-content">
                     <div style={{ padding: '2rem', textAlign: 'center' }}>
-                        <div>Yükleniyor...</div>
+                        <Loading />
                     </div>
                 </div>
             </div>

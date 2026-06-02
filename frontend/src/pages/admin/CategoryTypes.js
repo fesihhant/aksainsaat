@@ -4,7 +4,7 @@ import CListContainer from '../../components/htmlComponent/CListContainer';
 import ModalMessage from '../public/ModalMessage';
 import { useApiCall, useDeleteApiCall } from '../../utils/apiCalls';
 import {createTextRender, createActionsRender,createDateRender} from '../../utils/columnUtil';
-
+import Loading from '../../components/htmlComponent/Loading';
 
 const CategoryTypes = () => {
     const navigate = useNavigate();
@@ -111,6 +111,10 @@ const CategoryTypes = () => {
             ])
         }
     ];    
+    
+    if (loading) {
+        return <Loading />;
+    }
     
     return (
         <>

@@ -5,6 +5,7 @@ import Breadcrumbs from '../public/Breadcrumbs';
 import { Checkbox } from '@mui/material';
 import { apiUrl } from '../../utils/utils';
 import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
+import Loading from '../../components/htmlComponent/Loading';
 
 const SocialMediaEdit = () => {
 const { id } = useParams();
@@ -117,7 +118,7 @@ const [form, setForm] = useState({ name: '', mediaLink: '', active: true });
       <div className="home-container">
         <div className="main-content">
           <div style={{ padding: '2rem', textAlign: 'center' }}>
-            <div>Yükleniyor...</div>
+            <Loading />
           </div>
         </div>
       </div>

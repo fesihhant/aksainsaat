@@ -5,6 +5,7 @@ import { useApiCall,  } from '../../utils/apiCalls';
 import {serverUrl, substringValue} from '../../utils/utils';
 import ProjectSlider from '../../components/htmlComponent/ProjectSlider';
 import OptimizedImage from '../../components/htmlComponent/OptimizedImage';
+import Loading from '../../components/htmlComponent/Loading';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -33,21 +34,21 @@ const HomePage = () => {
             }
         } catch (err) {
             setError('Projeler yüklenirken bir hata oluştu');
-        }
+        }  
     }, [apiData, apiLoading, apiError]);
 
+     
     return (
         <>
             <CSeoHelmet pageName="Anasayfa" content="İnşaat projeleri, doğalgaz" categoryName="boru hattı"
                 canonicalUrl="/"
                 ogImage={"/aksa-insaat.png"}
              />
-            
+
             <div className="home-container" >
                 <div className="main-content" style={{paddingTop:'0'}}>
-                    {/* Slider bloklamasın: veri gelene kadar skeleton */}
                     {apiLoading && data.length === 0 ? (
-                        <div style={{ width: '100%', height: '60vw', maxHeight: 700, borderRadius: 0 }} className="skeleton" />
+                        <Loading />
                     ) : (
                         <ProjectSlider projects={data} navigate={navigate} />
                     )}

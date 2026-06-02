@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Breadcrumbs from './Breadcrumbs';
 import {apiUrl} from '../../utils/utils';
 import {changeModalStyle} from '../../utils/loginUtil';
-// import { set } from 'mongoose';
+import Loading from '../../components/htmlComponent/Loading';
 
 const ResetPassword = () => {
     const navigate = useNavigate();
@@ -37,8 +37,9 @@ const ResetPassword = () => {
             } catch (error) {   
                 setLoading(false);
                 setTokenValid(false);
-                setError(error.message);
-                console.error('check işlemi yapılırken hata:', error.message);
+                setError(error.message); 
+            } finally {
+                setLoading(false);
             }
         };
  
@@ -87,7 +88,7 @@ const ResetPassword = () => {
     }];
     
     
-    if (loading) return <div>Yükleniyor...</div>;
+    if (loading) return <Loading message="Şifre güncelleniyor..." />;
     if (!tokenValid) return <div>{error || 'Geçersiz veya süresi dolmuş bağlantı.'}</div>;
 
     return (

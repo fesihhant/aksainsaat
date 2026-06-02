@@ -15,7 +15,8 @@ import { formatPrice, categoryTypeEnum, serverUrl , apiUrl,getCurrencySymbol, ge
 import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
 import TextAreaComponent from '../../components/htmlComponent/TextAreaComponent';
 import VideoPlayer from '../../components/htmlComponent/VideoPlayer';
- 
+import Loading from '../../components/htmlComponent/Loading';
+
 const EditProject = () => {
     const navigate = useNavigate();
     const { id } = useParams();
@@ -340,7 +341,7 @@ const EditProject = () => {
             <div className="home-container">
                 <div className="main-content">
                     <div style={{ padding: '2rem', textAlign: 'center' }}>
-                        <div>Yükleniyor...</div>
+                        <Loading />
                     </div>
                 </div>
             </div>

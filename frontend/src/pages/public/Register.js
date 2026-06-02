@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { apiUrl } from '../../utils/utils';
+import { apiUrl } from '../../utils/utils'; 
+import Loading from '../../components/htmlComponent/Loading';
 import '../../css/Login.css';
 
 const Register = () => {
@@ -12,7 +13,7 @@ const Register = () => {
         confirmPassword: ''
     });
     const [error, setError] = useState('');
-
+    const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);        
     const [showPasswordAgain, setShowPasswordAgain] = useState(false);  
 
@@ -26,10 +27,12 @@ const Register = () => {
     const handleSubmitRegister = async (e) => {
         e.preventDefault();
         setError('');
+        setLoading(true);
 
         // Validate passwords match
         if (formData.password !== formData.confirmPassword) {
             setError('Şifreler eşleşmiyor');
+            setLoading(false);
             return;
         }
 
@@ -49,18 +52,19 @@ const Register = () => {
             const data = await response.json();
 
             if (data.success) {
-                // Registration successful
                 navigate('/login');
             } else {
-                // Registration failed
                 setError(data.message || 'Kayıt işlemi başarısız');
             }
         } catch (error) {
-            console.error('Kayıt hatası:', error);
-            setError('Sunucu bağlantısı başarısız. Lütfen internet bağlantınızı kontrol edin.');
+            setError('Sunucu bağlantısı başarısız. Lütfen internet bağlantınızı kontrol edin.' + error.message);
+        } finally {
+            setLoading(false);
         }
     };
-
+    if (loading) {
+        return <Loading message="Kayıt yapılıyor..." />;
+    }
     return (
         <div className="contact-container">
             <div className="main-content">

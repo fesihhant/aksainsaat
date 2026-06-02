@@ -4,7 +4,7 @@ import CListContainer from '../../components/htmlComponent/CListContainer';
 import ModalMessage from '../public/ModalMessage';
 import { useApiCall, useDeleteApiCall } from '../../utils/apiCalls';
 import { createActionsRender, createDateRender, createTextRender } from '../../utils/columnUtil';
-// import { render } from '@testing-library/react';
+import Loading from '../../components/htmlComponent/Loading';
 
 const TermsOfServiceList = () => {
     const navigate = useNavigate();
@@ -120,6 +120,9 @@ const TermsOfServiceList = () => {
         }
     ];    
     
+    if(loading) {
+        return <Loading />;
+    }
     return (
         <>
         <CListContainer pageName={'termsofservices'} 

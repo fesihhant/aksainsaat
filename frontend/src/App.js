@@ -72,19 +72,7 @@ import NotFound from './pages/public/NotFound';
 import PrivacyPolicy from './pages/public/PrivacyPolicy';
 import TermsOfService from './pages/public/TermsOfService';
 //#endregion
-
-{/* <Helmet>
-  <title>Aksa İnşaat </title>
-  <meta name="description" content="İnşaat, doğalgaz, boru hattı" />
-  <meta name="keywords" content="İnşaat, doğalgaz, boru hattı, belediye, bakanlık" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8d7x1z5l5e5c5e5e5e5e5e5e5e5e5e5e5e5" crossOrigin="anonymous" />  
-  <meta property="og:title" content="Aksa" />
-  <meta property="og:description" content="İnşaat, doğalgaz, boru hattı" />
-  <meta property="og:image" content="https://www.aksainsaat.tr/aksa-insaat.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-</Helmet> */}
+ 
 
 function App() {
   // Kullanıcı bilgisini state'te tut
@@ -104,13 +92,14 @@ function App() {
                 content="İnşaat, doğalgaz, boru hattı, belediye, bakanlık"
               />
               <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-              <link rel="icon" href="/favicon.ico" />
-              <link
-                rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-                integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM8d7x1z5l5e5c5e5e5e5e5e5e5e5e5e5e5e5"
-                crossOrigin="anonymous"
+              <link rel="icon" href="/favicon.ico" /> 
+              <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+                integrity="sha512-2cN6sX7xL7sRKqzZo4PMBVXgS5aXoaZySUdkGFUTkOcJCIZy9FHn5Vf3L7hIwrKyYVJZZzKzbwQ6vurIWBLL8A=="
+                crossorigin="anonymous"
+                referrerpolicy="no-referrer" 
               />
+
               {/* Open Graph */}
               <meta property="og:title" content="Aksa İnşaat" />
               <meta property="og:description" content="İnşaat, doğalgaz, boru hattı" />

@@ -6,6 +6,7 @@ import '../../css/Products.css';
 import { apiUrl, serverUrl } from '../../utils/utils';
 import { createImageRender, createTextRender, createActionsRender } from '../../utils/columnUtil';
 import ModalMessage from '../public/ModalMessage';
+import Loading from '../../components/htmlComponent/Loading';
 
 const References = () => {
     const navigate = useNavigate();
@@ -157,7 +158,9 @@ const References = () => {
             // )
         }
     ];
-
+    if (loading) {
+        return <Loading />;
+    }
     return (
         <>
         <CListContainer pageName={'references'} 
