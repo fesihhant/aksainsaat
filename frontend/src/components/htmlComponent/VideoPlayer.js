@@ -1,4 +1,5 @@
-const VideoPlayer = ({ videoList, setVideoFiles }) => {
+import {serverUrl} from '../../utils/utils';
+export const VideoPlayer = ({ videoList, setVideoFiles }) => {
 
     if (!videoList || videoList.length === 0) {
         return null;
@@ -56,4 +57,33 @@ const VideoPlayer = ({ videoList, setVideoFiles }) => {
         </div>
     );
 }
-export default VideoPlayer;
+
+
+export const VideoViewer = ({ videoList }) => {
+
+
+    if (!videoList || videoList.length === 0) {
+        return null;
+    }
+    return (
+        <div>
+            <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                {videoList.map((preview, index) => {
+                    return (
+                        <div key={index} style={{ position: 'relative', display: 'inline-block' }}>
+                            <video
+                                width="640"
+                                height="360"
+                                controls 
+                                style={{ borderRadius: '8px', backgroundColor: '#000', height: '360px' }}
+                            >
+                                <source src={serverUrl + preview} type="video/mp4" />
+                                Tarayıcınız video etiketini desteklemiyor.
+                            </video> 
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}

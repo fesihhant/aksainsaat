@@ -14,8 +14,9 @@ import { formatPrice, categoryTypeEnum, serverUrl , apiUrl,getCurrencySymbol, ge
     getYoutubeEmbedUrl} from '../../utils/utils';
 import { apiRequest, invalidateApiCacheMany } from '../../utils/apiCalls';
 import TextAreaComponent from '../../components/htmlComponent/TextAreaComponent';
-import VideoPlayer from '../../components/htmlComponent/VideoPlayer';
+import {VideoPlayer} from '../../components/htmlComponent/VideoPlayer';
 import Loading from '../../components/htmlComponent/Loading';
+import { message } from 'antd';
 
 const EditProject = () => {
     const navigate = useNavigate();
@@ -173,17 +174,30 @@ const EditProject = () => {
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
 
-        const validFiles = files.filter(file => {
-            if (file.size > 200 * 1024 * 1024) {
-                setError('Resim boyutu 200MB\'dan küçük olmalıdır');
-                return false;
-            }
+        const validFiles = files.filter(file => { 
             if (!file.type.startsWith('image/')) {
                 setError('Lütfen geçerli bir resim dosyası seçin');
                 return false;
             }
             return true;
         });
+
+        // Mevcut resimler içinde File olanları bul
+        const existingImageSize = images
+        .filter(img => img instanceof File) // sadece File nesneleri
+        .reduce((sum, file) => sum + file.size, 0);
+
+        // Yeni seçilen dosyaların boyutunu hesapla
+        const newImageSize = files.reduce((sum, file) => sum + file.size, 0);
+
+        // Toplam boyut
+        const totalSize = existingImageSize + newImageSize;
+
+        if (totalSize > 200 * 1024 * 1024) {
+            message.error("Toplam resim boyutu 200MB'tan küçük olmalıdır");
+            setError("Toplam resim boyutu 200MB'tan küçük olmalıdır");
+            return;
+        }
 
         if (validFiles.length > 0) { 
             setImages(prev => [...prev, ...validFiles]);
@@ -196,20 +210,29 @@ const EditProject = () => {
     const handleVideoChange = (e) => {
         const files = Array.from(e.target.files);
         const validFiles = files.filter(file => {
-            // ör: maksimum 100MB toplam veya tekil limit isteğe göre değiştirilebilir
-            if (file.size > 500 * 1024 * 1024) {
-                setError('Video boyutu 500MB\'dan küçük olmalıdır');
-                return false;
-            }
             if (!file.type.startsWith('video/')) {
                 setError('Lütfen geçerli bir video dosyası seçin');
                 return false;
             }
             return true;
         });
+        const existingVideoSize = videoFiles
+        .filter(video => video instanceof File) // sadece File nesneleri
+        .reduce((sum, file) => sum + file.size, 0);
+        const newVideoSize = files.reduce((sum, file) => sum + file.size, 0);
+        const totalVideoSize = existingVideoSize + newVideoSize;
 
-        setVideoFiles(prev => [...prev, ...validFiles]);
+        if (totalVideoSize > 1500 * 1024 * 1024) {
+            message.error("Toplam video boyutu 1500MB'tan küçük olmalıdır");
+            setError("Toplam video boyutu 1500MB'dan küçük olmalıdır");
+            return;
+        }
+
+        if (validFiles.length > 0) {
+            setVideoFiles(prev => [...prev, ...validFiles]);
+        }
         setError('');
+        e.target.value = '';
     };
 
     const handleSubmit = async (e) => {
@@ -262,7 +285,8 @@ const EditProject = () => {
                     .reduce((sum, img) => sum + img.size, 0);
                 
                 if (totalSize > 200 * 1024 * 1024) {
-                    setError('Toplam resim boyutu 200MB\'dan küçük olmalıdır');
+                    message.error("Toplam resim boyutu 200MB'tan küçük olmalıdır");
+                    setError("Toplam resim boyutu 200MB'tan küçük olmalıdır");
                     setLoading(false);
                     return;
                 }
@@ -281,8 +305,9 @@ const EditProject = () => {
                     .filter(video => video instanceof File)
                     .reduce((sum, video) => sum + video.size, 0);
 
-                if (totalVideoSize > 500 * 1024 * 1024) {
-                    setError('Toplam video boyutu 500MB\'dan küçük olmalıdır');
+                if (totalVideoSize > 1500 * 1024 * 1024) {
+                    message.error("Toplam video boyutu 1500MB'tan küçük olmalıdır");
+                    setError("Toplam video boyutu 1500MB'tan küçük olmalıdır");
                     setLoading(false);
                     return;
                 }
@@ -329,7 +354,7 @@ const EditProject = () => {
             }
         } catch (error) {
             console.error('Form gönderme hatası:', error);
-            setError(error.message || 'Sunucu bağlantısı başarısız');
+            setError(error.message || 'Sunucu bağlantısı başarısız' + error.message);
         } finally {
             setLoading(false);
         }
@@ -354,7 +379,6 @@ const EditProject = () => {
                 <Breadcrumbs />
                 <form id="productForm" onSubmit={handleSubmit} className="new-product-form">
                     <div className="page-header">
-                        {/* <h1 className='headerClass'>{formData ? 'Proje Düzenle' : 'Yeni Proje'}</h1> */}
                         <div className="form-actions">
                             <button
                                 type="submit"
@@ -368,8 +392,9 @@ const EditProject = () => {
                                 type="button"
                                 onClick={() => navigate(-1)}
                                 className="cancel-button"
+                                disabled={loading}
                             >
-                                İptal
+                                {loading ? '...' : 'İptal'}
                             </button>
                         </div>
                     </div>
@@ -533,7 +558,7 @@ const EditProject = () => {
                                         multiple // Eğer birden fazla resim yüklemek istiyorsanız burayı açabilirsiniz.
                                         name='images'
                                         onChange={handleImageChange}
-                                        accept="image/*"
+                                        accept="image/*" 
                                         style={{ display: 'none' }}
                                     />
                                 </label>

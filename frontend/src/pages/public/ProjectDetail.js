@@ -6,7 +6,7 @@ import CSeoHelmet from '../../components/htmlComponent/CSeoHelmet';
 import CCrousel from '../../components/htmlComponent/CCrousel';
 import {serverUrl, getCurrencySymbol, getYoutubeEmbedUrl, apiUrl, HtmlRenderer } from '../../utils/utils';
 import Loading from '../../components/htmlComponent/Loading';
-
+import {VideoViewer} from '../../components/htmlComponent/VideoPlayer';
 import '../../css/HomePage.css';
 import '../../css/Projects.css';
 
@@ -21,7 +21,8 @@ const ProjectDetail = () => {
             price: '',
             stockQuantity: '',
             typeofActivityId: null,
-            youtubeUrl : '',
+            videoUrls: [],
+            youtubeUrl : ''
 
         });
     const [imagePreviews, setImagePreviews] = useState([]);
@@ -54,6 +55,7 @@ const ProjectDetail = () => {
                     startDate: projectData.startDate ? projectData.startDate.toString() : '',
                     endDate: projectData.endDate ? projectData.endDate.toString() : '',
                     imageUrls: projectData.imageUrls || '',
+                    videoUrls: projectData.videoUrls || [],
                     youtubeUrl : projectData.youtubeUrl || ''
                 });
 
@@ -186,7 +188,7 @@ const ProjectDetail = () => {
                                 <div className="col-12">
                                     <div className="form-group">
                                         <label htmlFor="description">Açıklama</label>
-                                        <div id="description" name="description">
+                                        <div id="description" name="description" style={{ textAlign: 'initial' }}>
                                             <HtmlRenderer html={formData.description} />
                                         </div>
                                     </div>
@@ -205,7 +207,15 @@ const ProjectDetail = () => {
                                     </div>
                                 </div>
                             </div> 
-                                                         
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="form-group">
+                                        <div className="avatar-options">
+                                            <VideoViewer videoList={formData.videoUrls} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                             
                             <div className="row">
                                 <div className="col-12">
                                     <div className="form-group"> 

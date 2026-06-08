@@ -35,7 +35,7 @@ const upload = multer({
         fileSize: 1000 * 1024 * 1024 // 1GB limit (video dosyaları için artırıldı)
     },
     fileFilter: function (req, file, cb) {
-        if (!file.originalname.match(/\.(jpg|jpeg|png|gif|mp4|avi|mov|mkv)$/)) {
+        if (!file.originalname.match(/\.(JPG|jpg|JPEG|jpeg|PNG|png|GIF|gif|MP4|mp4|AVI|avi|MOV|mov|MKV|mkv)$/)) {
             return cb(new Error('Sadece resim ve video dosyaları yüklenebilir!'));
         }
         cb(null, true);
@@ -202,7 +202,6 @@ router.put('/:id', protect, authorize('admin'),
         project.startDate = startDate ? new Date(startDate) : project.startDate; // Tarih formatını kontrol et
         project.endDate = endDate ? new Date(endDate) : null; // Tarih formatını kontrol et
        
-         
         // Frontend'den silinen resimleri kontrol et ve sil
         if (keptImages) {
             try {
@@ -261,29 +260,26 @@ router.put('/:id', protect, authorize('admin'),
                 console.error('keptVideos parse hatası:', err);
             }
         }
-
         // Yeni yüklenen videoları ekle
         if (req.files && req.files.videos) {
             const newVideos = req.files.videos.map(file => '/uploads/projects/' + file.filename);
             project.videoUrls = [...(project.videoUrls || []), ...newVideos];
         }
-        const updatedProject = await Project.findByIdAndUpdate(
-            req.params.id, 
-            project, 
-            { new: true }
-        );
-
-        if (!updatedProject) {
-            return res.status(404).json({ 
-                success: false, 
-                message: 'Proje güncellenemedi' 
+        try {
+            const updatedProject = await project.save();
+            if (!updatedProject) {
+                return res.status(404).json({ 
+                    success: false, 
+                    message: 'Proje güncellenemedi' 
+                });
+            }
+            res.json({ 
+                success: true, 
+                updatedProject 
             });
-        }
-        res.json({ 
-            success: true, 
-            project 
-        });
-         
+        } catch (err) {
+            return res.status(500).json({ success: false, message: 'Proje güncellenirken hata oluştu : ' + err.message });
+        } 
     } catch (error) {
         // yüklenen dosyaları temizle
         if (req.files) {
