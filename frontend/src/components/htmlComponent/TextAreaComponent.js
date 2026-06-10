@@ -37,32 +37,7 @@ const TextAreaComponent = ({ field, name, value, onChange, onBlur, fieldErrors }
                     placeholder: field.placeholder || '',  
                     mediaEmbed: {
                     previewsInData: true // 🔹 iframe çıktısını HTML içine ekler
-                    }
-                    // toolbar: {
-                    //     items: [
-                    //         'undo', 'redo',
-                    //         '|',
-                    //         'heading',
-                    //         '|',
-                    //         'TextColor','FontSize','BGColor',
-                    //         '|',
-                    //         'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-                    //         '|',
-                    //         'link', 'uploadImage', 'blockQuote', 'codeBlock',
-                    //         '|',
-                    //         'alignment',
-                    //         '|',
-                    //         'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
-                    //     ],
-                    //     shouldNotGroupWhenFull: true
-                    // },
-                    // toolbar: [
-                    //     // { name: 'styles', items: ['Font','FontSize' ] },
-                    //     { name: 'colors', items: [ 'BGColor','TextColor' ] },
-                    //     { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike','-', 'RemoveFormat' ] },
-                    //     { name: 'undo', items: [ 'Undo', 'Redo', 'Cut', 'Copy', 'Paste'] }
-                    // ],
-                    // shouldNotGroupWhenFull: true
+                    } 
                 }}
                 
 

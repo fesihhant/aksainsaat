@@ -110,54 +110,43 @@ router.post('/', protect, authorize('admin'),
     upload.fields([{ name: 'images' }, { name: 'videos' }]), async (req, res) => {
     try {
         const { name, statusType, description, projectCost, isVisibleCost, typeofActivityId, youtubeUrl, currencyType , startDate,endDate } = req.body;
-        if (!name || !projectCost || !startDate) {
+        if (!name || !startDate) {
             return res.status(400).json({
                 success: false,
                 message: 'Lütfen tüm zorunlu alanları doldurun'
             });
         }
-        if (!req.files || req.files.images.length === 0) {
-            return res.status(400).json({
-                success: false,
-                message: 'Lütfen en az bir resim yükleyin'
-            });
-        }
         
-        const imageUrls = req.files && req.files.images
-            ? req.files.images.map(file => '/uploads/projects/' + file.filename)
-            : [];
-        const videoUrls = req.files && req.files.videos
-            ? req.files.videos.map(file => '/uploads/projects/' + file.filename)
-            : [];
+        
         const project = new Project({
             name,
             statusType,
-            description,
-            projectCost: parseFloat(projectCost),
+            description: description || '',
+            projectCost: parseFloat(projectCost) || 0,
             isVisibleCost: isVisibleCost,
             currencyType: currencyType || 'TRY',
             startDate: startDate ? new Date(startDate) : new Date(),
-            endDate: endDate ? new Date(endDate) : new Date(),
-            imageUrls,
-            videoUrls,
+            endDate: endDate ? new Date(endDate) : null,
             typeofActivityId: typeofActivityId,
             youtubeUrl : youtubeUrl || ''
         });
- 
-        await project.save();
-
+        if (req.files && req.files.images) {
+            project.imageUrls = req.files.images.map(file => '/uploads/projects/' + file.filename);
+        }
+        if (req.files && req.files.videos) {
+            project.videoUrls = req.files.videos.map(file => '/uploads/projects/' + file.filename);
+        } 
+        try {
+            await project.save();
+        } catch (err) {
+            return res.status(500).json({ success: false, message: 'Proje kaydedilirken hata oluştu : ' + err });
+        }
         res.status(201).json({ 
             success: true, 
             project 
         });
     } catch (error) {
         if (req.files) {
-            // req.files.forEach(file => {
-            //     const filePath = path.join(__dirname, '..', file.path);
-            //     if (fs.existsSync(filePath)) {
-            //         fs.unlinkSync(filePath);
-            //     }
-            // });
             Object.values(req.files).flat().forEach(file => {
                 const filePath = path.join(__dirname, '..', file.path);
                 if (fs.existsSync(filePath)) {
@@ -166,9 +155,7 @@ router.post('/', protect, authorize('admin'),
             });
         }
         
-        res.status(400).json({ 
-            success: false, 
-            message: error.message });
+        res.status(400).json({success: false, message: error.message });
     }
 });
 
@@ -184,7 +171,7 @@ router.put('/:id', protect, authorize('admin'),
         if (!project) {
             return res.status(404).json({ success: false, message: 'Kayıt bulunamadı' });
         }
-        if (!name || !projectCost || !startDate) {
+        if (!name || !startDate) {
             return res.status(400).json({
                 success: false,
                 message: 'Lütfen tüm zorunlu alanları doldurun'
@@ -278,7 +265,7 @@ router.put('/:id', protect, authorize('admin'),
                 updatedProject 
             });
         } catch (err) {
-            return res.status(500).json({ success: false, message: 'Proje güncellenirken hata oluştu : ' + err.message });
+            return res.status(500).json({ success: false, message: 'Proje güncellenirken hata oluştu : ' + err });
         } 
     } catch (error) {
         // yüklenen dosyaları temizle

@@ -249,6 +249,16 @@ const EditProject = () => {
 
             const formDataToSend = new FormData();
 
+            if (formData.name.trim() === '') {
+                setError('Proje adı boş bırakılamaz');
+                setLoading(false);
+                return;
+            }
+            if (formData.description.trim() === '') {
+                setError('Açıklama alanı boş bırakılamaz');
+                setLoading(false);
+                return;
+            }
             if (formData?._id) {
                 formDataToSend.append('id', formData._id); // Güncelleme için ID
                 // Silinen mevcut resimleri backend'e bildir
@@ -260,6 +270,7 @@ const EditProject = () => {
                             // URL'den relative path'i çıkar
                             return preview.replace(serverUrl, '');
                         });
+                    
                     formDataToSend.append('keptImages', JSON.stringify(keptImages));
                 }else {
                     formDataToSend.append('keptImages', JSON.stringify([]));
@@ -297,8 +308,11 @@ const EditProject = () => {
                         formDataToSend.append('images', image); 
                     }
                 });
+            }else {
+                setError('En az bir resim yüklemeniz gerekmektedir');
+                setLoading(false);
+                return;
             }
-            
             if (videoFiles.length > 0) {
                 // toplam boyut kontrol istersen buraya ekle
                 const totalVideoSize = videoFiles
@@ -319,7 +333,7 @@ const EditProject = () => {
             }
             formDataToSend.append('typeofActivityId', formData.typeofActivityId._id || formData.typeofActivityId);
             formDataToSend.append('name', formData.name);
-            formDataToSend.append('description', formData.description);
+            formDataToSend.append('description', formData.description || '');
             formDataToSend.append('statusType', isActive ? 'true' : 'false'); // Checkbox durumu
             formDataToSend.append('projectCost', Number(formData.projectCost) || 0); // Proje maliyeti
             formDataToSend.append('isVisibleCost', isVisibleCost ? 'true' : 'false'); // Checkbox durumu
@@ -542,6 +556,7 @@ const EditProject = () => {
                                 placeholder: 'Açıklama giriniz...',
                                 required: true
                             }}
+                            // fieldErrors={formData.description ? null : { description: 'Açıklama alanı zorunludur' }}
                             value={formData.description}
                             onBlur={value => setFormData((prev) => ({ ...prev, description: value }))}
                         />  
@@ -659,7 +674,7 @@ const EditProject = () => {
                     </div>                    
                     <div className="form-group">
                         <label >Not:</label>
-                        <small style={{ color: 'gray' }}>Maksimum video boyutu: 500MB, yüklenen videolar otomatik olarak  yenilenecektir.</small>
+                        <small style={{ color: 'gray' }}>Maksimum video boyutu: 1.5GB, yüklenen videolar otomatik olarak  yenilenecektir.</small>
                     </div>
                     <div className="form-group">
                         <label htmlFor="youtubeUrl">Youtube Video URL (Opsiyonel)</label>
